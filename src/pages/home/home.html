@@ -1,14 +1,36 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      User Settings Page
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<button ion-button color="light" style="width: 25%">
+<ion-icon name='arrow-back'></ion-icon>Back</button>
+<br/>
+  <ion-list>
+
+  <ion-item>
+    <ion-label floating>Update Password</ion-label>
+    <ion-input type="text" value=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Update Account Name</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Update Full Name</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+
+</ion-list>
+<button ion-button>
+<ion-col width-50 style="text-align: right">
+Submit
+</ion-col>
+</button>
 </ion-content>
