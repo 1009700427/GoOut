@@ -1,0 +1,19 @@
+package Information;
+
+// the LoginUser class extends from the ordinary User class 
+public class LoginUser extends User{
+	private String username; 
+	private String lName; 
+	private String fName; 
+	private String password; 
+	private int ID; 
+	public LoginUser(String username, String lName, String fName, String password, int ID){
+		super(username);
+		this.username = username; 
+		this.lName = lName; 
+		this.fName = fName; 
+		this.password = password; 
+		this.ID = ID; 
+	}
+	
+}
