@@ -69,7 +69,7 @@ public class LoginUser extends User{
 	public void addFollowingUsers(User u){
 		this.followingUsers.add(u); 
 	}
-	public void removeFollowingUsers(User u){
+	public void deleteFollowingUsers(User u){
 		this.followingUsers.remove(u); 
 	}
 	public Map<Event, Integer> getFollowingEventsNotificationTime(){
@@ -78,10 +78,7 @@ public class LoginUser extends User{
 	public void addFollowingEventsNotificationTime(Event e, int time){
 		this.followingEventsNotificationTime.put(e, time); 
 	}
-	public void setFollowingEventsNotificationTime(Event e, int time){
+	public void changeFollowingEventsNotificationTime(Event e, int time){
 		this.followingEventsNotificationTime.put(e, time); 
-	}
-	public void removeFollowingEventsNotificationTime(Event e, int time){
-		this.followingEventsNotificationTime.remove(e); 
 	}
 }

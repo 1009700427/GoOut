@@ -78,7 +78,7 @@ public class LoginUser extends User{
 	public void addFollowingEventsNotificationTime(Event e, int time){
 		this.followingEventsNotificationTime.put(e, time); 
 	}
-	public void setFollowingEventsNotificationTime(Event e, int time){
+	public void changeFollowingEventsNotificationTime(Event e, int time){
 		this.followingEventsNotificationTime.put(e, time); 
 	}
 	public void removeFollowingEventsNotificationTime(Event e, int time){

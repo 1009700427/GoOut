@@ -14,13 +14,7 @@ public class Date {
 	}
 	// getters and setters 
 	public int getDay(){
-		return this.day; 
-	}
-	public void setDay(int newDay){
-		this.day = newDay; 
-	}
-	public int getMonth(){
-		return this.month; 
+		return day; 
 	}
 	public void setMonth(int newMonth){
 		this.month = newMonth; 
