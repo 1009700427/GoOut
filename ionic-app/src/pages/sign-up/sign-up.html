@@ -8,39 +8,44 @@
   <ion-navbar>
     <ion-title>sign_up</ion-title>
   </ion-navbar>
-
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet"> 
 </ion-header>
 
 
 <ion-content padding>
-	<!-- <ion-list>
-		<ion-item>
-			<ion-input type="text" placeholder="Name..." ></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-input type="text" placeholder="Username..." ></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-input type="password" placeholder="Password..." ></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-input type="password" placeholder="Confirm password..." ></ion-input>
-		</ion-item>
-	
-	</ion-list> -->
-	<form>
-		<ion-input type="text" placeholder="Name..." ></ion-input>
-		
-		
-			<ion-input type="text" placeholder="Username..." ></ion-input>
-			<ion-input type="password" placeholder="Password..." ></ion-input>
-			<ion-input type="password" placeholder="Confirm password..." ></ion-input>
-			<button ion-button color="secondary" type="submit">Sign Up</button>
-			<button ion-button color="danger" [navPush]="LogIn">Log In</button>
-
-			
+<ion-item>
+	<ion-label text-center color="danger" font-family="'Dancing Script', cursive" style="font-size : 50px">
+	<i>GoOut</i>
+	</ion-label>
+</ion-item>
 
 
-	</form>
-	
+
+	<ion-list>
+
+	  <ion-item>
+	    <ion-label floating>First Name</ion-label>
+	    <ion-input type="text"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Last Name</ion-label>
+	    <ion-input type="text"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Password</ion-label>
+	    <ion-input type="password"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Confirm Password</ion-label>
+	    <ion-input type="password"></ion-input>
+	  </ion-item>
+	</ion-list>	
+
+	<button ion-button block color="secondary" type="submit" width="50%">Sign up</button> <br>
+ 	<button ion-button block color="danger" width="50%" [navPush]="LoginPage">Log in</button> <br>	 	 
+ 	<button ion-button block clear width="50%">Continue as Guest</button>
+	 
 </ion-content>

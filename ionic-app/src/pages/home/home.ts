@@ -8,8 +8,8 @@ import { LoginPage } from "../login/login";
   templateUrl: 'home.html',
 })
 export class HomePage {
-	SignUp = SignUpPage;
-	loginPage = LoginPage;
+	SignUpPage = SignUpPage;
+	LoginPage = LoginPage;
   constructor(public navCtrl: NavController) {
 
   }
