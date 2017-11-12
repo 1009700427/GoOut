@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { LoginPage } from "../login/login";
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -15,7 +15,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'sign-up.html',
 })
 export class SignUpPage {
-
+	LoginPage = LoginPage;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

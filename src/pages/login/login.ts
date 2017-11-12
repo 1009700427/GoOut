@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-
+import { SignUpPage } from "../sign-up/sign-up";
 import {Platform, ActionSheetController} from 'ionic-angular';
 
 @Component({
@@ -9,6 +9,7 @@ import {Platform, ActionSheetController} from 'ionic-angular';
 })
 
 export class LoginPage{
+	SignUpPage = SignUpPage;
 	constructor(
 		public Platform: Platform, 
 		public actionsheetCtrl: ActionSheetController
