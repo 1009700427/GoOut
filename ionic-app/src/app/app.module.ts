@@ -4,17 +4,19 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SignUpPage } from "../pages/sign-up/sign-up";
-
+import { GoogleMaps } from '@ionic-native/google-maps';
 import { LoginPage } from "../pages/login/login";
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { MainPage } from "../pages/main/main";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SignUpPage,
-    LoginPage
+    LoginPage,
+    MainPage
 
   ],
   imports: [
@@ -26,10 +28,12 @@ import { HomePage } from '../pages/home/home';
     MyApp,
     HomePage,
     SignUpPage,
-    LoginPage
+    LoginPage,
+    MainPage
   ],
   providers: [
     StatusBar,
+    GoogleMaps,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
