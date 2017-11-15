@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Searching")
 public class Searching extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
