@@ -25,7 +25,9 @@
 </ion-list>
 
 	
- 	<button ion-button block color="secondary" type="submit">Log in</button><br>
+ 	<!-- <button ion-button block color="secondary" type="submit">Log in</button><br> -->
+	<button ion-button block color="secondary" [navPush]="MainPage">Log in</button><br>
+
 	<button ion-button block color="danger" [navPush]="SignUpPage">Sign up</button><br>
  	<button ion-button block clear>Continue as Guest</button>
 	 
