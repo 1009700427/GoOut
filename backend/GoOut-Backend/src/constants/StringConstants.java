@@ -12,4 +12,7 @@ public class StringConstants {
 	public static final String PARAM_FIRST_NAME = "firstname";
 	public static final String PARAM_LAST_NAME = "lastname";
 	public static final String PARAM_CONFIRM_PASSWORD ="confirmPassword";
+	
+	//database url
+	public static final String DB_URL = "cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com"; 
 }

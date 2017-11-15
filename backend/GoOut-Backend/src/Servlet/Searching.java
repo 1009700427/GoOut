@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Searching")
 public class Searching extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+	private static Connection conn = null;
+	private static ResultSet rs = nulll;
+	private static PreparedStatment ps = null;
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
