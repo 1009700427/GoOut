@@ -49,7 +49,9 @@
     "plugins": {
       "cordova-plugin-googlemaps": {
         "API_KEY_FOR_ANDROID": "AIzaSyBA_JgBJIHMi-sZrx9oXKo-0E0K6ezolqw",
-        "API_KEY_FOR_IOS": "AIzaSyB3muXmbwOKOeZDVYoe8V6t2jIB7oIO32s"
+        "API_KEY_FOR_IOS": "AIzaSyB3muXmbwOKOeZDVYoe8V6t2jIB7oIO32s",
+        "LOCATION_WHEN_IN_USE_DESCRIPTION": "Show your location on the map",
+        "LOCATION_ALWAYS_USAGE_DESCRIPTION": "Trace your location on the map"
       },
       "ionic-plugin-keyboard": {},
       "cordova-plugin-whitelist": {},
