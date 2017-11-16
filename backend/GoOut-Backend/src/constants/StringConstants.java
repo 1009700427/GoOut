@@ -18,5 +18,7 @@ public class StringConstants {
 	public static final String MAIN_DB_NAME = "testDB";
 	public static final String DB_USER = "master";
 	public static final String DB_PASSWORD = "masterpassword";
+	
+	
 
 }
