@@ -1,3 +1,15 @@
+import {
+ GoogleMaps,
+ GoogleMap,
+ GoogleMapsEvent,
+ GoogleMapOptions,
+ // CameraPosition,
+ // MarkerOptions,
+ // Marker
+} from '@ionic-native/google-maps';
+
+
+
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -18,16 +30,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class MainPage {
   @ViewChild('map') mapRef : ElementRef;
   map: any;
-	// map: GoogleMap;
-
+  // map: GoogleMap;
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ionViewDidLoad() {
     console.log(this.mapRef);
     this.showMap();
 
-  	// this.loadMap();
-	  // console.log('ionViewDidLoad MainPage');
+    // this.loadMap();
+    // console.log('ionViewDidLoad MainPage');
   }
 
 
@@ -66,21 +77,6 @@ showMap(){
          // this.handleLocationError(false, infoWindow, map.getCenter());
         }
 
-  }
-  ionViewDidLoad(){
-    this.loadMap();
-  }
-  loadMap(){
-    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
- 
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
- 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-  }
 }
  
 // handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -102,13 +98,10 @@ showMap(){
  //        tilt: 30
  //      }
  //    };
-
- //  	this.map = GoogleMaps.create('map', mapOptions);
-
+ //    this.map = GoogleMaps.create('map', mapOptions);
  //    // Wait the MAP_READY before using any methods.
  //    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
  //        console.log('Map is ready!');
-
  //        // Now you can use all methods safely.
  //        this.map.addMarker({
  //            title: 'Ionic',
