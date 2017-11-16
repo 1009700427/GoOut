@@ -1,18 +1,4 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import {NavController } from 'ionic-angular';
-declare var google;
-@Component({
-  selector: "main-page",
-  templateUrl: "main.html"
-})
-
-export class MainPage{
-  @ViewChild('map') mapElement : ElementRef;
-  map:any;
-
-  constructor(public  navCtrl : NavController){
-=======
-import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -79,7 +65,6 @@ showMap(){
           // Browser doesn't support Geolocation
          // this.handleLocationError(false, infoWindow, map.getCenter());
         }
->>>>>>> master
 
   }
   ionViewDidLoad(){
@@ -142,4 +127,3 @@ showMap(){
  //          });
  //      });
  // }
-
