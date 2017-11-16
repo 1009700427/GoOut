@@ -19,6 +19,9 @@ public class StringConstants {
 	public static final String DB_USER = "master";
 	public static final String DB_PASSWORD = "masterpassword";
 	
+	//backend on AWS
+	public static final String BACKEND_URL = "http://goout.us-west-1.elasticbeanstalk.com/";
+	
 	
 
 }

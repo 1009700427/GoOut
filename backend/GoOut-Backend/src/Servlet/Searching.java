@@ -29,17 +29,19 @@ public class Searching extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
 		//JDBCDriver.connect();
 		
-		try {
-			String rep = request.getParameter("sent");
-			if(rep != null) {
-				response.getWriter().println("i received your msg");
-				response.getWriter().flush();
-				response.getWriter().close();
-			}
-			
-		}catch(IOException ioe) {
-			ioe.printStackTrace();
-		}
+		
+		//TESTING THE CONNECTION REMOVE WHEN DONE 
+//		try {
+//			String rep = request.getParameter("sent");
+//			if(rep != null) {
+//				response.getWriter().println("i received your msg: " + rep);
+//				response.getWriter().flush();
+//				response.getWriter().close();
+//			}
+//			
+//		}catch(IOException ioe) {
+//			ioe.printStackTrace();
+//		}
 		
 	}
 
