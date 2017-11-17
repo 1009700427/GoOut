@@ -31,8 +31,7 @@ import { SignUpPage } from '../sign-up/sign-up';
 export class MainPage {
   @ViewChild('map') mapRef : ElementRef;
   map: any;
-	// map: GoogleMap;
-
+  // map: GoogleMap;
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   onInput(e){
@@ -42,8 +41,8 @@ export class MainPage {
     console.log(this.mapRef);
     this.showMap();
 
-  	// this.loadMap();
-	  // console.log('ionViewDidLoad MainPage');
+    // this.loadMap();
+    // console.log('ionViewDidLoad MainPage');
   }
 swipeEvent(e){
     //go to the login page if 
@@ -114,13 +113,10 @@ showMap(){
  //        tilt: 30
  //      }
  //    };
-
- //  	this.map = GoogleMaps.create('map', mapOptions);
-
+ //    this.map = GoogleMaps.create('map', mapOptions);
  //    // Wait the MAP_READY before using any methods.
  //    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
  //        console.log('Map is ready!');
-
  //        // Now you can use all methods safely.
  //        this.map.addMarker({
  //            title: 'Ionic',
@@ -139,4 +135,3 @@ showMap(){
  //          });
  //      });
  // }
-
