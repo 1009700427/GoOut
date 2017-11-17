@@ -12,7 +12,8 @@ import {
 
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { LoginPage } from '../login/login';
+import { SignUpPage } from '../sign-up/sign-up';
 /**
  * Generated class for the MainPage page.
  *
@@ -34,6 +35,9 @@ export class MainPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
+  onInput(e){
+    console.log(e);
+  }
   ionViewDidLoad() {
     console.log(this.mapRef);
     this.showMap();
@@ -41,7 +45,18 @@ export class MainPage {
   	// this.loadMap();
 	  // console.log('ionViewDidLoad MainPage');
   }
-
+swipeEvent(e){
+    //go to the login page if 
+    //the user swipes to the left
+    if(e.direction == 2){
+      this.navCtrl.push(LoginPage);
+    }
+    // //go to the signup page if 
+    // //the user swipes to the right
+    if(e.direction == 4){
+      this.navCtrl.push(SignUpPage);
+    }
+  }
 
 showMap(){
   //location-- lat long
@@ -50,7 +65,7 @@ showMap(){
   //Map options
   const options = {
     center : location,
-    zoom: 10,
+    zoom: 16,
     fullscreenControl: false,
     mapTypeId: 'roadmap'
   }
