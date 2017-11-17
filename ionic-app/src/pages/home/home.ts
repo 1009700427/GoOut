@@ -13,4 +13,17 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
 
   }
+
+  swipeEvent(e){
+  	//go to the login page if 
+  	//the user swipes to the left
+  	if(e.direction == 2){
+  		this.navCtrl.push(LoginPage);
+  	}
+  	//go to the signup page if 
+  	//the user swipes to the right
+  	if(e.direction == 4){
+  		this.navCtrl.push(SignUpPage);
+  	}
+  }
 }
