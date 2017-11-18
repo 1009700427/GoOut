@@ -1,0 +1,22 @@
+package Thread;
+
+import java.text.*;
+import java.util.*;
+
+public class Notification extends Thread{
+	public Notification(){
+		
+	}
+	public void run(){
+		
+	}
+	// gets the current date and time 
+	public Date getCurrentDate(){
+		return 
+	}
+	public static void main(String[] args){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		System.out.println(dateFormat.format(date));
+	}
+}
