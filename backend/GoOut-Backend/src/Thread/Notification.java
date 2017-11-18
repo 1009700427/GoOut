@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-package Thread;
-
-public class Notification extends Thread{
-	public Notification(){
-		
-	}
-	public void run(){
-		
-	}
-}
-=======
 package Thread;
 
 import java.io.*;
@@ -66,4 +54,4 @@ public class Notification extends Thread{
 //		System.out.println(dateFormat.format(date));
 //	}
 }
->>>>>>> steven
+
