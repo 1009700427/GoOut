@@ -14,6 +14,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { SignUpPage } from '../sign-up/sign-up';
+import { addEventPage } from '../add-event/add-event';
+
 /**
  * Generated class for the MainPage page.
  *
@@ -29,6 +31,7 @@ import { SignUpPage } from '../sign-up/sign-up';
   templateUrl: 'main.html',
 })
 export class MainPage {
+   addEventPage = addEventPage;
   @ViewChild('map') mapRef : ElementRef;
   map: any;
   // map: GoogleMap;

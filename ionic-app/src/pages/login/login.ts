@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import { SignUpPage } from "../sign-up/sign-up";
 import { MainPage } from "../main/main";
 import { eventPage } from "../event-detail/event-detail";
-
+import { addEventPage } from '../add-event/add-event';
 import { userEventPage } from "../user-event/user-event";
 import {Platform, ActionSheetController} from 'ionic-angular';
 
@@ -17,6 +17,7 @@ export class LoginPage{
 	MainPage = MainPage;
 	eventPage = eventPage;
 	userEventPage = userEventPage;
+	addEventPage = addEventPage;
 	constructor(
 		public Platform: Platform, 
 		public actionsheetCtrl: ActionSheetController

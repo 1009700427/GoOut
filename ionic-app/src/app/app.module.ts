@@ -11,6 +11,8 @@ import { HomePage } from '../pages/home/home';
 import { MainPage } from "../pages/main/main";
 import { eventPage } from "../pages/event-detail/event-detail";
 import { userEventPage } from "../pages/user-event/user-event";
+import { addEventPage } from "../pages/add-event/add-event";
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { userEventPage } from "../pages/user-event/user-event";
     LoginPage,
     MainPage,
     eventPage,
-    userEventPage
+    userEventPage,
+    addEventPage
 
   ],
   imports: [
@@ -35,11 +38,13 @@ import { userEventPage } from "../pages/user-event/user-event";
     LoginPage,
     MainPage,
     eventPage,
-    userEventPage
+    userEventPage,
+    addEventPage
   ],
   providers: [
     StatusBar,
     GoogleMaps,
+    Geolocation,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
