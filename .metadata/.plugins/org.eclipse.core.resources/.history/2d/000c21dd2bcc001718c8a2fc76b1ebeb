@@ -1,0 +1,39 @@
+package Thread;
+
+import java.net.*;
+import java.text.*;
+import java.util.*;
+import Server.*;
+
+public class Notification extends Thread{
+	private GoOutServer gos; 
+	private Socket s; 
+	private Calendar notificationTime;
+	private String eventName; 
+	private String username; 
+	// passes in the notification time 
+	public Notification(Calendar notificationTime, String eventName, String username){
+		this.notificationTime = notificationTime; 
+		this.eventName = eventName;
+		this.username = username; 
+	}
+	public Notification(GoOutServer gos, Socket s){
+		this.gos = gos; 
+		this.s = s; 
+	}
+	public void run(){
+		while(true){
+			
+		}
+	}
+	// gets the current date and time 
+	public Calendar getCurrentDate(){
+		Calendar cal = Calendar.getInstance();
+		return cal;
+	}
+	public static void main(String[] args){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		System.out.println(dateFormat.format(date));
+	}
+}
