@@ -1,0 +1,6 @@
+package Information;
+import java.io.*;
+
+public class UserEventInformationMessage implements Serializable{
+	private void 
+}

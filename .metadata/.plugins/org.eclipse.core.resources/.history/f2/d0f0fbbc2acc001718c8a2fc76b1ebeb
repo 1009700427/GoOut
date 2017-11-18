@@ -1,0 +1,14 @@
+package Server;
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import Thread.*;
+public class GoOutServer {
+	ArrayList<Notification> notificationList;
+	public GoOutServer(){
+		 notificationList = new ArrayList<Notification>();
+		 while(true){
+			 
+		 }
+	}
+}
