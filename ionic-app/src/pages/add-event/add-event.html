@@ -1,3 +1,4 @@
+
 <!--
   Generated template for the AddEventPage page.
 
@@ -5,8 +6,10 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-	<!-- <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"> -->
+	<!-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
     <style>
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
       #locationField, #controls {
         position: relative;
         width: 480px;
@@ -45,34 +48,78 @@
         height: 20px;
         margin-bottom: 2px;
       }
-    </style>
+    </style> -->
+
+
   <ion-navbar>
     <ion-title>Add Event</ion-title>
+
+
+    <!-- <ion-buttons end padding> -->
+      <!-- <button ion-button icon-only color="danger">
+       Save
+      </button> -->
+    <!-- </ion-buttons> -->
   </ion-navbar>
 
 </ion-header> 
 
 
-<ion-content padding>
-	<ion-item>
-	    <ion-label floating>Title</ion-label>
-	    <ion-input type="text"></ion-input>
-	</ion-item>
-	<ion-item>
-	  <ion-label>Date</ion-label>
-	  	<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
-	</ion-item>
+<ion-content padding class="outer-content" >
+	<ion-list>
+		<ion-item>
+		    <ion-label floating>Title</ion-label>
+		    <ion-input type="text"></ion-input>
+		</ion-item>
+		
+		<ion-item>
+	      <ion-label floating>Date</ion-label>
+	      <ion-datetime displayFormat="MMM DD YYYY"></ion-datetime>
+	    </ion-item>
 
-	<ion-item id="locationField">
-	    <ion-label floating>Location</ion-label>
-		<ion-input id="autocomplete" onFocus="geolocate()" type="text"></ion-input>
-	</ion-item>
-	<ion-item>
-	    <ion-label floating>Description</ion-label>
-	    <!-- <ion-input type="textarea"></ion-input> -->
-	</ion-item>
-	<script>
-      var placeSearch, autocomplete;
+	    <ion-item>
+	      <ion-label floating>Time</ion-label>
+	      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" ></ion-datetime>
+	    </ion-item>
+		
+		<ion-item>
+		    <ion-label floating>Location</ion-label>
+		    <ion-input type="text"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label floating>Description</ion-label>
+		    <ion-textarea name="description"></ion-textarea>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label fixed>Private event</ion-label>
+		    <ion-checkbox ></ion-checkbox>
+	  	</ion-item>
+	</ion-list>
+	<ion-toolbar>
+		<button ion-button block> Save </button>
+	</ion-toolbar>
+</ion-content>
+<style>
+  ion-list:first-child {
+    margin-top: 32px;
+  }
+  ion-list + ion-list {
+    margin-top: 0;
+  }
+</style>
+
+
+
+
+<!-- 
+	<div id="locationField">
+      <input id="autocomplete" placeholder="Enter your address"
+              type="text">
+    </div> -->
+<!-- 	<script>
+     var placeSearch, autocomplete;
       var componentForm = {
         street_number: 'short_name',
         route: 'long_name',
@@ -82,38 +129,23 @@
         postal_code: 'short_name'
       };
 
-      function initAutocomplete() {
-        // Create the autocomplete object, restricting the search to geographical
-        // location types.
-        autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-            {types: ['geocode']});
+    function initAutocomplete() {
+        var defaultBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(-33.8902, 151.1759),
+        new google.maps.LatLng(-33.8474, 151.2631));
 
+        var input = document.getElementById('autocomplete');
+        var options = {
+          bounds: defaultBounds
+          
+        };
+        autocomplete = new google.maps.places.Autocomplete(input, options);
+        console.log("yyyyy");
       }
+	</script> -->
+	
+<!-- 
+	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYP7vaCj6210qx710SK512J5igAPXSPhs&libraries=places&callback&libraries=places&callback=initAutocomplete"
+        async defer></script>
+ -->
 
-    
-
-      // Bias the autocomplete object to the user's geographical location,
-      // as supplied by the browser's 'navigator.geolocation' object.
-      function geolocate() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var geolocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            var circle = new google.maps.Circle({
-              center: geolocation,
-              radius: position.coords.accuracy
-            });
-            autocomplete.setBounds(circle.getBounds());
-          });
-        }
-      }
-	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYP7vaCj6210qx710SK512J5igAPXSPhs&libraries=places&callback=initAutocomplete" async defer></script>
-
-	  
-
-
-</ion-content>

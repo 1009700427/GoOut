@@ -69,7 +69,21 @@ showMap(){
     center : location,
     zoom: 16,
     fullscreenControl: false,
-    mapTypeId: 'roadmap'
+    mapTypeId: 'roadmap',
+    mapTypeControl: true,
+       mapTypeControlOptions: {
+              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+              position: google.maps.ControlPosition.TOP_CENTER
+          },
+    zoomControl: true,
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_TOP
+    },
+    streetViewControl: true,
+          streetViewControlOptions: {
+              position: google.maps.ControlPosition.LEFT_TOP
+    }
+
   }
 
   const map = new google.maps.Map(this.mapRef.nativeElement, options);

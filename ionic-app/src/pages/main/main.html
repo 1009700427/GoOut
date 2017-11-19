@@ -32,11 +32,9 @@
 	      </button>
 	    </ion-buttons>
   </ion-toolbar>
-  <ion-searchbar 
-			[showCancelButton] = "shouldShowCancel"
-			(ionInput)="onInput($event)"
-			(ionCancel)="onCancel($event)">
-		</ion-searchbar> 
+
+
+  
  	  
 
 </ion-header>
@@ -46,8 +44,15 @@
 	<div #map id="map" width = "50%">
 		
 	</div>
-	<div>
+	<ion-footer>
+		<ion-toolbar>
+			<ion-searchbar 
+				[showCancelButton] = "shouldShowCancel"
+				(ionInput)="onInput($event)"
+				(ionCancel)="onCancel($event)">
+			</ion-searchbar> 
 		
-	</div>
+		</ion-toolbar>
+	</ion-footer>
 
 </ion-content>
