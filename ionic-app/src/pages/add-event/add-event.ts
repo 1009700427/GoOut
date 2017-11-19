@@ -39,7 +39,7 @@ export class addEventPage {
       date: ['', Validators.required],
       time: ['', Validators.required],
       location: ['', Validators.required],
-      description: ['']
+      description: [''],
       isPrivate: ['', Validators.required]
     });
   };
