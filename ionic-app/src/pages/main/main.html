@@ -12,7 +12,7 @@
    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAufeCTbyF6DTdAG8Aqvw0DiY_EgaMj9cs&callback=initMap"
     async defer></script> -->
 
-    <ion-toolbar>
+    <ion-toolbar>   
 	    <ion-buttons start>
 	      <button ion-button icon-only color="danger">
 	        <ion-icon name="notifications"></ion-icon>
@@ -27,16 +27,15 @@
 	      </ion-segment-button>
 	    </ion-segment>
 	    <ion-buttons end>
-	      <button ion-button icon-only color="danger">
+	      <button ion-button icon-only color="danger" [navPush]="addEventPage">
 	        <ion-icon name="create"></ion-icon>
 	      </button>
 	    </ion-buttons>
   </ion-toolbar>
-    <ion-searchbar 
-		[showCancelButton] = "shouldShowCancel"
-		(ionInput)="onInput($event)"
-		(ionCancel)="onCancel($event)">
-	</ion-searchbar> 
+
+
+  
+ 	  
 
 </ion-header>
 
@@ -45,8 +44,15 @@
 	<div #map id="map" width = "50%">
 		
 	</div>
-	<div>
+	<ion-footer>
+		<ion-toolbar>
+			<ion-searchbar 
+				[showCancelButton] = "shouldShowCancel"
+				(ionInput)="onInput($event)"
+				(ionCancel)="onCancel($event)">
+			</ion-searchbar> 
 		
-	</div>
+		</ion-toolbar>
+	</ion-footer>
 
 </ion-content>
