@@ -67,6 +67,14 @@ swipeEvent(e){
       this.navCtrl.push(SignUpPage);
     }
   }
+  //will removed all the stored data from the local storage;
+  logout(){
+    //remove any further data members
+    window.localStorage.removeItem('username');
+    window.localStorage.removeItem('fullname');
+    this.navCtrl.pop();
+
+  }
 
 showMap(){
   //location-- lat long

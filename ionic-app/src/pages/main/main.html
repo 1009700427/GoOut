@@ -77,7 +77,7 @@
 
       <button ion-fab color="danger" [navPush]="YourPage"> <ion-icon name="person"></ion-icon></button>
       
-      <button ion-fab color="danger" [navPush]="LoginPage"><ion-icon name="log-out"></ion-icon></button>
+      <button ion-fab color="danger" (click) ='logout()'><ion-icon name="log-out"></ion-icon></button>
       
     </ion-fab-list>
   </ion-fab>
