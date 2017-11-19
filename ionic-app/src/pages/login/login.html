@@ -1,13 +1,12 @@
 <ion-header>
-	<ion-navbar>
+
 <!-- 		<ion-title> Login Page </ion-title>
 -->		
-<ion-item>
-	<ion-label text-center color="danger" font-family="'Dancing Script', cursive" style="font-size : 50px">
-		<i>GoOut</i>
-	</ion-label>
-</ion-item>
-</ion-navbar>
+	<ion-toolbar>
+		<ion-label text-center color="danger" font-family="'Dancing Script', cursive" style="font-size : 50px">
+			<i>GoOut</i>
+		</ion-label>
+	</ion-toolbar>
 </ion-header>
 
 
@@ -39,12 +38,12 @@
 	[navPush]="MainPage">Log in</ion-button><br>
 -->
 <button ion-button block color="danger" [navPush]="SignUpPage">Sign up</button><br>
-<button ion-button block clear>Continue as Guest</button><br>
+<button ion-button block clear [navPush]="LimitedMainPage">Continue as Guest</button><br>
 
-<button ion-button block clear [navPush]="eventPage">Event Info (test)</button>
+<!-- <button ion-button block clear [navPush]="eventPage">Event Info (test)</button>
 <button ion-button block clear [navPush]="userEventPage">user's event Info (test)</button>
  <button ion-button block clear [navPush]="addEventPage">add Evento (test)</button>
-
+ -->
 
 </ion-content>
 
