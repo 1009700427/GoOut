@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Http } from '@angular/http';
 import { MainPage } from "../main/main";
+import { LimitedMainPage } from '../limited-main/limited-main';
 /**
  * Generated class for the SignUpPage page.
  *
@@ -21,6 +22,7 @@ import { MainPage } from "../main/main";
  	url : "http://goout.us-west-1.elasticbeanstalk.com/";
  	LoginPage = LoginPage;
  	signUpForm : FormGroup;
+ 	LimitedMainPage = LimitedMainPage;
  	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http: Http) {
  		this.navCtrl = navCtrl;
  		this.signUpForm = formBuilder.group({

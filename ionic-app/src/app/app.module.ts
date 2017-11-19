@@ -20,6 +20,7 @@ import { FindEventsPage } from '../pages/find-events/find-events';
 import { FindPeoplePage } from '../pages/find-people/find-people';
 import { YourPage } from '../pages/your/your';
 import { UserPage } from '../pages/user/user';
+import { LimitedMainPage } from '../pages/limited-main/limited-main';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { UserPage } from '../pages/user/user';
     FindEventsPage,
     YourPage,
     FindPeoplePage,
-    UserPage
+    UserPage,
+    LimitedMainPage 
+
  
 
   ],
@@ -56,7 +59,9 @@ import { UserPage } from '../pages/user/user';
     FindEventsPage,
     FindPeoplePage,
     YourPage,
-    UserPage
+    UserPage,
+    LimitedMainPage 
+
   ],
   providers: [
     StatusBar,

@@ -15,12 +15,20 @@ import { FindEventsPage } from '../find-events/find-events';
 
  declare var google : any;
 
+/**
+ * Generated class for the LimitedMainPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
 @IonicPage()
 @Component({
-  selector: 'page-main',
-  templateUrl: 'main.html',
+  selector: 'page-limited-main',
+  templateUrl: 'limited-main.html',
 })
-export class MainPage { 
+
+export class LimitedMainPage { 
   LoginPage = LoginPage;
   addEventPage = addEventPage;
   YourPage = YourPage;
@@ -127,44 +135,6 @@ showMap(){
 
 }
  
-// handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//   infoWindow.setPosition(pos);
-//   infoWindow.setContent(browserHasGeolocation ?
-//                               'Error: The Geolocation service failed.' :
-//                               'Error: Your browser doesn\'t support geolocation.');
-//   infoWindow.open(map);
-//  }
+
 }
- //  loadMap() {
- //    let mapOptions: GoogleMapOptions = {
- //      camera: {
- //        target: {
- //          lat: 43.0741904,
- //          lng: -89.3809802
- //        },
- //        zoom: 18,
- //        tilt: 30
- //      }
- //    };
- //    this.map = GoogleMaps.create('map', mapOptions);
- //    // Wait the MAP_READY before using any methods.
- //    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
- //        console.log('Map is ready!');
- //        // Now you can use all methods safely.
- //        this.map.addMarker({
- //            title: 'Ionic',
- //            icon: 'blue',
- //            animation: 'DROP',
- //            position: {
- //              lat: 43.0741904,
- //              lng: -89.3809802
- //            }
- //          })
- //          .then(marker => {
- //            marker.on(GoogleMapsEvent.MARKER_CLICK)
- //              .subscribe(() => {
- //                alert('clicked');
- //              });
- //          });
- //      });
- // }
+
