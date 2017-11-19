@@ -20,6 +20,7 @@ import { MainPage } from "../main/main";
  	//need to insert the proper servlet name
  	url : "http://goout.us-west-1.elasticbeanstalk.com/";
  	LoginPage = LoginPage;
+ 	signUpForm : FormGroup;
  	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http: Http) {
  		this.navCtrl = navCtrl;
  		this.signUpForm = formBuilder.group({
