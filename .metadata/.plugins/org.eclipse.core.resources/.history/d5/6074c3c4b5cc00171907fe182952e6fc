@@ -1,0 +1,21 @@
+package constants;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import Information.Date;
+
+public class Test {
+	public static void main(String[] args){
+//		Calendar endDate = Calendar.getInstance();
+//		Calendar startDate = getCalendar(18, 11, 2017); 
+//		System.out.println(endDate.YEAR);
+//		System.out.println(startDate.YEAR);
+//		System.out.println(hoursBetween(startDate, endDate));
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43
+	}
+	
+}

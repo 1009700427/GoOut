@@ -1,0 +1,96 @@
+package Server;
+
+import java.io.IOException;
+import java.util.Vector;
+
+import javax.websocket.OnClose;
+import javax.websocket.OnError;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.server.ServerEndpoint;
+
+@ServerEndpoint(value = "/GoOutServer")
+public class GoOutServer {
+
+	private static Vector<Session> sessionVector = new Vector<Session>();
+	
+	@OnOpen
+	public void open(Session session) {
+		System.out.println("Connection made!");
+		sessionVector.add(session);
+	}
+	
+	@OnMessage
+	public void onMessage(String message, Session session) {
+		System.out.println(message);
+		try {
+			for(Session s : sessionVector) {
+				s.getBasicRemote().sendText(message);
+			}
+		} catch (IOException ioe) {
+			System.out.println("ioe: " + ioe.getMessage());
+			close(session);
+		}
+	}
+	
+	@OnClose
+	public void close(Session session) {
+		System.out.println("Disconnecting!");
+		sessionVector.remove(session);
+	}
+	
+	@OnError
+	public void error(Throwable error) {
+		System.out.println("Error!");
+	}
+	private void broadcast(String message, Session sTemp){
+		try {
+			for(int x=0; x<sessionVector.size(); x++) {
+				Session s = sessionVector.get(x);
+				if(sTemp!=s){
+					s.getBasicRemote().sendText(message);
+				}
+			}
+		} catch (IOException ioe) {
+			System.out.println("ioe: " + ioe.getMessage());
+//			close(session);
+		}
+	}
+	private void sendMessage(String message, Session s){
+		try{
+			s.getBasicRemote().sendText(message);
+		}catch(IOException ioe){
+			System.out.println("ioe: " + ioe.getMessage());
+		}
+	}
+}
+//package Server;
+//import java.io.*;
+//import java.net.*;
+//import java.util.*;
+//import javax.websocket.server.ServerEndpoint;
+//import Thread.*;
+//public class GoOutServer {
+//	private ArrayList<Notification> notificationList;
+//	public GoOutServer(){
+//		 notificationList = new ArrayList<Notification>();
+//		 ServerSocket ss = null;
+//		 Socket s = null; 
+//		 try{
+//			 ss = new ServerSocket(1234); 
+//			 System.out.println("Successfully connected to port 1234");
+//			 while(true){
+//				 s = ss.accept();
+//				 Notification n = new Notification(this, s);
+//				 notificationList.add(n);
+//			 }
+//		 }catch(IOException ioe){
+//			 System.out.println("ioe in GoOutServer: "+ioe.getMessage());
+//		 }
+//	}
+//	public static void main(String[] args){
+//		GoOutServer gos = new GoOutServer();
+//	}
+//	
+//}

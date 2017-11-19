@@ -1,0 +1,8 @@
+package Servlet;
+
+import javax.websocket.server.*;
+
+@ServerEndpoint("/chatroomServerEndPoint");
+public class ChatroomServerEndpoint(){
+	
+}

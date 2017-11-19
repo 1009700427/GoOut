@@ -1,0 +1,5 @@
+package Servlet; 
+@ServerEndpoint("/chatroomServerEndPoint");
+public class ChatroomServerEndpoint(){
+	
+}

@@ -40,7 +40,7 @@ public class GoOutServer {
 		year = Integer.parseInt(parts[2]);
 		hour = Integer.parseInt(parts[3]);
 		minute = Integer.parseInt(parts[4]);
-		minuteDif = Integer.parseInt(parts[6]);
+		minuteDif = 1;
 		eventName = parts[7]; 
 		Calendar tempCalendar = new GregorianCalendar(year, month-1, day, hour, minute, 00);
 		Notification n = new Notification(session, this, tempCalendar, minuteDif, eventName);

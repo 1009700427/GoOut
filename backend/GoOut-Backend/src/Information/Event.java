@@ -1,47 +1,39 @@
 package Information;
+import java.util.*; 
 
 public class Event {
-	private String title; 
-	private Date date; 
-	private String description; 
-	private boolean isPrivate; 
+	private String eventName; 
 	private String location; 
-	public Event(String title, Date date, String description, boolean isPrivate, String location){
-		this.title = title; 
-		this.date = date; 
-		this.description = description; 
-		this.isPrivate = isPrivate; 
+	private java.sql.Time startTime; 
+	private java.sql.Time endTime; 
+	public Event(String eventName, String location, java.sql.Time startTime, java.sql.Time endTime){
+		this.eventName = eventName; 
 		this.location = location; 
+		this.startTime = startTime; 
+		this.endTime = endTime; 
 	}
-	// getters and setters for each private data member 
-	public String getTitle(){
-		return title; 
+	public String getEventName(){
+		return this.eventName; 
 	}
-	public void setTitle(String newTitle){
-		this.title = newTitle; 
-	}
-	public Date getDate(){
-		return this.date; 
-	}
-	public void setDate(Date newDate){
-		this.date = newDate; 
-	}
-	public String getDescription(){
-		return this.description; 
-	}
-	public void setDescription(String newDescription){
-		this.description = newDescription; 
-	}
-	public boolean getIsPrivate(){
-		return isPrivate; 
-	}
-	public void setIsPrivate(boolean newIsPrivate){
-		this.isPrivate = newIsPrivate; 
+	public void setEventName(String str){
+		this.eventName = str; 
 	}
 	public String getLocation(){
 		return this.location; 
 	}
-	public void setLocation(String newLocation){
-		this.location = newLocation; 
+	public void setLocation(String loc){
+		this.location = loc; 
+	}
+	public java.sql.Time getStartTime(){
+		return this.startTime; 
+	}
+	public void setStartTime(java.sql.Time newTime){
+		this.startTime = newTime; 
+	}
+	public java.sql.Time getEndTime(){
+		return this.endTime; 
+	}
+	public void setEndTime(java.sql.Time newTime){
+		this.endTime = newTime; 
 	}
 }
