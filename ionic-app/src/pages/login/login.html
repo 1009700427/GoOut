@@ -4,20 +4,36 @@
 	</ion-navbar>
 </ion-header>
 
+
 <ion-content padding class = "action-sheet-basic-page">
-	<button ion-button block (click)="openMenu()">
-		Show Action Sheet
-	</button>
+	<ion-item>
+		<ion-label text-center color="danger" font-family="'Dancing Script', cursive" style="font-size : 50px">
+		<i>GoOut</i>
+		</ion-label>
+	</ion-item>
 	<ion-list>
-		<ion-item>
-			<ion-label color = "primary">Username:</ion-label>
-			<ion-input placeholder="Username" type="text"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label color = "primary">Password:</ion-label>
-			<ion-input placeholder="password" type="Password"></ion-input>
-		</ion-item>
-	</ion-list>
+	  <ion-item>
+	    <ion-label floating>Username</ion-label>
+	    <ion-input type="text"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Password</ion-label>
+	    <ion-input type="password"></ion-input>
+	  </ion-item>
+
+</ion-list>
+
+	
+ 	<!-- <button ion-button block color="secondary" type="submit">Log in</button><br> -->
+	<button ion-button block color="secondary" [navPush]="MainPage">Log in</button><br>
+
+	<button ion-button block color="danger" [navPush]="SignUpPage">Sign up</button><br>
+ 	<button ion-button block clear>Continue as Guest</button><br>
+
+ 	<button ion-button block clear [navPush]="eventPage">Event Info (test)</button>
+ 	<button ion-button block clear [navPush]="userEventPage">user's event Info (test)</button>
+	 
 </ion-content>
 
 
