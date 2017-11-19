@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the UserPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { eventPage } from '../event-detail/event-detail';
 
 @IonicPage()
 @Component({
@@ -14,7 +8,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'user.html',
 })
 export class UserPage {
-
+	eventPage = eventPage;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

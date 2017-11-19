@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController} from 'ionic-angular';
-
-
-
-
+import { eventPage } from '../event-detail/event-detail';
 
 
 @Component({
@@ -12,6 +9,7 @@ import { NavParams, ViewController} from 'ionic-angular';
 })
 export class FindEventsPage {
 	term: string;
+  eventPage = eventPage;
 
   constructor (public viewCtrl: ViewController, params: NavParams) {
   	

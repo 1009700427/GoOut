@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { eventPage } from '../event-detail/event-detail';
 
-/**
- * Generated class for the YourPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -14,7 +10,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'your.html',
 })
 export class YourPage {
-
+	eventPage = eventPage;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
