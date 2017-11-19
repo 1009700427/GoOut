@@ -4,6 +4,7 @@ import { MainPage } from "../main/main";
 import { eventPage } from "../event-detail/event-detail";
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import { userEventPage } from "../user-event/user-event";
+import { addEventPage } from "../add-event/add-event";
 import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
 
 
@@ -20,6 +21,7 @@ export class LoginPage{
 	eventPage = eventPage;
 	userEventPage = userEventPage;
 	loginForm : FormGroup;
+	addEventPage : addEventPage;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder){
 		this.navCtrl = navCtrl;

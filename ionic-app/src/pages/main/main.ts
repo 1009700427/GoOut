@@ -3,25 +3,15 @@ import {
  GoogleMap,
  GoogleMapsEvent,
  GoogleMapOptions,
- // CameraPosition,
- // MarkerOptions,
- // Marker
 } from '@ionic-native/google-maps';
-
-
-
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { SignUpPage } from '../sign-up/sign-up';
 import { addEventPage } from '../add-event/add-event';
-
-/**
- * Generated class for the MainPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FindPeoplePage } from '../find-people/find-people';
+import {YourPage } from '../your/your';
+import { FindEventsPage } from '../find-events/find-events';
 
  declare var google : any;
 
@@ -31,11 +21,29 @@ import { addEventPage } from '../add-event/add-event';
   templateUrl: 'main.html',
 })
 export class MainPage {
-   addEventPage = addEventPage;
+  LoginPage = LoginPage;
+  addEventPage = addEventPage;
+  YourPage = YourPage;
   @ViewChild('map') mapRef : ElementRef;
+  @ViewChild('search') searchRef : any;
   map: any;
+  searchTerm : string;
   // map: GoogleMap;
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) { }
+
+  searchEvents() {
+    this.searchTerm = this.searchRef.value;
+    console.log(this.searchTerm);
+    let myModal = this.modalCtrl.create(FindEventsPage, {term : this.searchTerm});
+    myModal.present();
+  }
+
+  searchPeople() {
+    this.searchTerm = this.searchRef.value;
+    console.log(this.searchTerm);
+    let myModal = this.modalCtrl.create(FindPeoplePage, {term : this.searchTerm});
+    myModal.present();
+  }
 
   onInput(e){
     console.log(e);
@@ -77,11 +85,11 @@ showMap(){
           },
     zoomControl: true,
     zoomControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_TOP
-    },
+      position: google.maps.ControlPosition.TOP_RIGHT
+     },
     streetViewControl: true,
           streetViewControlOptions: {
-              position: google.maps.ControlPosition.LEFT_TOP
+              position: google.maps.ControlPosition. RIGHT_TOP
     }
 
   }
