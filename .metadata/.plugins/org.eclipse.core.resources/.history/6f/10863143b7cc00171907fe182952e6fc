@@ -1,0 +1,23 @@
+package constants;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import org.joda.time.DateTime;
+
+public class Test {
+	public static void main(String[] args){
+		String pattern =  "dd/MM/yyyy hh:mm:ss";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		Date a1Date = null; 
+		try{
+			a1Date = simpleDateFormat.parse("18/11/2017 8:20:00");
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			System.out.println(dateFormat.format(a1Date));
+			System.out.println();
+		}catch(ParseException e){
+			e.printStackTrace();
+		}
+	}
+	
+}

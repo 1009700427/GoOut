@@ -1,0 +1,49 @@
+<ion-header>
+
+<!-- 		<ion-title> Login Page </ion-title>
+-->		
+	<ion-toolbar>
+		<ion-label text-center color="danger" font-family="'Dancing Script', cursive" style="font-size : 50px">
+			<i>GoOut</i>
+		</ion-label>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+	<form [formGroup]="loginForm" (ngSubmit) = " validateLogin(loginForm.value)">
+
+		<ion-list>
+			<ion-item>
+				<ion-label floating>Username</ion-label>
+				<ion-input type="text" formControlName="username"></ion-input>
+			</ion-item>
+
+		  <!-- <ion-item *ngIf=" loginForm.controls.username.hasError('required') && authForm.controls.username.touched">
+            <p>Sorry, field username is required!</p>
+        </ion-item> -->
+
+        <ion-item>
+        	<ion-label floating>Password</ion-label>
+        	<ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+    </ion-list>
+    <button ion-button block color="secondary" [disabled]="!loginForm.valid" type="submit">Log In</button><br>
+	</form>
+
+
+
+<!-- <button ion-button block color="secondary" type="submit">Log in</button><br> -->
+	<!-- <ion-button type="submit" block color="secondary"
+	[navPush]="MainPage">Log in</ion-button><br>
+-->
+<button ion-button block color="danger" [navPush]="SignUpPage">Sign up</button><br>
+<button ion-button block clear [navPush]="LimitedMainPage">Continue as Guest</button><br>
+
+<!-- <button ion-button block clear [navPush]="eventPage">Event Info (test)</button>
+<button ion-button block clear [navPush]="userEventPage">user's event Info (test)</button>
+ <button ion-button block clear [navPush]="addEventPage">add Evento (test)</button>
+ -->
+
+</ion-content>
+

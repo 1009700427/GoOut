@@ -1,0 +1,19 @@
+<<<<<<< HEAD:ionic.config.json
+{
+  "name": "GoOut--CSCI201",
+  "app_id": "25bb3c88",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
+=======
+{
+  "name": "GoOut--CSCI201",
+  "app_id": "25bb3c88",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
+>>>>>>> 319c38db26faaa5e3648445b9455f5f04950c373:ionic-app/ionic.config.json

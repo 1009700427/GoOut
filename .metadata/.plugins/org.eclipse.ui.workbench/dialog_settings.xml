@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="WorkbenchPreferenceDialogSettings">
+<<<<<<< HEAD
 		<item value="331" key="DIALOG_X_ORIGIN"/>
 		<item value="44" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
 		<item value="-1" key="dialogHeight"/>
 		<item value="-1" key="dialogWidth"/>
+=======
+		<item value="283" key="DIALOG_X_ORIGIN"/>
+		<item value="44" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.ui.internal.QuickAccess">
+		<item value="500" key="dialogHeight"/>
+		<item value="800" key="dialogWidth"/>
+>>>>>>> 319c38db26faaa5e3648445b9455f5f04950c373
 		<list key="textEntries">
 		</list>
 		<list key="orderedElements">
@@ -18,13 +27,20 @@
 	</section>
 	<section name="PreferencesImportWizard">
 		<item value="/Users/siyuanxu/Desktop/Siyuan Xu Sophomore/csci201/Final Project /Preferences.epf" key=""/>
+<<<<<<< HEAD
 		<item value="/Users/siyuanxu/Desktop/Siyuan Xu Sophomore/csci201/Final Project /Preferences.epf" key=""/>
+=======
+>>>>>>> 319c38db26faaa5e3648445b9455f5f04950c373
 		<list key="WizardPreferencesExportPage1.STORE_DESTINATION_NAMES_ID">
 			<item value="/Users/siyuanxu/Desktop/Siyuan Xu Sophomore/csci201/Final Project /Preferences.epf"/>
 		</list>
 	</section>
 	<section name="NewWizardAction">
+<<<<<<< HEAD
 		<item value="org.eclipse.jst.servlet.ui.internal.wizard.AddServletWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+=======
+		<item value="org.eclipse.wst.html.ui.internal.wizard.NewHTMLWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+>>>>>>> 319c38db26faaa5e3648445b9455f5f04950c373
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.wst.web.ui"/>
 		</list>

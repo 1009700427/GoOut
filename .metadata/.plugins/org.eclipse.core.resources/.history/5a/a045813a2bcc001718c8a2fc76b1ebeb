@@ -1,0 +1,22 @@
+package Server;
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import Thread.*;
+public class GoOutServer {
+	private volatile ArrayList<Notification> notificationList;
+	public GoOutServer(){
+		 notificationList = new ArrayList<Notification>();
+		 ServerSocket ss = null;
+		 Socket s = null; 
+		 try{
+			 ss = new ServerSocket(1234); 
+			 
+		 }catch(){
+			 
+		 }
+		 while(true){
+			 
+		 }
+	}
+}

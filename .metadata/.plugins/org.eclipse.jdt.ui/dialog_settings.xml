@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+<<<<<<< HEAD
+=======
+	<item value="/Users/siyuanxu/Desktop/Siyuan Xu Sophomore/csci201/GoOut/backend/GoOut-Backend" key="org.eclipse.jdt.ui.lastextjar"/>
+>>>>>>> 319c38db26faaa5e3648445b9455f5f04950c373
 	<section name="RefactoringWizard.preview">
 		<item value="600" key="width"/>
 		<item value="400" key="height"/>
@@ -29,7 +33,11 @@
 		<item value="false" key="create_package_info_java"/>
 	</section>
 	<section name="BuildPathsPropertyPage">
+<<<<<<< HEAD
 		<item value="0" key="pageIndex"/>
+=======
+		<item value="3" key="pageIndex"/>
+>>>>>>> 319c38db26faaa5e3648445b9455f5f04950c373
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>

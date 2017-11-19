@@ -1,0 +1,10 @@
+package Information;
+import java.util.*; 
+// the object for storing date information 
+public class Date {
+	private int day; 
+	private int month; 
+	private Date start; 
+	private Date end;
+	
+}

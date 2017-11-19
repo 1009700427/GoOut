@@ -1,0 +1,97 @@
+package Thread;
+
+import java.io.*;
+import java.net.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
+import javax.websocket.*;
+
+import Server.*;
+import Information.* ;
+
+public class Notification extends Thread{
+	private GoOutServer gos; 
+	private Session s; 
+	private Calendar currentTime; 
+	private Calendar setTime; 
+	private int minuteDif; 
+	private String eventName; 
+	// passes in the notification time 
+	public Notification(Session s, GoOutServer gos, Calendar setTime, int minuteDif, String eventName){
+		this.s = s; 
+		this.gos = gos; 
+		this.currentTime = Calendar.getInstance();
+		this.setTime = setTime; 
+		this.minuteDif = minuteDif;
+		this.eventName = eventName; 
+		this.start(); 
+	}
+	public void run(){
+		try{
+			// when there is a certain minuntes left 
+			while(true){
+				if(differBy(setTime, currentTime, minuteDif)){
+					gos.sendMessage(eventName+" is happening in "+Integer.toString(minuteDif)+" minutes", s);
+					break; 
+				}
+			}
+			// when it is the exact time 
+			while(true){
+				
+			}
+		}catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	public static long daysBetween(Calendar startDate, Calendar endDate) {
+	    long end = endDate.getTimeInMillis();
+	    long start = startDate.getTimeInMillis();
+	    return TimeUnit.MILLISECONDS.toHours(Math.abs(end - start));
+	}
+	public static boolean differBy(Calendar setTime, Calendar currentTime, int minute){
+		int setYear = setTime.get(Calendar.YEAR);
+		int currentYear = currentTime.get(Calendar.YEAR);
+		int setMonth = setTime.get(Calendar.MONTH); 
+		int currentMonth = currentTime.get(Calendar.MONTH);
+		int setDate = setTime.get(Calendar.DATE);
+		int currentDate = currentTime.get(Calendar.DATE);
+		int setHour = setTime.get(Calendar.HOUR);
+		int currentHour = currentTime.get(Calendar.HOUR);
+		int setMinute = setTime.get(Calendar.MINUTE);
+		int currentMinute = currentTime.get(Calendar.MINUTE);
+		System.out.println(setDate);
+		System.out.println(currentDate);
+		System.out.println(setDate!=currentDate);
+		if(!(setYear==currentYear && setMonth==currentMonth && setDate==currentDate && setHour==currentHour)){
+			return false; 
+		}
+		System.out.println(setMinute);
+		System.out.println(currentMinute);
+		if(setMinute == currentMinute - minute){
+			return true; 
+		}
+		return false; 
+	}
+	public static boolean sameTime(Calendar setTime, Calendar currentTime){
+		int setYear = setTime.get(Calendar.YEAR);
+		int currentYear = currentTime.get(Calendar.YEAR);
+		int setMonth = setTime.get(Calendar.MONTH); 
+		int currentMonth = currentTime.get(Calendar.MONTH);
+		int setDate = setTime.get(Calendar.DATE);
+		int currentDate = currentTime.get(Calendar.DATE);
+		int setHour = setTime.get(Calendar.HOUR);
+		int currentHour = currentTime.get(Calendar.HOUR);
+		int setMinute = setTime.get(Calendar.MINUTE);
+		int currentMinute = currentTime.get(Calendar.MINUTE);
+		if(setYear==currentYear && setMonth==currentMonth && setDate==currentDate && setHour==currentHour && setMinute==currentMinute){
+			return true; 
+		}
+		return false; 
+	}
+}

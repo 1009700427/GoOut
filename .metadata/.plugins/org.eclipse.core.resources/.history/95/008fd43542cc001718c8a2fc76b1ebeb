@@ -1,0 +1,18 @@
+package Servlet;
+
+import javax.websocket.*;
+import javax.websocket.Session;
+import javax.websocket.server.*;
+import java.util.*;
+@ServerEndpoint("chatroomServerEndpoint")
+public class ChatroomServerEndpoint{
+	static Set<Session> chatroomUsers = Collections.synchronizedSet(new HashSet<Session>());
+	@OnOpen
+	public void handleOpen(Session userSession){
+		chatroomUsers.add(userSession); 
+	}
+	@OnClose
+	public void hanndleClose(Session userSession){
+		chatroomUsers.remove(userSession); 
+	}
+}

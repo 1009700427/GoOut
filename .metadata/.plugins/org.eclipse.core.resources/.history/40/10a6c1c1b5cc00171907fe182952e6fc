@@ -1,0 +1,36 @@
+package constants;
+
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
+
+public class Test {
+	public static void main(String[] args){
+//		Calendar endDate = Calendar.getInstance();
+//		Calendar startDate = getCalendar(18, 11, 2017); 
+//		System.out.println(endDate.YEAR);
+//		System.out.println(startDate.YEAR);
+//		System.out.println(hoursBetween(startDate, endDate));
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43
+	}
+	public static long hoursBetween(Calendar startDate, Calendar endDate) {
+	    long end = endDate.getTimeInMillis();
+	    long start = startDate.getTimeInMillis();
+	    return TimeUnit.MILLISECONDS.toHours(Math.abs(end - start));
+	}
+	public static Calendar getCalendar(int day, int month, int year) {
+	    Calendar date = Calendar.getInstance();
+	    date.set(Calendar.YEAR, year);
+
+	    // We will have to increment the month field by 1
+
+	    date.set(Calendar.MONTH, month+1);
+
+	    // As the month indexing starts with 0
+
+	    date.set(Calendar.DAY_OF_MONTH, day);
+
+	    return date;
+	}
+}

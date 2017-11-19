@@ -1,0 +1,24 @@
+package Information;
+import java.io.*;
+import java.util.*;
+
+public class UserEventInformationMessage implements Serializable{
+	public static final long serialVersionUID = 1;
+	private String eventName; 
+	private String username; 
+	private Calendar notificationTime;
+	public UserEventInformationMessage(String eventName, String username, Calendar notificationTime){
+		this.eventName = eventName; 
+		this.username = username; 
+		this.notificationTime = notificationTime; 
+	}
+	public String eventName(){
+		return this.eventName; 
+	}
+	public String getUsername(){
+		return this.username; 
+	}
+	public Calendar getNotificationTime(){
+		return this.notificationTime;
+	}
+}
