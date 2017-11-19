@@ -4,8 +4,9 @@ import { MainPage } from "../main/main";
 import { eventPage } from "../event-detail/event-detail";
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import { userEventPage } from "../user-event/user-event";
-import {Platform, ActionSheetController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
+
+
 @Component({
 	selector: 'home-page',
 	templateUrl: "login.html"
@@ -13,49 +14,26 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/fo
 })
 
 export class LoginPage{
-	const URL = "http://goout.us-west-1.elasticbeanstalk.com/Validation";
+	//const URL = "http://goout.us-west-1.elasticbeanstalk.com/Validation";
 	SignUpPage = SignUpPage;
-	MainPage = MainPage;
+	// MainPage = MainPage;
 	eventPage = eventPage;
 	userEventPage = userEventPage;
 	loginForm : FormGroup;
 
-	constructor(
-		pubilc navCtrl: NavController,
-		public navParams: NavParams,
-		public formBuilder: FormBuilder
-		// public Platform: Platform, 
-		// public actionsheetCtrl: ActionSheetController
-	){
-		this.nav = nav;
+	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder){
+		this.navCtrl = navCtrl;
 		this.loginForm = formBuilder.group({
-			username: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z]*'"), Validators.minLength(8), Validators.maxLength(30)])],
-			password: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z]*'"), Validators.minLength(8), Validators.maxLength(30)])]
+			username: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z]*"), Validators.maxLength(30)])],
+			password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
 		});
-	}
-	
-	// function openMenu(){
-	// 	let actionsheet = this.actionsheetCtrl.create({
-	// 		title: 'albums',
-	// 		cssClass: 'action-sheets-basic-page', 
-	// 		buttons:[
-	// 		{
-	// 			text: 'Delete',
-	// 			role: 'destructive',
-	// 			icon:!this.Platform.is('ios') ? 'heart-outline': null,
-	// 			handler: () => {
-	// 				console.log('Favorite Clicked');
-	// 			}
-	// 		}
-	// 	}
-	// 		actionsheet.present();
-	// }
+	};
 	validateLogin(value: any): void{
 		if(this.loginForm.valid){
 			window.localStorage.setItem('username', value.username);
 			window.localStorage.setItem('password', value.password);
-
-			this.nav.push(MainPage);
+			console.log("valid");
+			this.navCtrl.push(MainPage);
 		}
 		// req = new XMLHttpRequest();
 		// req.open("get", url + "?username="+ this.username + "&password=" + this.password);
