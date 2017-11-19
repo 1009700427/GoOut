@@ -42,6 +42,8 @@ export class MainPage {
   }
   ionViewDidLoad() {
     console.log(this.mapRef);
+    console.log(window.localStorage.getItem('username'));
+    console.log(window.localStorage.getItem('fullname'));
     this.showMap();
 
     // this.loadMap();
