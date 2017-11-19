@@ -71,3 +71,12 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 >>>>>>> master
+.metadata/
+.recommenders/caches/
+backend/GoOut-Backend/.settings
+backend/GoOut-Backend/pom.xml
+backend/Servers/
+Servers/
+TestClass/
+backend/GoOut-Backend/WebContent/test.html
+backend/GoOut-Backend/WebContent/tomcat.html
