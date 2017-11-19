@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 // import {Geolocation} frnom '@ionic-native/geolocation';
-
+import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
 /**
  * Generated class for the AddEventPage page.
  *
@@ -31,13 +31,28 @@ export class addEventPage {
 	// autocomplete: any;
 	// circle: any;
 	// geolocation : any;
+  signUpForm:FormGroup;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
+    this.navCtrl = navCtrl;
+    this.signUpForm = formBuilder.group({
+      title: ['', Validators.required],
+      date: ['', Validators.required],
+      time: ['', Validators.required],
+      location: ['', Validators.required],
+      description: ['']
+      isPrivate: ['', Validators.required]
+    });
+  };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
    ionViewDidLoad() {
 
    }
-
+   validate(value:any):void{
+     if(this.signUpForm.valid){
+       console.log("valid");
+       this.navCtrl.pop();
+     }
+   }
 
 
 //    ionViewDidLoad() {
