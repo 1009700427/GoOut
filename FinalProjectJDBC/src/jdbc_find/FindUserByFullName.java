@@ -1,4 +1,4 @@
-package jdbc;
+package jdbc_find;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -17,21 +17,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class FindUser
+ * Servlet implementation class FindUserByFullName
  */
-@WebServlet("/findUserByUsername")
-public class FindUserByUsername extends HttpServlet {
+@WebServlet("/FindUserByFullName")
+public class FindUserByFullName extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FindUserByUsername() {
+    public FindUserByFullName() {
         super();
         // TODO Auto-generated constructor stub
     }
+
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
+		String fullName = request.getParameter("fullName");
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -40,18 +41,16 @@ public class FindUserByUsername extends HttpServlet {
 			System.out.println("here 1");
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("here 2");
-			//you can only get a connection to one database AT A TIME. Can connect to others just not at the same time
-			//don't use root, it's bad coding
-			//to use SSL, download a self signed certificate
+
 			
-			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false"); //add port number if not on default
+			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false"); 
 			st = conn.createStatement();
 			System.out.println("connected");
 			
-			if (username != null && username.length() > 0) {
+			if (fullName != null && fullName.length() > 0) {
 				//ps = conn.prepareStatement("SELECT * FROM Users WHERE username=?");
-				ps = conn.prepareStatement("SELECT * FROM Users WHERE username LIKE " + "'%" +username + "%'");
-//				ps.setString(1, username);
+				ps = conn.prepareStatement("SELECT * FROM Users WHERE fullName LIKE ?");
+				ps.setString(1, "%"+ fullName + "%");
 				rs = ps.executeQuery();
 			}
 			else {
@@ -66,13 +65,13 @@ public class FindUserByUsername extends HttpServlet {
 			
 			while(rs.next()) {
 				int userID = rs.getInt("userID");
-				String username_ = rs.getString("username");
-				String fullName = rs.getString("fullName");
+				String username = rs.getString("username");
+				String fullName_ = rs.getString("fullName");
 
 				
 				userIDs.add(userID);
-				usernames.add(username_);
-				fullNames.add(fullName);				
+				usernames.add(username);
+				fullNames.add(fullName_);				
 
 			
 			}

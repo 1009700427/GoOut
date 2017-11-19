@@ -1,4 +1,4 @@
-package jdbc;
+package jdbc_find;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,64 +18,83 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class FindEventByEventName
+ * Servlet implementation class FindEventByUserUsername
  */
-@WebServlet("/FindEventByEventName")
-public class FindEventByEventName extends HttpServlet {
+@WebServlet("/FindEventByUserUsername")
+public class FindEventByUserUsername extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FindEventByEventName() {
+    public FindEventByUserUsername() {
         super();
         // TODO Auto-generated constructor stub
     }
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String eventName = request.getParameter("eventName");
+		String username = request.getParameter("username");
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
+
 		PreparedStatement ps = null;
+
 		try {
-			System.out.println("here 1");
+			//System.out.println("here 1");
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("here 2");
-			//you can only get a connection to one database AT A TIME. Can connect to others just not at the same time
-			//don't use root, it's bad coding
-			//to use SSL, download a self signed certificate
+			//System.out.println("here 2");
 			
 			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false"); //add port number if not on default
 			st = conn.createStatement();
 			System.out.println("connected");
 			
-			if (eventName != null && eventName.length() > 0) {
-				//use LIKE BINARY for case sensitive
-				ps = conn.prepareStatement("SELECT * FROM Events WHERE eventName LIKE " + "'%" +eventName + "%'");
-//				ps.setString(1, "'%" +eventName + "%'");
+			if (username != null && username.length() > 0) {
+				//ps = conn.prepareStatement("SELECT * FROM Users WHERE username=?");
+				ps = conn.prepareStatement("SELECT * "
+											+ "FROM Users u, Events e "
+											+ "WHERE u.userID = e.userID "
+											+ "AND username LIKE ?");
+
+				
+				ps.setString(1, "%" + username + "%");
 				rs = ps.executeQuery();
+
 			}
 			else {
 
 				//save self from SQL injection
-				ps = conn.prepareStatement(" SELECT * FROM Events");
+				ps = conn.prepareStatement("SELECT * FROM Events e, Users u WHERE e.userID = u.userID");
 				rs = ps.executeQuery();
 			}
+			
+			
 			ArrayList<Integer> eventIDs = new ArrayList<Integer>();
 			ArrayList<String> eventNames = new ArrayList<String>();
 			ArrayList<Integer> eventUserIDs = new ArrayList<Integer>();
 			ArrayList<String> eventLocations = new ArrayList<String>();
 			ArrayList<Integer> eventMonths = new ArrayList<Integer>();
 			ArrayList<Integer> eventDays = new ArrayList<Integer>();
-			//use Time object instead?
+
 			ArrayList<String> eventStartTimes = new ArrayList<String>();
 			ArrayList<String> eventEndTimes = new ArrayList<String>();
 			
+			
+			ArrayList<Integer> userIDs = new ArrayList<Integer>();
+			ArrayList<String> usernames = new ArrayList<String>();
+			ArrayList<String> fullNames = new ArrayList<String>();
+			
+
+			
+			
+			
 			while(rs.next()) {
-				int eventID = rs.getInt("eventID");
+		
+
+				
+				int eventID = rs.getInt("e.eventID");
 				String eventName_ = rs.getString("eventName");
-				int eventUserID = rs.getInt("userID");
+				int eventUserID = rs.getInt("e.userID");
 //				System.out.println(userID + "-" + firstName + " " + lastName);
 				
 				eventIDs.add(eventID);
@@ -119,14 +138,31 @@ public class FindEventByEventName extends HttpServlet {
 				Time eventEndTime = rs.getTime("endTime");
 				if (eventEndTime != null) {
 //					eventEndTimes.add(eventEndTime);
-					eventEndTimes.add(eventStartTime.toString());
+					eventEndTimes.add(eventEndTime.toString());
 				}
 				else {
 					eventEndTimes.add("N/A");
 				}
+	
+				
+
+				
+				int userID = rs.getInt("u.userID");
+				String username_ = rs.getString("u.username");
+				String fullName = rs.getString("u.fullName");
+
+				
+				userIDs.add(userID);
+				usernames.add(username_);
+				fullNames.add(fullName);	
+				
 				
 			
 			}
+			
+
+			
+			
 			
 			
 			request.setAttribute("eventIDs", eventIDs);
@@ -138,7 +174,12 @@ public class FindEventByEventName extends HttpServlet {
 			request.setAttribute("eventStartTimes", eventStartTimes);
 			request.setAttribute("eventEndTimes", eventEndTimes);
 			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/EventSearchResults.jsp");
+			
+			
+			request.setAttribute("userIDs", userIDs);
+			request.setAttribute("usernames", usernames);
+			request.setAttribute("fullNames", fullNames);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/EventSearchResultsUsers.jsp");
 			dispatcher.forward(request, response);
 		}catch(SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
@@ -149,7 +190,9 @@ public class FindEventByEventName extends HttpServlet {
 				//has to be in reverse order
 				if (rs != null) {
 					rs.close();
+
 				}
+				
 				if (st != null) {
 					st.close();
 				}

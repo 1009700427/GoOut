@@ -1,4 +1,4 @@
-package jdbc;
+package jdbc_find;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -34,11 +34,9 @@ public class FindEventByID extends HttpServlet {
 			System.out.println("here 1");
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("here 2");
-			//you can only get a connection to one database AT A TIME. Can connect to others just not at the same time
-			//don't use root, it's bad coding
-			//to use SSL, download a self signed certificate
+
 			
-			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false"); //add port number if not on default
+			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false");
 			st = conn.createStatement();
 			System.out.println("connected");
 			
@@ -48,13 +46,14 @@ public class FindEventByID extends HttpServlet {
 			ArrayList<String> eventLocations = new ArrayList<String>();
 			ArrayList<Integer> eventMonths = new ArrayList<Integer>();
 			ArrayList<Integer> eventDays = new ArrayList<Integer>();
-			//use Time object instead?
+
 			ArrayList<String> eventStartTimes = new ArrayList<String>();
 			ArrayList<String> eventEndTimes = new ArrayList<String>();
 			
+			//check event ID is valid
+			int parsedEventID = -1;
 			try {
-				//see if the entry is a number
-				int parsedEventID = Integer.parseInt(eventID);
+				parsedEventID = Integer.parseInt(eventID);
 			}catch(NumberFormatException nfe) {
 				System.out.println("nfe: " + nfe.getMessage());
 				System.out.println(eventID);
@@ -62,9 +61,8 @@ public class FindEventByID extends HttpServlet {
 			}
 			
 			if (eventID != null && eventID.length() != 0) {
-				ps = conn.prepareStatement("SELECT * FROM Events WHERE eventID=" + eventID); 
-//				ps = conn.prepareStatement("SELECT * FROM Users WHERE username LIKE " + "'%" +username + "%'");
-//				ps.setString(1, "" + userID );
+				ps = conn.prepareStatement("SELECT * FROM Events WHERE eventID=?"); 
+				ps.setInt(1, parsedEventID );
 				rs = ps.executeQuery();
 				
 

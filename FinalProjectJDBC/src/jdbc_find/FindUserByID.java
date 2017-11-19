@@ -1,4 +1,4 @@
-package jdbc;
+package jdbc_find;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -31,14 +31,11 @@ public class FindUserByID extends HttpServlet {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		try {
-			System.out.println("here 1");
+
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("here 2");
-			//you can only get a connection to one database AT A TIME. Can connect to others just not at the same time
-			//don't use root, it's bad coding
-			//to use SSL, download a self signed certificate
+
 			
-			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false"); //add port number if not on default
+			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false"); 
 			st = conn.createStatement();
 			System.out.println("connected");
 			
@@ -46,18 +43,20 @@ public class FindUserByID extends HttpServlet {
 			ArrayList<String> usernames = new ArrayList<String>();
 			ArrayList<String> fullNames = new ArrayList<String>();
 			
+			//check if it's a number
+			int parsedUserID = -1;
 			try {
 				//see if the entry is a number
-				int parsedUserID = Integer.parseInt(userID);
+				parsedUserID = Integer.parseInt(userID);
 			}catch(NumberFormatException nfe) {
 				System.out.println("nfe: " + nfe.getMessage());
 				userID = "";
 			}
 			
 			if (userID != null && userID.length() != 0) {
-				ps = conn.prepareStatement("SELECT * FROM Users WHERE userID=" + userID); 
-//				ps = conn.prepareStatement("SELECT * FROM Users WHERE username LIKE " + "'%" +username + "%'");
-//				ps.setString(1, "" + userID );
+				ps = conn.prepareStatement("SELECT * FROM Users WHERE userID=?"); 
+
+				ps.setInt(1, parsedUserID );
 				rs = ps.executeQuery();
 				
 
