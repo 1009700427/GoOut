@@ -14,12 +14,12 @@ import { HomePage } from '../pages/home/home';
 import { MainPage } from "../pages/main/main";
 import { eventPage } from "../pages/event-detail/event-detail";
 import { userEventPage } from "../pages/user-event/user-event";
-<<<<<<< HEAD
+
 import { SignUpPage } from "../pages/sign-up/sign-up";
-=======
+
 import { addEventPage } from "../pages/add-event/add-event";
 import { Geolocation } from '@ionic-native/geolocation';
->>>>>>> master
+
 
 @NgModule({
   declarations: [
