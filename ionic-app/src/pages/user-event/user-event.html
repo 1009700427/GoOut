@@ -1,63 +1,60 @@
-<!--
-  Generated template for the UserEventPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
+	<ion-navbar>
+    <ion-title>Your Event's Details</ion-title>
+</ion-navbar>
+  
 
- <ion-toolbar>
-    <ion-buttons start>
-      <button ion-button icon-only color="danger">
-        Back
-      </button>
-    </ion-buttons>
-    <ion-title>Your Event's Info</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only color="danger">
-       Edit
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
 
 </ion-header>
 
 
-<ion-content padding>
-	<ion-item>
-		<ion-label text-center color="danger" font-family="'Dancing Script', cursive" style="font-size : 50px">
+<ion-content padding class="outer-content" >
+	<!-- <ion-item>
+		<ion-label text-center color="danger" font-family="'Dancing Script', cursive" style="font-size : 30px">
 			<i>GoOut</i>
 		</ion-label>
-	</ion-item>
+	</ion-item> -->
 	
 	<ion-list>
 
 	  <ion-item>
 	    <ion-label stacked>Title</ion-label>
-	    <label id="eventTitle" ></label>
+	    <label id="eventTitle" placeholder="Event title goes here"></label>
+	  </ion-item>
+	  <ion-item>
+	    <ion-label stacked>Time</ion-label>
+	    <label id="eventTime"></label>
 	  </ion-item>
 
 	   <ion-item>
 	    <ion-label stacked>Date</ion-label>
-	    <label id="eventDate" ></label>
+	    <label id="eventDate"></label>
 	  </ion-item>
 
 
 	   <ion-item>
 	    <ion-label stacked>Location</ion-label>
-	    <label id="eventLocation"></label>
+	    <label id="eventLocation" placeholder="Location goes here"></label>
 	  </ion-item>
 
 	   <ion-item>
 	    <ion-label stacked>Description</ion-label>
-	    <label id="eventTitle" ></label>
-	  </ion-item>
-	  <!-- public or private -->
-	   <ion-item>
-	    <ion-label stacked>Privacy</ion-label>
-	    <label id="eventTitle" ></label>
+	    <label id="eventTitle" placeholder="Event title goes here"></label>
 	  </ion-item>
 
 	</ion-list>
 
+	
+
+
+
+	
+     
+	    <button ion-item color="danger" >
+	      <ion-label>Edit</ion-label>
+	      <!-- <ion-note item-end><ion-icon name="checkmark-circle-outline" color="secondary"></ion-icon>
+	      </ion-note> -->
+	    </button>
+
 </ion-content>
+

@@ -14,6 +14,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { SignUpPage } from '../sign-up/sign-up';
+import { addEventPage } from '../add-event/add-event';
+
 /**
  * Generated class for the MainPage page.
  *
@@ -29,6 +31,7 @@ import { SignUpPage } from '../sign-up/sign-up';
   templateUrl: 'main.html',
 })
 export class MainPage {
+   addEventPage = addEventPage;
   @ViewChild('map') mapRef : ElementRef;
   map: any;
   // map: GoogleMap;
@@ -66,7 +69,21 @@ showMap(){
     center : location,
     zoom: 16,
     fullscreenControl: false,
-    mapTypeId: 'roadmap'
+    mapTypeId: 'roadmap',
+    mapTypeControl: true,
+       mapTypeControlOptions: {
+              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+              position: google.maps.ControlPosition.TOP_CENTER
+          },
+    zoomControl: true,
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_TOP
+    },
+    streetViewControl: true,
+          streetViewControlOptions: {
+              position: google.maps.ControlPosition.LEFT_TOP
+    }
+
   }
 
   const map = new google.maps.Map(this.mapRef.nativeElement, options);
