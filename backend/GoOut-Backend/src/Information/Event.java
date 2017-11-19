@@ -1,12 +1,13 @@
 package Information;
+import java.util.*; 
 
 public class Event {
 	private String title; 
-	private Date date; 
+	private Calendar date; 
 	private String description; 
 	private boolean isPrivate; 
 	private String location; 
-	public Event(String title, Date date, String description, boolean isPrivate, String location){
+	public Event(String title, Calendar date, String description, boolean isPrivate, String location){
 		this.title = title; 
 		this.date = date; 
 		this.description = description; 
@@ -20,10 +21,10 @@ public class Event {
 	public void setTitle(String newTitle){
 		this.title = newTitle; 
 	}
-	public Date getDate(){
+	public Calendar getDate(){
 		return this.date; 
 	}
-	public void setDate(Date newDate){
+	public void setDate(Calendar newDate){
 		this.date = newDate; 
 	}
 	public String getDescription(){
