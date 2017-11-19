@@ -33,37 +33,53 @@ public class AddNewUser extends HttpServlet {
     }
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String eventName = request.getParameter("eventName");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String fullName = request.getParameter("fullName");
+		boolean isPrivate = request.getParameter("private") != null;
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		PreparedStatement ps = null;
+		PreparedStatement psUpdate = null;
+		PreparedStatement psDisplay = null;
 		try {
-			System.out.println("here 1");
+
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("here 2");
-			//you can only get a connection to one database AT A TIME. Can connect to others just not at the same time
-			//don't use root, it's bad coding
-			//to use SSL, download a self signed certificate
+
 			
-			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false"); //add port number if not on default
+			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false");
 			st = conn.createStatement();
 			System.out.println("connected");
 			
-			if (eventName != null && eventName.length() > 0) {
-				//use LIKE BINARY for case sensitive
-				//ps = conn.prepareStatement("SELECT * FROM Events WHERE eventName LIKE " + "'%" +eventName + "%'");
-//				ps.setString(1, "'%" +eventName + "%'");
-				ps = conn.prepareStatement("SELECT * FROM Events WHERE eventName LIKE " + "'%?%'");
-				ps.setString(1, "'%" +eventName + "%'");
-				rs = ps.executeQuery();
+			psUpdate = conn.prepareStatement("INSERT INTO Users(fullName, username, password, privateUser)" + 
+					"VALUES	(?, ?,?,?)");
+			
+			psUpdate.setString(1, fullName);
+			psUpdate.setString(2, username);
+			psUpdate.setString(3, password);
+			psUpdate.setBoolean(4, isPrivate);
+			
+			
+			psUpdate.executeUpdate();
+			
+			psDisplay = conn.prepareStatement("SELECT * FROM Users WHERE username =?");
+			psDisplay.setString(1, username);
+			rs = psDisplay.executeQuery();
+			while (rs.next()) {
+				int userID_ = rs.getInt("userID");
+				String username_ = rs.getString("username");
+				String password_ = rs.getString("password");
+				String fullName_ = rs.getString("fullName");
+				boolean isPrivate_ = rs.getBoolean("privateUser");
+				
+				request.setAttribute("userID", userID_);
+				request.setAttribute("username", username_);
+				request.setAttribute("password", password_);
+				request.setAttribute("fullName", fullName_);
+				request.setAttribute("isPrivate", isPrivate_);
 			}
-			else {
-
-				//save self from SQL injection
-				ps = conn.prepareStatement(" SELECT * FROM Events");
-				rs = ps.executeQuery();
-			}
+			
+			
 
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AddNewUserResults.jsp");

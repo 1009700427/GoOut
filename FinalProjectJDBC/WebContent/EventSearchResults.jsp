@@ -9,12 +9,6 @@
 	<body>
 		<%
 		
-/* 		
-		request.setAttribute("eventLocations", eventLocations);
-		request.setAttribute("eventMonths", eventMonths);
-		request.setAttribute("eventDays", eventDays);
-		request.setAttribute("eventStartTimes", eventStartTimes);
-		request.setAttribute("eventEndTimes", eventEndTimes); */
 		
 		ArrayList<Integer> eventIDs = (ArrayList<Integer>)request.getAttribute("eventIDs");
 		ArrayList<String> eventNames = (ArrayList<String>)request.getAttribute("eventNames");
