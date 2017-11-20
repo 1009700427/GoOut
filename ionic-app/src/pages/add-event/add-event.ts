@@ -37,7 +37,7 @@ export class addEventPage {
     this.addEventForm = formBuilder.group({
       title: ['', Validators.required],
       date: ['', Validators.required],
-      time: [Validators.required],
+      time: ['',Validators.required],
       location: ['', Validators.required],
       description: [''],
       isPrivate: ['', Validators.required]
