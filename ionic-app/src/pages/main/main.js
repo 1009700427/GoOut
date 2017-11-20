@@ -8,37 +8,64 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
-import { SignUpPage } from '../sign-up/sign-up';
 import { addEventPage } from '../add-event/add-event';
+import { FindPeoplePage } from '../find-people/find-people';
+import { YourPage } from '../your/your';
+import { FindEventsPage } from '../find-events/find-events';
 var MainPage = /** @class */ (function () {
     // map: GoogleMap;
-    function MainPage(navCtrl, navParams) {
+    function MainPage(modalCtrl, navCtrl, navParams) {
+        this.modalCtrl = modalCtrl;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.LoginPage = LoginPage;
         this.addEventPage = addEventPage;
+        this.YourPage = YourPage;
     }
+    //event page result DONT SEARCH HERE
+    MainPage.prototype.searchEvents = function () {
+        this.searchTerm = this.searchRef.value;
+        console.log(this.searchTerm);
+        var myModal = this.modalCtrl.create(FindEventsPage, { term: this.searchTerm });
+        myModal.present();
+    };
+    MainPage.prototype.searchPeople = function () {
+        this.searchTerm = this.searchRef.value;
+        console.log(this.searchTerm);
+        var myModal = this.modalCtrl.create(FindPeoplePage, { term: this.searchTerm });
+        myModal.present();
+    };
     MainPage.prototype.onInput = function (e) {
         console.log(e);
     };
     MainPage.prototype.ionViewDidLoad = function () {
         console.log(this.mapRef);
+        console.log(window.localStorage.getItem('username'));
+        console.log(window.localStorage.getItem('fullname'));
         this.showMap();
         // this.loadMap();
         // console.log('ionViewDidLoad MainPage');
     };
-    MainPage.prototype.swipeEvent = function (e) {
-        //go to the login page if 
-        //the user swipes to the left
-        if (e.direction == 2) {
-            this.navCtrl.push(LoginPage);
-        }
-        // //go to the signup page if 
-        // //the user swipes to the right
-        if (e.direction == 4) {
-            this.navCtrl.push(SignUpPage);
-        }
+    // swipeEvent(e){
+    //     //go to the login page if 
+    //     //the user swipes to the left
+    //     if(e.direction == 2){
+    //       this.navCtrl.push(LoginPage);
+    //     }
+    //     // //go to the signup page if 
+    //     // //the user swipes to the right
+    //     if(e.direction == 4){
+    //       this.navCtrl.push(SignUpPage);
+    //     }
+    //   }
+    //will removed all the stored data from the local storage;
+    MainPage.prototype.logout = function () {
+        //remove any further data members
+        window.localStorage.removeItem('username');
+        window.localStorage.removeItem('fullname');
+        this.navCtrl.pop();
     };
     MainPage.prototype.showMap = function () {
         //location-- lat long
@@ -49,7 +76,20 @@ var MainPage = /** @class */ (function () {
             center: location,
             zoom: 16,
             fullscreenControl: false,
-            mapTypeId: 'roadmap'
+            mapTypeId: 'roadmap',
+            mapTypeControl: true,
+            mapTypeControlOptions: {
+                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                position: google.maps.ControlPosition.TOP_CENTER
+            },
+            zoomControl: true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.TOP_RIGHT
+            },
+            streetViewControl: true,
+            streetViewControlOptions: {
+                position: google.maps.ControlPosition.RIGHT_TOP
+            }
         };
         var map = new google.maps.Map(this.mapRef.nativeElement, options);
         infoWindow = new google.maps.InfoWindow;
@@ -77,13 +117,17 @@ var MainPage = /** @class */ (function () {
         ViewChild('map'),
         __metadata("design:type", ElementRef)
     ], MainPage.prototype, "mapRef", void 0);
+    __decorate([
+        ViewChild('search'),
+        __metadata("design:type", Object)
+    ], MainPage.prototype, "searchRef", void 0);
     MainPage = __decorate([
         IonicPage(),
         Component({
             selector: 'page-main',
             templateUrl: 'main.html',
         }),
-        __metadata("design:paramtypes", [NavController, NavParams])
+        __metadata("design:paramtypes", [ModalController, NavController, NavParams])
     ], MainPage);
     return MainPage;
 }());

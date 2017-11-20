@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { UserPage } from './user';
+import { eventPage } from '../event-detail/event-detail';
 var UserPageModule = /** @class */ (function () {
     function UserPageModule() {
     }
@@ -14,9 +15,14 @@ var UserPageModule = /** @class */ (function () {
         NgModule({
             declarations: [
                 UserPage,
+                eventPage
             ],
             imports: [
                 IonicPageModule.forChild(UserPage),
+            ],
+            entryComponents: [
+                UserPage,
+                eventPage
             ],
         })
     ], UserPageModule);

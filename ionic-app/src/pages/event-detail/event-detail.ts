@@ -14,8 +14,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'event-detail.html',
 })
 export class eventPage {
-
+	title:string;
+	time: string;
+	month:string;
+	day:string;
+	location:string;
+	//description:string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(navParams.get('title'));
+  	this.title = navParams.get('title');
+  	this.time = navParams.get('time');
+  	this.month = navParams.get('month');
+  	this.day = navParams.get('day');
+  	this.location = navParams.get('location');
+  	//add description later
   }
 
   ionViewDidLoad() {

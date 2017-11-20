@@ -10,44 +10,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { SignUpPage } from "../sign-up/sign-up";
 import { MainPage } from "../main/main";
-import { eventPage } from "../event-detail/event-detail";
-import { addEventPage } from '../add-event/add-event';
-import { userEventPage } from "../user-event/user-event";
-import { Platform, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormBuilder, Validators } from "@angular/forms";
+import { LimitedMainPage } from '../limited-main/limited-main';
 var LoginPage = /** @class */ (function () {
-    function LoginPage(Platform, actionsheetCtrl) {
-        this.Platform = Platform;
-        this.actionsheetCtrl = actionsheetCtrl;
+    function LoginPage(navCtrl, navParams, formBuilder) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.formBuilder = formBuilder;
         this.SignUpPage = SignUpPage;
         this.MainPage = MainPage;
-        this.eventPage = eventPage;
-        this.userEventPage = userEventPage;
-        this.addEventPage = addEventPage;
+        // addEventPage : addEventPage;
+        this.LimitedMainPage = LimitedMainPage;
+        this.backendURL = "http://goout.us-west-1.elasticbeanstalk.com/";
+        this.navCtrl = navCtrl;
+        this.loginForm = formBuilder.group({
+            username: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z]*"), Validators.maxLength(30)])],
+            password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+        });
     }
-    LoginPage.prototype.openMenu = function () {
-        var actionsheet = this.actionsheetCtrl.create({
-            title: 'albums',
-            cssClass: 'action-sheets-basic-page',
-            buttons: [
-                {
-                    text: 'Delete',
-                    role: 'destructive',
-                    icon: !this.Platform.is('ios') ? 'heart-outline' : null,
-                    handler: function () {
-                        console.log('Favorite Clicked');
+    ;
+    LoginPage.prototype.validateLogin = function (value) {
+        var nav = this.navCtrl;
+        var form = this.loginForm;
+        var doc = document.getElementById('errorMessage');
+        if (this.loginForm.valid) {
+            window.localStorage.setItem('username', value.username);
+            window.localStorage.setItem('password', value.password);
+            var req_1 = new XMLHttpRequest();
+            req_1.open("get", this.backendURL + "ValidateLogin?username=" + value.username + "&password=" + value.password);
+            req_1.send();
+            req_1.onreadystatechange = function () {
+                if (req_1.readyState === XMLHttpRequest.DONE && req_1.status === 200) {
+                    if (req_1.responseText.length > 0) {
+                        doc.innerHTML = req_1.responseText;
+                    }
+                    else {
+                        //clear the form
+                        form.setValue({
+                            username: '',
+                            password: ''
+                        });
+                        doc.innerHTML = "";
+                        nav.push(MainPage);
                     }
                 }
-            ]
-        });
-        actionsheet.present();
+            };
+        }
     };
+    ;
     LoginPage = __decorate([
+        IonicPage(),
         Component({
             selector: 'home-page',
             templateUrl: "login.html"
         }),
-        __metadata("design:paramtypes", [Platform,
-            ActionSheetController])
+        __metadata("design:paramtypes", [NavController, NavParams, FormBuilder])
     ], LoginPage);
     return LoginPage;
 }());

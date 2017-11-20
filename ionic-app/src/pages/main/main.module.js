@@ -7,6 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { MainPage } from './main';
+import { FindEventsPage } from '../find-events/find-events';
+import { FindPeoplePage } from '../find-people/find-people';
 var MainPageModule = /** @class */ (function () {
     function MainPageModule() {
     }
@@ -17,6 +19,10 @@ var MainPageModule = /** @class */ (function () {
             ],
             imports: [
                 IonicPageModule.forChild(MainPage),
+            ],
+            entryComponents: [
+                FindEventsPage,
+                FindPeoplePage
             ],
         })
     ], MainPageModule);
