@@ -64,7 +64,7 @@ export class addEventPage {
 
       console.log("message: "+message);
       //WebSocket.sendMessage(message);
-      WebSocket.send(message);
+      //WebSocket.send(message);
       console.log("message sent!");
   }
    ionViewDidLoad() {
