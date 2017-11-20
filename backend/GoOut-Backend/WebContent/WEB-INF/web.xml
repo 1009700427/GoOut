@@ -1,6 +1,0 @@
-<CORSConfiguration>
- <CORSRule>
-   <AllowedOrigin>*</AllowedOrigin>
-   <AllowedMethod>*</AllowedMethod>
- </CORSRule>
-</CORSConfiguration>

@@ -8,40 +8,32 @@ import { addEventPage } from "../add-event/add-event";
 import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
 import { LimitedMainPage } from '../limited-main/limited-main';
 
-import { HttpClient, HttpParams} from '@angular/common/http';
-
-
+@IonicPage()
 @Component({
 	selector: 'home-page',
 	templateUrl: "login.html"
-
 })
 
 export class LoginPage{
-	//const URL = "http://goout.us-west-1.elasticbeanstalk.com/Validation";
 	SignUpPage = SignUpPage;
-	// MainPage = MainPage;
-	eventPage = eventPage;
-	userEventPage = userEventPage;
+	MainPage = MainPage;
+	// eventPage = eventPage;
+	// userEventPage = userEventPage;
 	loginForm : FormGroup;
-
-	addEventPage : addEventPage;
-	LimitedMainPage= LimitedMainPage;
-
-	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder){
-
+	// addEventPage : addEventPage;
+	LimitedMainPage = LimitedMainPage;
 	backendURL : string  = "http://goout.us-west-1.elasticbeanstalk.com/";
-	
-	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http: HttpClient){
+	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder){
 		this.navCtrl = navCtrl;
 		this.loginForm = formBuilder.group({
 			username: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z]*"), Validators.maxLength(30)])],
 			password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
 		});
 	};
-	
 	validateLogin(value: any): void{
 		let nav = this.navCtrl;
+		let form = this.loginForm;
+		let doc = document.getElementById('errorMessage');
 		if(this.loginForm.valid){
 			window.localStorage.setItem('username', value.username);
 			window.localStorage.setItem('password', value.password);
@@ -51,15 +43,23 @@ export class LoginPage{
  			req.onreadystatechange=function(){
  				if(req.readyState===XMLHttpRequest.DONE && req.status===200){
  					if(req.responseText.length > 0 ){
- 						console.log('error');
+ 						doc.innerHTML = req.responseText;
  					}
  					else{
+ 						//clear the form
+ 						form.setValue({
+ 							username: '',
+ 							password: ''
+ 						});
+ 						doc.innerHTML = "";
  						nav.push(MainPage);
+
  					}
 				}
  			}	
 		}
-	}
-
+	};
 
 }
+	
+	

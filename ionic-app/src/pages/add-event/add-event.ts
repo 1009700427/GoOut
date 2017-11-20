@@ -14,7 +14,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/fo
 @IonicPage()
 @Component({
   selector: 'page-add-event',
-  templateUrl: 'add-event.html',
+  templateUrl: 'add-event.html'
 })
 export class addEventPage {
   public event = {
@@ -45,7 +45,7 @@ export class addEventPage {
   };
 
    ionViewDidLoad() {
-
+     
    }
    validate(value:any):void{
      if(this.addEventForm.valid){

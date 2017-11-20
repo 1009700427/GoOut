@@ -41,9 +41,6 @@ import { LimitedMainPage } from '../pages/limited-main/limited-main';
     FindPeoplePage,
     UserPage,
     LimitedMainPage 
-
- 
-
   ],
   imports: [
     BrowserModule,
