@@ -65,6 +65,8 @@ public class AddNewUser extends HttpServlet {
 			psDisplay = conn.prepareStatement("SELECT * FROM Users WHERE username =?");
 			psDisplay.setString(1, username);
 			rs = psDisplay.executeQuery();
+			
+
 			while (rs.next()) {
 				int userID_ = rs.getInt("userID");
 				String username_ = rs.getString("username");
@@ -72,18 +74,16 @@ public class AddNewUser extends HttpServlet {
 				String fullName_ = rs.getString("fullName");
 				boolean isPrivate_ = rs.getBoolean("privateUser");
 				
-				request.setAttribute("userID", userID_);
-				request.setAttribute("username", username_);
-				request.setAttribute("password", password_);
-				request.setAttribute("fullName", fullName_);
-				request.setAttribute("isPrivate", isPrivate_);
+				response.getWriter().println(userID_);	
 			}
+			response.getWriter().flush();
+			response.getWriter().close();
 			
 			
 
 			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AddNewUserResults.jsp");
-			dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AddNewUserResults.jsp");
+//			dispatcher.forward(request, response);
 		}catch(SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
 		}catch (ClassNotFoundException cnfe) {

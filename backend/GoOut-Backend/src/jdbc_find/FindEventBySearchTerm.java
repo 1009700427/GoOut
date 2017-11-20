@@ -1,6 +1,7 @@
 package jdbc_find;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,22 +19,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class FindEventByUserUsername
+ * Servlet implementation class FindEventBySearchTerm
  */
-@WebServlet("/FindEventByUserUsername")
-public class FindEventByUserUsername extends HttpServlet {
+@WebServlet("/FindEventBySearchTerm")
+public class FindEventBySearchTerm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FindEventByUserUsername() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
+		String searchTerm = request.getParameter("searchTerm");
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -48,16 +41,22 @@ public class FindEventByUserUsername extends HttpServlet {
 			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false"); //add port number if not on default
 			st = conn.createStatement();
 			System.out.println("connected");
+			PrintWriter pw = response.getWriter();
 			
-			if (username != null && username.length() > 0) {
+			
+			if (searchTerm != null && searchTerm.length() > 0) {
 				//ps = conn.prepareStatement("SELECT * FROM Users WHERE username=?");
 				ps = conn.prepareStatement("SELECT * "
 											+ "FROM Users u, Events e "
 											+ "WHERE u.userID = e.userID "
-											+ "AND username LIKE ?");
+											+ "AND (u.username LIKE ? "
+											+ "OR u.fullName LIKE ? "
+											+ "OR e.eventName LIKE ?)");
 
 				
-				ps.setString(1, "%" + username + "%");
+				ps.setString(1, "%" + searchTerm + "%");
+				ps.setString(2, "%" + searchTerm + "%");
+				ps.setString(3, "%" + searchTerm + "%");
 				rs = ps.executeQuery();
 
 			}
@@ -75,9 +74,11 @@ public class FindEventByUserUsername extends HttpServlet {
 			ArrayList<String> eventLocations = new ArrayList<String>();
 			ArrayList<Integer> eventMonths = new ArrayList<Integer>();
 			ArrayList<Integer> eventDays = new ArrayList<Integer>();
+			ArrayList<String> eventDescriptions = new ArrayList<String>();
 
 			ArrayList<String> eventStartTimes = new ArrayList<String>();
 			ArrayList<String> eventEndTimes = new ArrayList<String>();
+			
 			
 			
 			ArrayList<Integer> userIDs = new ArrayList<Integer>();
@@ -163,7 +164,7 @@ public class FindEventByUserUsername extends HttpServlet {
 
 			
 			
-			
+	
 			
 			request.setAttribute("eventIDs", eventIDs);
 			request.setAttribute("eventNames", eventNames);
@@ -171,9 +172,21 @@ public class FindEventByUserUsername extends HttpServlet {
 			request.setAttribute("eventLocations", eventLocations);
 			request.setAttribute("eventMonths", eventMonths);
 			request.setAttribute("eventDays", eventDays);
+			
 			request.setAttribute("eventStartTimes", eventStartTimes);
 			request.setAttribute("eventEndTimes", eventEndTimes);
 			
+//			pw.println(eventIDs);
+			pw.println(eventNames);
+			pw.println(eventUserIDs);
+			pw.println(eventLocations);
+			pw.println(eventMonths);
+			pw.println(eventDays);
+			pw.println(eventStartTimes);
+			pw.println(eventEndTimes);
+			
+			pw.flush();
+			pw.close();
 			
 			
 			request.setAttribute("userIDs", userIDs);

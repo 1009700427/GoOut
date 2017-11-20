@@ -14,7 +14,7 @@ export class WebSocket {
 
   public static connectToServer() {
     // this.socket = new WebSocket("ws://localhost:8080/GoOut-Backend/GoOutServer")
-    this.socketClient = new WebSocket('ws://localhost:8080/GoOut-Backend/GoOutServer', []);
+    this.socketClient = new WebSocket('ws://localhost:8080', []);
     console.log("initialized socket client");
     this.socketClient.onopen = function(event) {
       console.log("Connected!");

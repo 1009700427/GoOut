@@ -58,16 +58,16 @@ public class ValidateInfo extends HttpServlet {
 				rs = ps.executeQuery();
 				
 				if (rs.next()) {
-					pw.println("Username already taken <br>");
+					pw.println("Username already taken");
 				}
 			}
 			
 			
 			if (password == "") {
-    				pw.println("Password cannot be empty <br>");
+    				pw.println("Password cannot be empty");
 			}
 			if (fullName == "") {
-				pw.println("Full Name cannot be empty <br>");
+				pw.println("Full Name cannot be empty");
 			}
 			
 			

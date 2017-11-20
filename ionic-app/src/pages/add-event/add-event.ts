@@ -16,7 +16,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/fo
 @IonicPage()
 @Component({
   selector: 'page-add-event',
-  templateUrl: 'add-event.html',
+  templateUrl: 'add-event.html'
 })
 export class addEventPage {
   public event = {
@@ -33,13 +33,13 @@ export class addEventPage {
 	// autocomplete: any;
 	// circle: any;
 	// geolocation : any;
-  addEventForm:FormGroup;
+  addEventForm: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
     this.navCtrl = navCtrl;
     this.addEventForm = formBuilder.group({
       title: ['', Validators.required],
       date: ['', Validators.required],
-      time: ['', Validators.required],
+      time: ['',Validators.required],
       location: ['', Validators.required],
       description: ['', Validators.required],
       isPrivate: ['', Validators.required]

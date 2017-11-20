@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ErrorHandler, NgModule } from '@angular/core';
