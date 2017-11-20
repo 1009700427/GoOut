@@ -51,21 +51,22 @@
     </style> -->
 
 
-  <ion-navbar>
-    <ion-title>Add Event</ion-title>
+<ion-navbar>
+	<ion-title>Add Event</ion-title>
 
 
-    <!-- <ion-buttons end padding> -->
+	<!-- <ion-buttons end padding> -->
       <!-- <button ion-button icon-only color="danger">
        Save
-      </button> -->
-    <!-- </ion-buttons> -->
-  </ion-navbar>
+   </button> -->
+   <!-- </ion-buttons> -->
+</ion-navbar>
 
 </ion-header> 
 
 
-<ion-content padding class="outer-content" >
+<!-- <ion-content padding class="outer-content" >
+<<<<<<< HEAD
 	<ion-list>
 		<ion-item>
 		    <ion-label floating>Title</ion-label>
@@ -100,7 +101,7 @@
 	<ion-toolbar>
 		<button ion-button block color="danger"> Save </button>
 	</ion-toolbar>
-</ion-content>
+</ion-content> -->
 <style>
   ion-list:first-child {
     margin-top: 12;
@@ -110,6 +111,51 @@
   }
 </style>
 
+  <ion-content padding class="outer-content" >
+	<form [formGroup]="addEventForm" (ngSubmit) = " validate(addEventForm.value)">
+
+		<ion-list>
+			<ion-item>
+				<ion-label floating>Title</ion-label>
+				<ion-input type="text" formControlName="title"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Date</ion-label>
+				<ion-datetime displayFormat="MMM DD YYYY" formControlName="date"></ion-datetime>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>Time</ion-label>
+				<ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time"></ion-datetime>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Location</ion-label>
+				<ion-input type="text" formControlName="location"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>Description</ion-label>
+				<ion-textarea name="description" formControlName="description"></ion-textarea>
+			</ion-item>
+			<ion-item>
+				<ion-label fixed>Private event</ion-label>
+				<ion-checkbox formControlName="isPrivate" ></ion-checkbox>
+			</ion-item>
+		</ion-list>
+		<ion-toolbar>
+			<button ion-button block color="secondary" [disabled]="!addEventForm.valid" type="submit">Save</button><br>
+		</ion-toolbar>
+	</form>
+</ion-content>
+<style>
+ion-list:first-child {
+	margin-top: 32px;
+}
+ion-list + ion-list {
+	margin-top: 0;
+}
+</style>
+
 
 
 
@@ -117,7 +163,7 @@
 	<div id="locationField">
       <input id="autocomplete" placeholder="Enter your address"
               type="text">
-    </div> -->
+          </div> -->
 <!-- 	<script>
      var placeSearch, autocomplete;
       var componentForm = {
@@ -142,10 +188,10 @@
         autocomplete = new google.maps.places.Autocomplete(input, options);
         console.log("yyyyy");
       }
-	</script> -->
-	
+</script> -->
+
 <!-- 
 	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYP7vaCj6210qx710SK512J5igAPXSPhs&libraries=places&callback&libraries=places&callback=initAutocomplete"
         async defer></script>
- -->
+    -->
 

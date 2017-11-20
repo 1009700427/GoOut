@@ -31,13 +31,13 @@ export class addEventPage {
 	// autocomplete: any;
 	// circle: any;
 	// geolocation : any;
-  signUpForm:FormGroup;
+  addEventForm: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
     this.navCtrl = navCtrl;
-    this.signUpForm = formBuilder.group({
+    this.addEventForm = formBuilder.group({
       title: ['', Validators.required],
       date: ['', Validators.required],
-      time: ['', Validators.required],
+      time: [Validators.required],
       location: ['', Validators.required],
       description: [''],
       isPrivate: ['', Validators.required]
@@ -48,7 +48,7 @@ export class addEventPage {
 
    }
    validate(value:any):void{
-     if(this.signUpForm.valid){
+     if(this.addEventForm.valid){
        console.log("valid");
        this.navCtrl.pop();
      }
