@@ -62,34 +62,37 @@
     <!-- </ion-buttons> -->
   </ion-navbar>
 
-</ion-header> 
-
+</ion-header>
 
 <ion-content padding class="outer-content" >
-	<ion-list>
+  <form [formGroup]="addEventForm" (ngSubmit)="sendMessage(addEventForm.value)">
+
+  <ion-list>
 		<ion-item>
 		    <ion-label floating>Title</ion-label>
-		    <ion-input type="text"></ion-input>
+		    <ion-input type="text" formControlName="title"></ion-input>
 		</ion-item>
-		
+
 		<ion-item>
 	      <ion-label floating>Date</ion-label>
-	      <ion-datetime displayFormat="MMM DD YYYY"></ion-datetime>
+	      <ion-datetime displayFormat="MMM DD YYYY" formControlName="date"></ion-datetime>
 	    </ion-item>
 
 	    <ion-item>
 	      <ion-label floating>Time</ion-label>
-	      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" ></ion-datetime>
+	      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time"></ion-datetime>
 	    </ion-item>
-		
+
+
+
 		<ion-item>
 		    <ion-label floating>Location</ion-label>
-		    <ion-input type="text"></ion-input>
+		    <ion-input type="text" formControlName="location"></ion-input>
 		</ion-item>
 
 		<ion-item>
 		    <ion-label floating>Description</ion-label>
-		    <ion-textarea name="description"></ion-textarea>
+		    <ion-textarea name="description" formControlName="description"></ion-textarea>
 		</ion-item>
 
 		<ion-item>
@@ -98,8 +101,9 @@
 	  	</ion-item>
 	</ion-list>
 	<ion-toolbar>
-		<button ion-button block color="danger"> Save </button>
+		<button ion-button block color="danger" type="submit"> Save </button>
 	</ion-toolbar>
+  </form>
 </ion-content>
 <style>
   ion-list:first-child {
@@ -113,7 +117,7 @@
 
 
 
-<!-- 
+<!--
 	<div id="locationField">
       <input id="autocomplete" placeholder="Enter your address"
               type="text">
@@ -137,14 +141,14 @@
         var input = document.getElementById('autocomplete');
         var options = {
           bounds: defaultBounds
-          
+
         };
         autocomplete = new google.maps.places.Autocomplete(input, options);
         console.log("yyyyy");
       }
 	</script> -->
-	
-<!-- 
+
+<!--
 	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYP7vaCj6210qx710SK512J5igAPXSPhs&libraries=places&callback&libraries=places&callback=initAutocomplete"
         async defer></script>
  -->

@@ -7,6 +7,7 @@ import { userEventPage } from "../user-event/user-event";
 import { addEventPage } from "../add-event/add-event";
 import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
 import { LimitedMainPage } from '../limited-main/limited-main';
+import { Platform } from 'ionic-angular';
 
 @Component({
 	selector: 'home-page',
@@ -24,12 +25,13 @@ export class LoginPage{
 	addEventPage : addEventPage;
 	LimitedMainPage= LimitedMainPage;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder){
+	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public plt: Platform){
 		this.navCtrl = navCtrl;
 		this.loginForm = formBuilder.group({
 			username: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z]*"), Validators.maxLength(30)])],
 			password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
 		});
+    console.log("Playform using: "+this.plt.platforms());
 	};
 	validateLogin(value: any): void{
 		if(this.loginForm.valid){
@@ -45,7 +47,7 @@ export class LoginPage{
 		// 		console.log("i finished!");
 		// 		//console.log(req.responseText);
 		// 	}
-		// }	
+		// }
 	}
 
 

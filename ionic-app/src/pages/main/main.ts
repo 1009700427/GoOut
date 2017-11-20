@@ -4,6 +4,7 @@ import {
  GoogleMapsEvent,
  GoogleMapOptions,
 } from '@ionic-native/google-maps';
+import { WebSocket } from '../../app/WebSocket';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
@@ -20,7 +21,7 @@ import { FindEventsPage } from '../find-events/find-events';
   selector: 'page-main',
   templateUrl: 'main.html',
 })
-export class MainPage { 
+export class MainPage {
   LoginPage = LoginPage;
   addEventPage = addEventPage;
   YourPage = YourPage;
@@ -29,7 +30,16 @@ export class MainPage {
   map: any;
   searchTerm : string;
   // map: GoogleMap;
-  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
+
+
+  // connects to the server!
+  WebSocket.connectToServer();
+
+
+
+
+  }
 
   searchEvents() {
     this.searchTerm = this.searchRef.value;
@@ -56,12 +66,12 @@ export class MainPage {
     // console.log('ionViewDidLoad MainPage');
   }
 swipeEvent(e){
-    //go to the login page if 
+    //go to the login page if
     //the user swipes to the left
     if(e.direction == 2){
       this.navCtrl.push(LoginPage);
     }
-    // //go to the signup page if 
+    // //go to the signup page if
     // //the user swipes to the right
     if(e.direction == 4){
       this.navCtrl.push(SignUpPage);
@@ -126,7 +136,7 @@ showMap(){
         }
 
 }
- 
+
 // handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //   infoWindow.setPosition(pos);
 //   infoWindow.setContent(browserHasGeolocation ?

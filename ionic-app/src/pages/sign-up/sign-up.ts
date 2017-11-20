@@ -40,12 +40,13 @@ import { LimitedMainPage } from '../limited-main/limited-main';
  		if(this.signUpForm.valid){
  			window.localStorage.setItem('username', value.username);
  			window.localStorage.setItem('fullname', value.fullname);
+ 			console.log("validate");
  			//params:
  			//fullname
  			//username
  			//password
  			this.http.get(this.url + "Searching?fullname=" + value.username + "&username="+value.username + "&password=" + value.password)
- 			
+
  			this.navCtrl.push(MainPage);
  		}
  	}
