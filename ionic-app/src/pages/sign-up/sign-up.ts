@@ -22,13 +22,13 @@ import 'rxjs/add/operator/do';
  })
  export class SignUpPage {
  	//need to insert the proper servlet name
- 	
+
  	LoginPage = LoginPage;
  	signUpForm : FormGroup;
  	LimitedMainPage = LimitedMainPage;
  	backendURL : string  = "http://goout.us-west-1.elasticbeanstalk.com/";
  	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
- 	
+
  		this.navCtrl = navCtrl;
  		this.signUpForm = formBuilder.group({
  			fullname: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z ]*"), Validators.maxLength(30)])],

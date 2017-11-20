@@ -7,12 +7,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { LoginPage } from "../pages/login/login";
 import { MyApp } from './app.component';
-
 import { HttpModule } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
-
-import { HttpClientModule } from '@angular/common/http';
-
+import { WebSocket } from './Websocket';
 //Pages
 import { HomePage } from '../pages/home/home';
 import { MainPage } from "../pages/main/main";
@@ -40,11 +37,13 @@ import { LimitedMainPage } from '../pages/limited-main/limited-main';
     YourPage,
     FindPeoplePage,
     UserPage,
-    LimitedMainPage 
+    LimitedMainPage
+
+
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -61,7 +60,7 @@ import { LimitedMainPage } from '../pages/limited-main/limited-main';
     FindPeoplePage,
     YourPage,
     UserPage,
-    LimitedMainPage 
+    LimitedMainPage
 
   ],
   providers: [

@@ -4,6 +4,7 @@ import {
  GoogleMapsEvent,
  GoogleMapOptions,
 } from '@ionic-native/google-maps';
+import { WebSocket } from '../../app/WebSocket';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
@@ -20,7 +21,7 @@ import { FindEventsPage } from '../find-events/find-events';
   selector: 'page-main',
   templateUrl: 'main.html',
 })
-export class MainPage { 
+export class MainPage {
   LoginPage = LoginPage;
   addEventPage = addEventPage;
   YourPage = YourPage;
@@ -29,9 +30,17 @@ export class MainPage {
   map: any;
   searchTerm : string;
   // map: GoogleMap;
-  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
 
-  //event page result DONT SEARCH HERE
+
+  // connects to the server!
+  WebSocket.connectToServer();
+
+
+
+
+  }
+
   searchEvents() {
     this.searchTerm = this.searchRef.value;
     console.log(this.searchTerm);
@@ -51,25 +60,23 @@ export class MainPage {
   }
   ionViewDidLoad() {
     console.log(this.mapRef);
-    console.log(window.localStorage.getItem('username'));
-    console.log(window.localStorage.getItem('fullname'));
     this.showMap();
 
     // this.loadMap();
     // console.log('ionViewDidLoad MainPage');
   }
-// swipeEvent(e){
-//     //go to the login page if 
-//     //the user swipes to the left
-//     if(e.direction == 2){
-//       this.navCtrl.push(LoginPage);
-//     }
-//     // //go to the signup page if 
-//     // //the user swipes to the right
-//     if(e.direction == 4){
-//       this.navCtrl.push(SignUpPage);
-//     }
-//   }
+swipeEvent(e){
+    //go to the login page if
+    //the user swipes to the left
+    if(e.direction == 2){
+      this.navCtrl.push(LoginPage);
+    }
+    // //go to the signup page if
+    // //the user swipes to the right
+    if(e.direction == 4){
+      this.navCtrl.push(SignUpPage);
+    }
+  }
   //will removed all the stored data from the local storage;
   logout(){
     //remove any further data members
@@ -107,6 +114,7 @@ showMap(){
 
   const map = new google.maps.Map(this.mapRef.nativeElement, options);
   infoWindow = new google.maps.InfoWindow;
+
   // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -128,7 +136,7 @@ showMap(){
         }
 
 }
- 
+
 // handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //   infoWindow.setPosition(pos);
 //   infoWindow.setContent(browserHasGeolocation ?

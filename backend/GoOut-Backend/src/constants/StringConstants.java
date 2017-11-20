@@ -21,7 +21,7 @@ public class StringConstants {
 	
 	//backend on AWS
 	public static final String BACKEND_URL = "http://goout.us-west-1.elasticbeanstalk.com/";
-	
-	
-
+	public static final String WS_URL = "wss://a10f19d73tzk4o.iot.us-east-2.amazonaws.com.iot.us-east-2.amazonaws.com/mqtt/";
+//	a10f19d73tzk4o.iot.us-east-2.amazonaws.com
+	//"https://iot.us-west-1.amazonaws.com/endpoint"
 }
