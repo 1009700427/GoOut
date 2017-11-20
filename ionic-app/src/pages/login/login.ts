@@ -22,8 +22,7 @@ export class LoginPage{
 	userEventPage = userEventPage;
 	loginForm : FormGroup;
 	backendURL : string  = "http://goout.us-west-1.elasticbeanstalk.com/";
-
-
+	
 	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http: HttpClient){
 		this.navCtrl = navCtrl;
 		this.loginForm = formBuilder.group({
@@ -31,27 +30,26 @@ export class LoginPage{
 			password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
 		});
 	};
+	
 	validateLogin(value: any): void{
+		let nav = this.navCtrl;
 		if(this.loginForm.valid){
 			window.localStorage.setItem('username', value.username);
 			window.localStorage.setItem('password', value.password);
-			console.log("valid");
-
-			this.http.post(this.backendURL + "ValidateInfo?",{}, {params: new HttpParams()
-				.set('username', value.username)
-				.set('password', value.password)
-			}).subscribe();
-
-			this.navCtrl.push(MainPage);
+			let req = new XMLHttpRequest();
+ 			req.open("get", this.backendURL + "ValidateLogin?username="+value.username + "&password=" + value.password);
+ 			req.send();
+ 			req.onreadystatechange=function(){
+ 				if(req.readyState===XMLHttpRequest.DONE && req.status===200){
+ 					if(req.responseText.length > 0 ){
+ 						console.log('error');
+ 					}
+ 					else{
+ 						nav.push(MainPage);
+ 					}
+				}
+ 			}	
 		}
-		// req = new XMLHttpRequest();
-		// req.open("get", url + "?username="+ this.username + "&password=" + this.password);
-		// req.onreadystatechange = function(){
-		// 	if(req.readystate === XMLHttpRequest.DONE && req.status === 200){
-		// 		console.log("i finished!");
-		// 		//console.log(req.responseText);
-		// 	}
-		// }	
 	}
 
 
