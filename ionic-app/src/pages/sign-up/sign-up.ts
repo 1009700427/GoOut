@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Component } from '@angular/core';
 import { LoginPage } from "../login/login";
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -78,13 +77,13 @@ import 'rxjs/add/operator/do';
  })
  export class SignUpPage {
  	//need to insert the proper servlet name
- 	
+
  	LoginPage = LoginPage;
  	signUpForm : FormGroup;
  	LimitedMainPage = LimitedMainPage;
  	backendURL : string  = "http://goout.us-west-1.elasticbeanstalk.com/";
  	constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
- 	
+
  		this.navCtrl = navCtrl;
  		this.signUpForm = formBuilder.group({
  			fullname: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z ]*"), Validators.maxLength(30)])],
@@ -138,4 +137,3 @@ import 'rxjs/add/operator/do';
  	}
 
  }
->>>>>>> d1511016a3a95abe4db8fa2191c97ed4c9f369c1
