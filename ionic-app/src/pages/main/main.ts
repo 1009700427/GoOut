@@ -4,13 +4,14 @@ import {
  GoogleMapsEvent,
  GoogleMapOptions,
 } from '@ionic-native/google-maps';
+import { WebSocket2 } from '../../app/WebSocket';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { SignUpPage } from '../sign-up/sign-up';
 import { addEventPage } from '../add-event/add-event';
 import { FindPeoplePage } from '../find-people/find-people';
-import {YourPage } from '../your/your';
+import { YourPage } from '../your/your';
 import { FindEventsPage } from '../find-events/find-events';
 
 declare var google : any;
@@ -47,15 +48,22 @@ export class MainPage {
   // map: GoogleMap;
   constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
     // this.mapFilter = "nearby";
+    this.initilize();
   }
 
   ionViewDidLoad() {
     console.log(this.mapRef);
     this.showMap();
-    // this.initilize();
+ 
+
 
     // this.loadMap();
     // console.log('ionViewDidLoad MainPage');
+
+  // connects to the server!
+  WebSocket2.connectToServer();
+
+
   }
 
   searchEvents() {
@@ -99,7 +107,7 @@ swipeEvent(e){
 
 showMap(){
   //get the events from the database
-  this.initilize();
+  // this.initilize();
 
   //location-- lat long
   const location = new google.maps.LatLng(34.022356, -118.285096);
@@ -122,7 +130,7 @@ showMap(){
      },
     streetViewControl: true,
           streetViewControlOptions: {
-              position: google.maps.ControlPosition. RIGHT_TOP
+              position: google.maps.ControlPosition.RIGHT_TOP
     }
 
   }
@@ -150,37 +158,53 @@ showMap(){
          // this.handleLocationError(false, infoWindow, map.getCenter());
         }
 
-     for (var i = 0; i < this.events.length ; i++){
-       // var eventMarker = 
-       var contentString = this.events[i].title;
-       var eventInfo = new google.maps.InfoWindow({
-          content: contentString
-        });
-
-       var marker = new google.maps.Marker({
-          position: this.getCoords(this.events[i].location),
-          map: map,
-          // title: 'Uluru (Ayers Rock)'
-        });
-      
-        marker.addListener('click', function() {
-          eventInfo.open(map, marker);
-        });
-       // eventInfo.setPosition(this.getCoords(this.events[i].location));
-
-     }
-
+        this.showMarkers();
 }
 
 
+showMarkers(){
+  var markers = [];
+  var eventInfos = [];
+   //making new markers and infowindows
+  for (var i = 0; i < this.events.length; i++) {
+      var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">' + this.events[i].title + '</h1>'+
+            '<div id="bodyContent">'+
+            '<p>Hosted by ' + this.events[i].user + 
+            '</p>'+         
+            '</div>'+
+            '</div>';
+       markers.push(new google.maps.Marker({
+          position: this.getCoords(this.events[i].location),
+          map: this.map,
+          title: this.events[i].title;
+        }));
 
+        eventInfos.push(new google.maps.InfoWindow({
+          content: contentString
+        }));  
+  }
+
+  //showing them
+  for (var i = 0; i <eventInfos.length; i++){
+          let eventInfo =  eventInfos[i] ;
+          let marker = markers[i];
+           markers[i].addListener('click', function() {
+             // console.log(eventInfo);
+            eventInfo.open(this.map, marker);
+          });
+  }
+   
+}
 
 initilize(){
   console.log('inside initialize');
     let sTerm = "";
     let page = this;
     var req = new XMLHttpRequest();
-    req.open("get", "http://goout.us-west-1.elasticbeanstalk.com/FindEventBySearchTerm?searchTerm="+sTerm,true);
+    req.open("get", "http://goout.us-west-1.elasticbeanstalk.com/FindEventBySearchTerm?searchTerm="+sTerm,false);
     req.send();
     req.onreadystatechange = function(){
       if(req.readyState === XMLHttpRequest.DONE && req.status === 200){

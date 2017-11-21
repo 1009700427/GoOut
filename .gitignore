@@ -88,3 +88,6 @@ backend/GoOut-Backend/.metadata/.plugins/org.eclipse.core.resources/.safetable/o
 backend/GoOut-Backend/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
 backend/GoOut-Backend/.metadata/.plugins/org.eclipse.pde.core/.cache/clean-cache.properties
 backend/GoOut-Backend/.metadata/version.ini
+ionic-app/src/app/WebSocket.ts
+*.zip
+.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index

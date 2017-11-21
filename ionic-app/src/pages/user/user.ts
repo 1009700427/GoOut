@@ -29,7 +29,7 @@ export class UserPage {
   	let url = "http://goout.us-west-1.elasticbeanstalk.com/GetFollowingEventList?userID=" + this.id;
   	req.open('get', url, true);
   	req.send();
-  	console.log('gettingevents');
+
   	req.onreadystatechange = function(){
   		if(req.readyState === XMLHttpRequest.DONE && req.status === 200){
   			console.log(req.responseText);

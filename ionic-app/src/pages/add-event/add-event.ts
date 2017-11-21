@@ -45,6 +45,7 @@ export class addEventPage {
       title: ['', Validators.required],
       date: [''],
       time: [''],
+      endTime: [''],
       location: ['', Validators.required],
       description: ['', Validators.required],
       isPrivate: ['', Validators.required]
