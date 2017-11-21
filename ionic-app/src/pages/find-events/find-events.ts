@@ -67,6 +67,7 @@ export class FindEventsPage {
             //let user = page.findUser(userIDs[i]);
             page.addEvent(eventID[i],eventTitle[i], usernames[i], eventLocation[i], eventMonths[i],eventDays[i], eventStart[i], eventEnd[i], descrip[i]);
             }
+            page.followedEvents();
           }
           else{
             console.log('notfound');
@@ -83,12 +84,15 @@ export class FindEventsPage {
   followedEvents(){
     let page = this;
     let req = new XMLHttpRequest();
-    let url = "http://goout.us-west-1.elasticbeanstalk.com/GetFollowingEventList?userID="+window.localStorage.getItem('id');
+    let url = "http://goout.us-west-1.elasticbeanstalk.com/GetFollowingEventID?userID="+window.localStorage.getItem('id');
     req.open('get', url, true);
     req.send();
+    console.log("SDF"+ url);
     req.onreadystatechange = function(){
-      if(req.readyStatus === XMLHttpRequest.DONE && req.status === 200){
+      if(req.readyState === XMLHttpRequest.DONE && req.status === 200){
         let followed = page.arraytify(req.responseText);
+        console.log("WOOOFS"+ followed);
+        console.log("SSFS" + url);
         if(followed[0] != "" && followed != '\n'){
           for(var i = 0; i < page.events.length; i++){
           //console.log(page.users);
@@ -97,6 +101,7 @@ export class FindEventsPage {
           for(var j = 0; j < followed.length; j++){
             let follow = followed[j].replace(' ', '');
             follow = follow.replace('\n', '');
+            console.log("FOLLOW :" + follow);
             if(follow != '' && curr.id.replace(' ', '') === follow){
               console.log('here');
               console.log(curr.id);
