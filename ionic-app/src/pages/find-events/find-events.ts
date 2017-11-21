@@ -97,6 +97,15 @@ export class FindEventsPage {
       month: event.month, day:event.day, start:event.startTime, end:event.endTime,
       description:event.description});
   }
+  follow(event){
+    let req = new XMLHttpRequest();
+    let url =  "http://goout.us-west-1.elasticbeanstalk.com/FollowEvent?userID=" + window.localStorage.getItem('id') + "&eventID=" + event.id;
+     console.log(url);
+     console.log(window.localStorage.getItem('id'));
+    req.open('get', url, true);
+    req.send();
+    this.nav.pop();
+  }
   // findUser(userID:string): any{
   //   let req = new XMLHttpRequest();
   //   let page = this;

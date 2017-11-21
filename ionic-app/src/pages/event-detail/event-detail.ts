@@ -22,9 +22,11 @@ export class eventPage {
   start:string;
   end:string;
   description:string;
+  nav : NavController;
 	//description:string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     console.log(navParams.get('title'));
+    this.nav = navCtrl;
     this.username= navParams.get('user');
   	this.title = navParams.get('title');
   	this.month = navParams.get('month');
@@ -39,5 +41,14 @@ export class eventPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventPage');
   }
-
+  follow(event){
+    let req = new XMLHttpRequest();
+    console.log(window.localStorage.getItem('id'));
+    let url =  "http://goout.us-west-1.elasticbeanstalk.com/FollowEvent?userID=" + window.localStorage.getItem('id') + "&eventID=" + event.id;
+     console.log(url);
+     console.log(window.localStorage.getItem('id'));
+    req.open('get', url, true);
+    req.send();
+    this.nav.pop();
+  }
 }

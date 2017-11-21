@@ -42,6 +42,7 @@ export class LoginPage{
       req.send();
       req.onreadystatechange=function(){
         if(req.readyState===XMLHttpRequest.DONE && req.status===200){
+          console.log(req.responseText);
           if(req.responseText.indexOf('Invalid') != -1 ){
             doc.innerHTML = req.responseText;
           }
@@ -51,6 +52,8 @@ export class LoginPage{
               username: '',
               password: ''
             });
+            console.log('signed in here is the user id: '  + req.responseText);
+            window.localStorage.setItem('id', req.responseText);
             doc.innerHTML = "";
             nav.push(MainPage);
           }

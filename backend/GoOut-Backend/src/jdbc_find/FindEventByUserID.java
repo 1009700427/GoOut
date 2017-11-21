@@ -1,6 +1,7 @@
 package jdbc_find;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +11,6 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,10 +56,14 @@ public class FindEventByUserID extends HttpServlet {
 
 			ArrayList<String> eventStartTimes = new ArrayList<String>();
 			ArrayList<String> eventEndTimes = new ArrayList<String>();
+			ArrayList<String> eventDescriptions = new ArrayList<String>();
 			
 			ArrayList<Integer> userIDs = new ArrayList<Integer>();
 			ArrayList<String> usernames = new ArrayList<String>();
 			ArrayList<String> fullNames = new ArrayList<String>();
+			
+			ArrayList<String> eventStrings = new ArrayList<String>();
+			
 			
 			int parsedUserID = -1;
 			try {
@@ -84,6 +88,7 @@ public class FindEventByUserID extends HttpServlet {
 
 				
 				while(rs.next()) {
+					String toReturn = "";
 					int eventID_ = rs.getInt("eventID");
 					String eventName = rs.getString("eventName");
 					int eventUserID = rs.getInt("userID");
@@ -129,12 +134,20 @@ public class FindEventByUserID extends HttpServlet {
 					Time eventEndTime = rs.getTime("endTime");
 					if (eventEndTime != null) {
 //							eventEndTimes.add(eventEndTime);
-						eventEndTimes.add(eventStartTime.toString());
+						eventEndTimes.add(eventEndTime.toString());
 					}
 					else {
 						eventEndTimes.add("N/A");
 					}			
-
+					
+					String eventDescription = rs.getString("description");
+					if (eventDescription != null) {
+						eventDescriptions.add(eventDescription);
+					}
+					else {
+						eventDescriptions.add("N/A");
+					}
+					
 					int userID_ = rs.getInt("u.userID");
 					String username_ = rs.getString("u.username");
 					String fullName = rs.getString("u.fullName");
@@ -143,6 +156,18 @@ public class FindEventByUserID extends HttpServlet {
 					userIDs.add(userID_);
 					usernames.add(username_);
 					fullNames.add(fullName);	
+					
+					toReturn += username_ + ",";
+					toReturn += eventID_ + ",";
+					toReturn += eventName + ",";
+					toReturn += eventDescription + ",";	
+					toReturn += eventMonth + ",";
+					toReturn += eventDay + ",";
+					toReturn += eventStartTime.toString() + ",";
+					toReturn += eventEndTime.toString() + ",";
+					toReturn += eventLocation;
+					
+					eventStrings.add(toReturn);
 				
 					
 				}
@@ -165,23 +190,29 @@ public class FindEventByUserID extends HttpServlet {
 				fullNames.add("");	
 				
 			}
+			PrintWriter pw = response.getWriter();
+			for(int i = 0; i < eventStrings.size(); i++) {
+				pw.println(eventStrings.get(i));
+			}
+			pw.flush();
+			pw.close();
+			// request.setAttribute("eventIDs", eventIDs);
+			// request.setAttribute("eventNames", eventNames);
+			// request.setAttribute("eventUserIDs", eventUserIDs);
+			// request.setAttribute("eventLocations", eventLocations);
+			// request.setAttribute("eventMonths", eventMonths);
+			// request.setAttribute("eventDays", eventDays);
+			// request.setAttribute("eventStartTimes", eventStartTimes);
+			// request.setAttribute("eventEndTimes", eventEndTimes);
 			
-			request.setAttribute("eventIDs", eventIDs);
-			request.setAttribute("eventNames", eventNames);
-			request.setAttribute("eventUserIDs", eventUserIDs);
-			request.setAttribute("eventLocations", eventLocations);
-			request.setAttribute("eventMonths", eventMonths);
-			request.setAttribute("eventDays", eventDays);
-			request.setAttribute("eventStartTimes", eventStartTimes);
-			request.setAttribute("eventEndTimes", eventEndTimes);
+			// request.setAttribute("userIDs", userIDs);
+			// request.setAttribute("usernames", usernames);
+			// request.setAttribute("fullNames", fullNames);
 			
-			request.setAttribute("userIDs", userIDs);
-			request.setAttribute("usernames", usernames);
-			request.setAttribute("fullNames", fullNames);
+			// request.setAttribute("eventStrings", eventStrings);
 			
-			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/EventSearchResultsUsers.jsp");
-			dispatcher.forward(request, response);
+			// RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/EventSearchResultsUsers.jsp");
+			// dispatcher.forward(request, response);
 		}catch(SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
 		}catch (ClassNotFoundException cnfe) {

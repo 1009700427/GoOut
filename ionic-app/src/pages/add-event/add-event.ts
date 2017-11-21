@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { WebSocket2 } from '../../app/WebSocket';
+// import { WebSocket2 } from '../../app/WebSocket';
 
 // import {Geolocation} frnom '@ionic-native/geolocation';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
