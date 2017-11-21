@@ -62,8 +62,6 @@ public class ValidateLogin extends HttpServlet {
 				username_ = rs.getString("username");
 				fullName = rs.getString("fullName");
 				pw.println(userID);
-				pw.println(username_);
-				pw.println(fullName);
 			}
  			
 
