@@ -1,6 +1,10 @@
 import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 // import { WebSocket } from '../../app/WebSocket';
+
+import { WebSocket2 } from '../../app/WebSocket';
+
 
 // import {Geolocation} frnom '@ionic-native/geolocation';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
@@ -59,12 +63,12 @@ export class addEventPage {
       var dateList = date.split("-");
       var timeList = time.split(":");
 
-
+      
 
       var message = dateList[2]+"/"+dateList[1]+"/2017"+timeList[0]+"/"+timeList[1]+"/00/1/"+title;
 
       console.log("message: "+message);
-      //WebSocket.sendMessage(message);
+      WebSocket2.sendMessage(message);
       //WebSocket.send(message);
       console.log("message sent!");
   }
@@ -77,55 +81,4 @@ export class addEventPage {
        this.navCtrl.pop();
      }
    }
-   //socket: WebSocket = null;
-//   myApp: any = angular.module("onLoadApp", [])
-//     .controller("onloadController", function($scope) {
-//       $scope.$on('$ionicView.loaded', function(event) {
-//         this.connectToServer();
-//       });
-//     });
-//   connectToServer(): void{
-//     this.socket = new WebSocket("ws://localhost:8080/GoOut-Backend/GoOutServer");
-//     this.socket.onopen = function(event) {
-//       console.log("Connected!");
-//     }
-//     this.socket.onmessage = function(event) {
-//       document.getElementById("mychat").innerHTML += event.data + "<br />";
-//     }
-//     this.socket.onclose = function(event) {
-//       console.log("Disconnected!");
-//     }
-//   }
-
-
-
-
-
-//    ionViewDidLoad() {
-//    	this.autocomplete = new google.maps.places.Autocomplete(
-//             (<HTMLInputElement>document.getElementById('autocomplete')),
-//             {types: ['geocode']}
-// 	);
-
-//     this.geo.getCurrentPosition().then( pos => {
-//     	this.latitude = pos.coords.latitude;
-//     	this.longitude = pos.coords.longitude;
-//     	this.radius = pos.coords.accuracy;
-//     }).catch( err => console.log( err ));
-//   }
-
-//   geolocate(){
-//   		this.geolocation = {
-//               lat: this.latitude,
-//               lng: this.longitude
-//          };
-//         this.circle = new google.maps.Circle({
-//               center: this.geolocation,
-//               radius: this.radius
-//          });
-// 			this.autocomplete.setBounds(this.circle.getBounds());
-// 	}
-
-
-
 }
