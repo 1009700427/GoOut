@@ -52,6 +52,7 @@ export class MainPage {
     console.log(this.mapRef);
     this.showMap();
 
+
     // this.loadMap();
     // console.log('ionViewDidLoad MainPage');
   }
@@ -125,7 +126,9 @@ showMap(){
          // this.handleLocationError(false, infoWindow, map.getCenter());
         }
 
-}
+  }
+
+  validatePeople
  
 // handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //   infoWindow.setPosition(pos);
