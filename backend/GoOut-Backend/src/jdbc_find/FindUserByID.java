@@ -76,21 +76,25 @@ public class FindUserByID extends HttpServlet {
 				
 				
 			}
-			else {
-
-				//save self from SQL injection
-				ps = conn.prepareStatement(" SELECT * FROM Users");
-				rs = ps.executeQuery();
-				userIDs.add(00000000);
-				usernames.add("no users with this ID");
-				fullNames.add("");	
+//			else {
+//
+//				//save self from SQL injection
+//				ps = conn.prepareStatement(" SELECT * FROM Users");
+//				rs = ps.executeQuery();
+//				userIDs.add(00000000);
+//				usernames.add("no users with this ID");
+//				fullNames.add("");	
+//			}
+			if(!usernames.isEmpty()) {
+				response.getWriter().println(usernames);
+				response.getWriter().flush();
+				response.getWriter().close();
 			}
-			
-			request.setAttribute("userIDs", userIDs);
-			request.setAttribute("usernames", usernames);
-			request.setAttribute("fullNames", fullNames);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/UserSearchResults.jsp");
-			dispatcher.forward(request, response);
+//			request.setAttribute("userIDs", userIDs);
+//			request.setAttribute("usernames", usernames);
+//			request.setAttribute("fullNames", fullNames);
+//			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/UserSearchResults.jsp");
+			//dispatcher.forward(request, response);
 		}catch(SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
 		}catch (ClassNotFoundException cnfe) {

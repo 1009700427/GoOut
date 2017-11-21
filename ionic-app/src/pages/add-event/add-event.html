@@ -116,12 +116,12 @@
 <!--</ion-content> &ndash;&gt;-->
 <!--&gt;>>>>>> d1511016a3a95abe4db8fa2191c97ed4c9f369c1-->
 <style>
-  ion-list:first-child {
+ /* ion-list:first-child {
     margin-top: 12;
   }
   ion-list + ion-list {
     margin-top: 0;
-  }
+  }*/
 </style>
 
   <ion-content padding class="outer-content" >
@@ -135,13 +135,17 @@
 
 			<ion-item>
 				<ion-label floating>Date</ion-label>
-				<ion-datetime displayFormat="MMM DD YYYY" formControlName="date"></ion-datetime>
+				<ion-input type="date" displayFormat="MMM DD YYYY" formControlName="date" [(ngModel)]="myDate"></ion-input>
 			</ion-item>
 			<ion-item>
-				<ion-label floating>Time</ion-label>
-				<ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time"></ion-datetime>
+				<ion-label floating>Start Time</ion-label>
+				<ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time"[(ngModel)]="event.timeStarts"></ion-datetime>
 			</ion-item>
-
+			<ion-item>
+				<ion-label floating>End Time</ion-label>
+				<ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time"[(ngModel)]="event.timeStarts">
+				</ion-datetime>
+			</ion-item>
 			<ion-item>
 				<ion-label floating>Location</ion-label>
 				<ion-input type="text" formControlName="location"></ion-input>

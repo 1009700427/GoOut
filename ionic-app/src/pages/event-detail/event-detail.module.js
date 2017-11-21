@@ -18,6 +18,9 @@ var eventPageModule = /** @class */ (function () {
             imports: [
                 IonicPageModule.forChild(eventPage),
             ],
+            entryComponents: [
+                eventPage,
+            ],
         })
     ], eventPageModule);
     return eventPageModule;

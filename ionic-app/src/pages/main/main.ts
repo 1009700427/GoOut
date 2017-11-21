@@ -36,6 +36,7 @@ export class MainPage {
   // connects to the server!
   // WebSocket.connectToServer();
 
+
   }
 
   searchEvents() {

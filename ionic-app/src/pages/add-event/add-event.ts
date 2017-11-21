@@ -20,9 +20,9 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/fo
 })
 export class addEventPage {
   public event = {
-    month: '1990-02-19',
-    timeStarts: '07:43',
-    timeEnds: '1990-02-20'
+    month: '2017-11-21',
+    timeStarts: '07:00',
+    timeEnds: '2021-02-20'
   }
 
 
@@ -34,12 +34,13 @@ export class addEventPage {
 	// circle: any;
 	// geolocation : any;
   addEventForm: FormGroup;
+  myDate : string = new Date().toISOString();
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
     this.navCtrl = navCtrl;
     this.addEventForm = formBuilder.group({
       title: ['', Validators.required],
-      date: ['', Validators.required],
-      time: ['',Validators.required],
+      date: [''],
+      time: [''],
       location: ['', Validators.required],
       description: ['', Validators.required],
       isPrivate: ['', Validators.required]
