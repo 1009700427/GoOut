@@ -11,7 +11,6 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +31,7 @@ public class FindEventBySearchTerm extends HttpServlet {
 		ResultSet rs = null;
 
 		PreparedStatement ps = null;
-
+		PrintWriter pw = response.getWriter();
 		try {
 			//System.out.println("here 1");
 			Class.forName("com.mysql.jdbc.Driver");
@@ -41,8 +40,6 @@ public class FindEventBySearchTerm extends HttpServlet {
 			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false"); //add port number if not on default
 			st = conn.createStatement();
 			System.out.println("connected");
-			PrintWriter pw = response.getWriter();
-			
 			
 			if (searchTerm != null && searchTerm.length() > 0) {
 				//ps = conn.prepareStatement("SELECT * FROM Users WHERE username=?");
@@ -51,19 +48,21 @@ public class FindEventBySearchTerm extends HttpServlet {
 											+ "WHERE u.userID = e.userID "
 											+ "AND (u.username LIKE ? "
 											+ "OR u.fullName LIKE ? "
-											+ "OR e.eventName LIKE ?)");
+											+ "OR e.eventName LIKE ?"
+											+ "OR e.description LIKE ?)");
 
 				
 				ps.setString(1, "%" + searchTerm + "%");
 				ps.setString(2, "%" + searchTerm + "%");
 				ps.setString(3, "%" + searchTerm + "%");
+				ps.setString(4, "%" + searchTerm + "%");
 				rs = ps.executeQuery();
 
 			}
 			else {
 
 				//save self from SQL injection
-				ps = conn.prepareStatement("SELECT * FROM Events e, Users u WHERE e.userID = u.userID");
+				ps = conn.prepareStatement("SELECT * FROM Events e, Users u WHERE u.userID = e.userID");
 				rs = ps.executeQuery();
 			}
 			
@@ -74,12 +73,10 @@ public class FindEventBySearchTerm extends HttpServlet {
 			ArrayList<String> eventLocations = new ArrayList<String>();
 			ArrayList<Integer> eventMonths = new ArrayList<Integer>();
 			ArrayList<Integer> eventDays = new ArrayList<Integer>();
-			ArrayList<String> eventDescriptions = new ArrayList<String>();
 
 			ArrayList<String> eventStartTimes = new ArrayList<String>();
 			ArrayList<String> eventEndTimes = new ArrayList<String>();
-			
-			
+			ArrayList<String> eventDescriptions = new ArrayList<String>();
 			
 			ArrayList<Integer> userIDs = new ArrayList<Integer>();
 			ArrayList<String> usernames = new ArrayList<String>();
@@ -144,7 +141,14 @@ public class FindEventBySearchTerm extends HttpServlet {
 				else {
 					eventEndTimes.add("N/A");
 				}
-	
+				
+				String eventDescription = rs.getString("description");
+				if (eventDescription != null) {
+					eventDescriptions.add(eventDescription);
+				}
+				else {
+					eventDescriptions.add("");
+				}
 				
 
 				
@@ -164,7 +168,7 @@ public class FindEventBySearchTerm extends HttpServlet {
 
 			
 			
-	
+			
 			
 			request.setAttribute("eventIDs", eventIDs);
 			request.setAttribute("eventNames", eventNames);
@@ -172,28 +176,24 @@ public class FindEventBySearchTerm extends HttpServlet {
 			request.setAttribute("eventLocations", eventLocations);
 			request.setAttribute("eventMonths", eventMonths);
 			request.setAttribute("eventDays", eventDays);
-			
 			request.setAttribute("eventStartTimes", eventStartTimes);
 			request.setAttribute("eventEndTimes", eventEndTimes);
+			request.setAttribute("eventDescriptions", eventDescriptions);
 			
-//			pw.println(eventIDs);
+			
+			pw.println(eventIDs);
 			pw.println(eventNames);
-			pw.println(eventUserIDs);
+			pw.println(usernames);
+			//pw.println(eventUserIDs);
 			pw.println(eventLocations);
 			pw.println(eventMonths);
 			pw.println(eventDays);
 			pw.println(eventStartTimes);
 			pw.println(eventEndTimes);
+			pw.println(eventDescriptions);
 			
 			pw.flush();
 			pw.close();
-			
-			
-			request.setAttribute("userIDs", userIDs);
-			request.setAttribute("usernames", usernames);
-			request.setAttribute("fullNames", fullNames);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/EventSearchResultsUsers.jsp");
-			dispatcher.forward(request, response);
 		}catch(SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
 		}catch (ClassNotFoundException cnfe) {

@@ -9,7 +9,13 @@ import { eventPage } from '../event-detail/event-detail';
 })
 export class UserPage {
 	eventPage = eventPage;
+	username:string;
+	fullname:string;
+	id:string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  	this.fullname = navParams.get('fullname');
+  	this.id = navParams.get('id');
+  	this.username = navParams.get('username');
   }
 
   ionViewDidLoad() {

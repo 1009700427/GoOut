@@ -3,12 +3,15 @@ import { NavController, NavParams, ViewController} from 'ionic-angular';
 import { eventPage } from '../event-detail/event-detail';
 
 export interface Event{
+  id:string;
   title: string;
+  user: string;
   location: string;
   month: string;
   day: string;
   startTime: string;
   endTime: string;
+  description:string;
 }
 
 @Component({
@@ -30,7 +33,7 @@ export class FindEventsPage {
 
   ionViewDidLoad() {
     // console.log(term);
-    // this.search();
+    //this.search();
   }
   search(){
     let sTerm = this.term;
@@ -44,25 +47,32 @@ export class FindEventsPage {
         if(req.responseText.length > 0){
           console.log("eventFound");
           var split = req.responseText.split("\n");
-          var eventTitle = page.arraytify(split[0]);
-          var userIDs = page.arraytify(split[1]);
-          var eventLocation = page.arraytify(split[2]);
-          var eventMonths = page.arraytify(split[3]);
-          var eventDays = page.arraytify(split[4]);
-          var eventStart = page.arraytify(split[5]);
-          var eventEnd = page.arraytify(split[6]); 
+          var eventID = page.arraytify(split[0]);
+          var eventTitle = page.arraytify(split[1]);
+          var usernames = page.arraytify(split[2]);
+          //console.log("userIDS" + userIDs);
+          var eventLocation = page.arraytify(split[3]);
+          var eventMonths = page.arraytify(split[4]);
+          var eventDays = page.arraytify(split[5]);
+          var eventStart = page.arraytify(split[6]);
+          var eventEnd = page.arraytify(split[7]); 
+          var descrip = page.arraytify(split[8]);
+          // for(var i = 0; i < userIDs.length; i++){
+          //   console.log(page.findUser(userIDs[i]));
+          // }
           for(var i = 0; i < eventTitle.length; i++){
-            page.addEvent(eventTitle[i],eventLocation[i], eventMonths[i],eventDays[i], eventStart[i], eventEnd[i]);
+            //let user = page.findUser(userIDs[i]);
+            page.addEvent(eventID[i],eventTitle[i], usernames[i], eventLocation[i], eventMonths[i],eventDays[i], eventStart[i], eventEnd[i], descrip[i]);
           }
         }
         else{
-
+          console.log('notfound');
         }
       }
     }
   }
-  addEvent(title:string, location:string, month:string, day:string, start:string, end:string){
-    this.events.push({title:title, location: location, month:month, day: day, startTime:start, endTime:end});
+  addEvent(id: string, title:string, user:string, location:string, month:string, day:string, start:string, end:string, descrip:string){
+    this.events.push({id: id, title:title, user:user, location: location, month:month, day: day, startTime:start, endTime:end, description:descrip});
   }
   dismiss() {
     this.events = [];
@@ -75,6 +85,26 @@ export class FindEventsPage {
   //   this.nav.push(eventPage, {title:title, location:location, month:month, day:day, start:start, end:end});
   // }
   viewDetails(event){
-    this.nav.push(eventPage, {title:event.title, location:event.location, month: event.month, day:event.day, start:event.startTime, end:event.endTime});
+    this.nav.push(eventPage, {id: event.id, title:event.title, user:event.user, location:event.location,
+      month: event.month, day:event.day, start:event.startTime, end:event.endTime,
+      description:event.description});
   }
+  // findUser(userID:string): any{
+  //   let req = new XMLHttpRequest();
+  //   let page = this;
+  //   console.log("looking for " + userID);
+  //   req.open("get","http://goout.us-west-1.elasticbeanstalk.com/FindUserByID?userID="+userID, true);
+  //   req.send();
+  //   req.onreadystatechange = function(){
+  //     if(req.readyState === XMLHttpRequest.DONE && req.status === 200){
+  //       //got a username back
+  //       if(req.responseText.length > 0){
+  //         console.log("response from userID" + req.responseText);
+  //         let username = page.arraytify(req.responseText);
+  //         console.log(username);
+  //         return username;
+  //       }
+  //     }
+  //   }
+  // }
 }
