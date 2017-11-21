@@ -156,7 +156,8 @@ public class GetFollowingEventList extends HttpServlet {
 					userIDs.add(userID_);
 					usernames.add(username_);
 					fullNames.add(fullName);	
-				
+					
+					toReturn += username_ + ",";
 					toReturn += eventID_ + ",";
 					toReturn += eventName + ",";
 					toReturn += eventDescription + ",";	

@@ -12,6 +12,7 @@ export interface Event{
   startTime: string;
   endTime: string;
   description:string;
+  followed : boolean;
 }
 
 @Component({
@@ -66,6 +67,7 @@ export class FindEventsPage {
             //let user = page.findUser(userIDs[i]);
             page.addEvent(eventID[i],eventTitle[i], usernames[i], eventLocation[i], eventMonths[i],eventDays[i], eventStart[i], eventEnd[i], descrip[i]);
             }
+            page.followedEvents();
           }
           else{
             console.log('notfound');
@@ -79,8 +81,40 @@ export class FindEventsPage {
       }
     }
   }
+  followedEvents(){
+    let page = this;
+    let req = new XMLHttpRequest();
+    let url = "http://goout.us-west-1.elasticbeanstalk.com/GetFollowingEventID?userID="+window.localStorage.getItem('id');
+    req.open('get', url, true);
+    req.send();
+    console.log("SDF"+ url);
+    req.onreadystatechange = function(){
+      if(req.readyState === XMLHttpRequest.DONE && req.status === 200){
+        let followed = page.arraytify(req.responseText);
+        console.log("WOOOFS"+ followed);
+        console.log("SSFS" + url);
+        if(followed[0] != "" && followed != '\n'){
+          for(var i = 0; i < page.events.length; i++){
+          //console.log(page.users);
+
+          let curr = page.events[i];
+          for(var j = 0; j < followed.length; j++){
+            let follow = followed[j].replace(' ', '');
+            follow = follow.replace('\n', '');
+            console.log("FOLLOW :" + follow);
+            if(follow != '' && curr.id.replace(' ', '') === follow){
+              console.log('here');
+              console.log(curr.id);
+              curr.followed = true;
+            }
+          }
+        }
+        }
+      }
+    }
+  }
   addEvent(id: string, title:string, user:string, location:string, month:string, day:string, start:string, end:string, descrip:string){
-    this.events.push({id: id, title:title, user:user, location: location, month:month, day: day, startTime:start, endTime:end, description:descrip});
+    this.events.push({id: id, title:title, user:user, location: location, month:month, day: day, startTime:start, endTime:end, description:descrip, followed : false});
   }
   dismiss() {
     this.events = [];
@@ -96,6 +130,47 @@ export class FindEventsPage {
     this.nav.push(eventPage, {id: event.id, title:event.title, user:event.user, location:event.location,
       month: event.month, day:event.day, start:event.startTime, end:event.endTime,
       description:event.description});
+  }
+  follow(event){
+    let req = new XMLHttpRequest();
+    let url =  "http://goout.us-west-1.elasticbeanstalk.com/FollowEvent?userID=" + window.localStorage.getItem('id') + "&eventID=" + event.id;
+    console.log(url);
+    console.log(window.localStorage.getItem('id'));
+    req.open('get', url, true);
+    req.send();
+    this.nav.pop();
+  }
+  isFollowing(event){
+    return event.followed;
+    // let req = new XMLHttpRequest();
+    // let url =  "http://goout.us-west-1.elasticbeanstalk.com/CheckFollowingEvent?userID=" + window.localStorage.getItem('id') + "&eventID=" + event.id;
+    // console.log(url);
+    // console.log(window.localStorage.getItem('id'));
+    // req.open('get', url, true);
+    // req.send();
+    // req.onreadystatechange = function(){
+    //   if(req.readyState === XMLHttpRequest.DONE && req.status === 200){
+    //     //found
+    //     if(req.responseText.indexOf('yes') != -1){
+    //       return true;
+    //     }
+    //     //not found
+    //     else{
+    //       return false;
+    //     }
+    //   }
+    // }
+    //this.nav.pop();
+    //return false;
+  }
+  unfollow(event){
+    let req = new XMLHttpRequest();
+    let url =  "http://goout.us-west-1.elasticbeanstalk.com/UnfollowEvent?userID=" + window.localStorage.getItem('id') + "&eventID=" + event.id;
+    console.log(url);
+    console.log(window.localStorage.getItem('id'));
+    req.open('get', url, true);
+    req.send();
+    this.nav.pop();
   }
   // findUser(userID:string): any{
   //   let req = new XMLHttpRequest();

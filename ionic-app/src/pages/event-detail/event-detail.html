@@ -53,7 +53,10 @@
 	  </ion-item>
 
 	</ion-list>
-
+	
+     
+	   <!-- <button ion-item color="danger" text-center *ngIf="!isFollowed(event)" (click) = "follow(event)">
+=======
 
 
 
@@ -61,9 +64,15 @@
 
 
 	    <button ion-item color="danger" text-center>
+>>>>>>> master
 	      <ion-label>Interested</ion-label>
-	      <!-- <ion-note item-end><ion-icon name="checkmark-circle-outline" color="secondary"></ion-icon>
-	      </ion-note> -->
-	    </button>
-
+		 <ion-note item-end><ion-icon name="checkmark-circle-outline" color="secondary"></ion-icon>
+	      </ion-note> 
+	    </button>-->
+<!-- 
+	    <button ion-item color="danger" text-center *ngIf="isFollowed(event)" (click) = "unfollow(event)">
+	      <ion-label>No Longer Interested</ion-label>
+	      <ion-note item-end><ion-icon name="checkmark-circle-outline" color="secondary"></ion-icon>
+	      </ion-note> 
+	    </button> -->
 </ion-content>

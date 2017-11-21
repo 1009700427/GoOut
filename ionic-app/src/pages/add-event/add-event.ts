@@ -30,13 +30,13 @@ export class addEventPage {
   }
 
 
-	// latitude : any;b
-	// longitude : any;
-	// radius: any;
-	// placeSearch: any;
-	// autocomplete: any;
-	// circle: any;
-	// geolocation : any;
+  // latitude : any;b
+  // longitude : any;
+  // radius: any;
+  // placeSearch: any;
+  // autocomplete: any;
+  // circle: any;
+  // geolocation : any;
   addEventForm: FormGroup;
   myDate : string = new Date().toISOString();
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
