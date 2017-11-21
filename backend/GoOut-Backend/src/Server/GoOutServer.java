@@ -43,6 +43,8 @@ public class GoOutServer {
 		minuteDif = 1;
 		eventName = parts[7]; 
 		Calendar tempCalendar = new GregorianCalendar(year, month-1, day, hour, minute, 00);
+		//public Notification(Session s, GoOutServer gos, Calendar setTime, int minuteDif, String eventName){
+
 		Notification n = new Notification(session, this, tempCalendar, minuteDif, eventName);
 		System.out.println("Notification Added!!!");
 		notificationList.add(n); 

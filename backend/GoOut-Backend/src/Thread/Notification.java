@@ -25,9 +25,9 @@ public class Notification extends Thread{
 		// when there is a certain minuntes left 
 		while(true){
 			this.currentTime = Calendar.getInstance();
-			System.out.println("Current Time 1: "+setTime.get(Calendar.MINUTE));
+			System.out.println("Set Time 1: "+setTime.get(Calendar.MINUTE)+" currentTime "+currentTime.get(Calendar.MINUTE));
 			if(differBy(setTime, currentTime, minuteDif)){
-				//System.out.println(Integer.toString(minuteDif)+" minutes before event starts!!!");
+				System.out.println(Integer.toString(minuteDif)+" minutes before event starts!!!");
 				gos.sendMessage(eventName+" is happening in "+Integer.toString(minuteDif)+" minutes.", s);
 				break; 
 			}
@@ -35,7 +35,7 @@ public class Notification extends Thread{
 		// when it is the exact time 
 		while(true){
 			this.currentTime = Calendar.getInstance();
-			//System.out.println("Current Time 2: "+setTime.get(Calendar.MINUTE));
+			//System.out.println("Set Time 2: "+setTime.get(Calendar.MINUTE)+" currentTime "+currentTime.get(Calendar.MINUTE));
 			if(sameTime(setTime, currentTime)){
 				System.out.println("Event has now started!!!");
 				gos.sendMessage(eventName+" is happening right now.", s);

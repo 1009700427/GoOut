@@ -1,8 +1,8 @@
 import {
- GoogleMaps,
- GoogleMap,
- GoogleMapsEvent,
- GoogleMapOptions,
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
 } from '@ionic-native/google-maps';
 import { WebSocket2 } from '../../app/WebSocket';
 import { Component, ViewChild, ElementRef } from '@angular/core';
@@ -13,6 +13,9 @@ import { addEventPage } from '../add-event/add-event';
 import { FindPeoplePage } from '../find-people/find-people';
 import { YourPage } from '../your/your';
 import { FindEventsPage } from '../find-events/find-events';
+import { AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
+
 
 declare var google : any;
 
@@ -35,8 +38,8 @@ export interface Event {
   selector: 'page-main',
   templateUrl: 'main.html',
 })
-export class MainPage { 
-  
+export class MainPage {
+
   events = [] as Event[];
   LoginPage = LoginPage;
   addEventPage = addEventPage;
@@ -45,31 +48,33 @@ export class MainPage {
   @ViewChild('search') searchRef : any;
   map: any;
   searchTerm : string;
+  //alert: AlertMethods;
   // map: GoogleMap;
-  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
-    // this.mapFilter = "nearby";
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams
+    , public tctrl: ToastController) {
+//this.alert = alert1;
+    //this.am = navParams.get("AlertName");
+    // connects to the server!
+    WebSocket2.connectToServer(this.tctrl);
     this.initilize();
   }
 
-  ionViewDidLoad() {
-    console.log(this.mapRef);
-    this.showMap()
-    // this.loadMap();
-    // console.log('ionViewDidLoad MainPage');
-    // connects to the server!
-    WebSocket2.connectToServer();
-  }
+  // ionViewDidLoad(){
+  //   // console.log(this.mapRef);
+  //   // this.showMap();
+  //   setTimeout(this.showMap(), 10000);
+  // }
 
   searchEvents() {
     this.searchTerm = this.searchRef.value;
-    console.log(this.searchTerm);
+    // console.log(this.searchTerm);
     let myModal = this.modalCtrl.create(FindEventsPage, {term : this.searchTerm});
     myModal.present();
   }
 
   searchPeople() {
     this.searchTerm = this.searchRef.value;
-    console.log(this.searchTerm);
+    // console.log(this.searchTerm);
     let myModal = this.modalCtrl.create(FindPeoplePage, {term : this.searchTerm});
     myModal.present();
   }
@@ -77,14 +82,14 @@ export class MainPage {
   onInput(e){
     console.log(e);
   }
-  
-swipeEvent(e){
-    //go to the login page if 
+
+  swipeEvent(e){
+    //go to the login page if
     //the user swipes to the left
     if(e.direction == 2){
       this.navCtrl.push(LoginPage);
     }
-    // //go to the signup page if 
+    // //go to the signup page if
     // //the user swipes to the right
     if(e.direction == 4){
       this.navCtrl.push(SignUpPage);
@@ -99,105 +104,122 @@ swipeEvent(e){
 
   }
 
-showMap(){
-  //location-- lat long
-  const location = new google.maps.LatLng(34.022356, -118.285096);
-  var infoWindow;
-  var event1;
-  //Map options
-  const options = {
-    center : location,
-    zoom: 16,
-    fullscreenControl: false,
-    mapTypeId: 'roadmap',
-    mapTypeControl: true,
-       mapTypeControlOptions: {
-              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-              position: google.maps.ControlPosition.TOP_CENTER
-          },
-    zoomControl: true,
-    zoomControlOptions: {
-      position: google.maps.ControlPosition.TOP_RIGHT
-     },
-    streetViewControl: true,
-          streetViewControlOptions: {
-              position: google.maps.ControlPosition.RIGHT_TOP
+  showMap(){
+    //location-- lat long
+    const location = new google.maps.LatLng(34.022356, -118.285096);
+    var infoWindow;
+    var event1;
+    //Map options
+    const options = {
+      center : location,
+      zoom: 16,
+      fullscreenControl: false,
+      mapTypeId: 'roadmap',
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        position: google.maps.ControlPosition.TOP_CENTER
+      },
+      zoomControl: true,
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.TOP_RIGHT
+      },
+      streetViewControl: true,
+      streetViewControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_TOP
+      }
+
     }
 
+    this.map = new google.maps.Map(this.mapRef.nativeElement, options);
+    infoWindow = new google.maps.InfoWindow;
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Location found.');
+        infoWindow.open(this.map);
+        this.map.setCenter(pos);
+      }, function() {
+        //this.handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      // this.handleLocationError(false, infoWindow, map.getCenter());
+    }
+    // console.log('made it here');
+    // console.log(this.events.length);
+    this.showMarkers();
   }
 
-  const map = new google.maps.Map(this.mapRef.nativeElement, options);
-  infoWindow = new google.maps.InfoWindow;
 
-  // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            //this.handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-         // this.handleLocationError(false, infoWindow, map.getCenter());
-        }
-       console.log('made it here');
-       console.log(this.events.length);
-       this.showMarkers();
-}
-
-
-showMarkers(){
-  var markers = [];
-  var eventInfos = [];
-   //making new markers and infowindows
-  for (var i = 0; i < this.events.length; i++) {
+  showMarkers(){
+    console.log("insie show markers");
+    var markers = [];
+    var eventInfos = [];
+    var dispage = this;
+    //making new markers and infowindows
+    for (var i = 0; i < dispage.events.length; i++) {
+      // console.log(this.events[i]);
       var contentString = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">' + this.events[i].title + '</h1>'+
-            '<div id="bodyContent">'+
-            '<p>Hosted by ' + this.events[i].user + 
-            '</p>'+         
-            '</div>'+
-            '</div>';
-
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">' + dispage.events[i].title + '</h1>'+
+        '<div id="bodyContent">'+
+        '<p>Hosted by ' + dispage.events[i].user +
+        '</p>'+
+        '</div>'+
+        '</div>';
+      // console.log(contentString);
       markers.push(new google.maps.Marker({
-          position: this.getCoords(this.events[i].location),
-          map: this.map,
-          title: this.events[i].title;
-        }));
+        position: dispage.getCoords(dispage.events[i].location),
+        map: dispage.map,
+        title: dispage.events[i].title
+      }));
+      console.log(dispage.events[i].location);
+      // var marker = new google.maps.Marker({
+      //   position: dispage.getCoords("RTH"),
+      //   map: dispage.map
+      // });
 
-       eventInfos.push(new google.maps.InfoWindow({
-          content: contentString
-        })); 
-   } 
-    
-  //showing them
-  for (var i = 0; i < eventInfos.length; i++){
-          let eventInfo =  eventInfos[i] ;
-          let marker = markers[i];
-           markers[i].addListener('click', function() {
-             // console.log(eventInfo);
-            eventInfo.open(this.map, marker);
-          });
+      eventInfos.push(new google.maps.InfoWindow({
+        content: contentString
+      }));
+      // console.log(markers[i]);
+      // console.log(eventInfos[i]);
+
+
+    }
+
+    console.log('size of markers ' + markers.length + ' info '  + eventInfos.length );
+    console.log("show markers: pushed");
+    //showing them
+
+    for (var x = 0; x < eventInfos.length; x++){
+      console.log("inside the 2nd loop");
+      let eventInfo =  eventInfos[x] ;
+      let marker = markers[x];
+      markers[x].addListener('click', function() {
+        // console.log(eventInfo);
+        eventInfo.open(dispage.map, marker);
+      });
+    }
+    console.log("show markers: finished");
+
   }
-   
-}
 
-initilize(){
-  console.log('inside initialize');
+  initilize(){
+    console.log('inside initialize');
     let sTerm = "";
     let page = this;
     var req = new XMLHttpRequest();
-    req.open("get", "http://goout.us-west-1.elasticbeanstalk.com/FindEventBySearchTerm?searchTerm="+sTerm,false);
+    req.open("get", "http://goout.us-west-1.elasticbeanstalk.com/FindEventBySearchTerm?searchTerm="+sTerm,true);
     req.send();
     req.onreadystatechange = function(){
       if(req.readyState === XMLHttpRequest.DONE && req.status === 200){
@@ -213,16 +235,20 @@ initilize(){
             var usernames = page.arraytify(split[2]);
             //console.log("userIDS" + userIDs);
             var eventLocation = page.arraytify(split[3]);
+            for(var z=0; z<eventLocation.length; z++){
+              eventLocation[z] = eventLocation[z].trim();
+            }
             var eventMonths = page.arraytify(split[4]);
             var eventDays = page.arraytify(split[5]);
             var eventStart = page.arraytify(split[6]);
-            var eventEnd = page.arraytify(split[7]); 
+            var eventEnd = page.arraytify(split[7]);
             var descrip = page.arraytify(split[8]);
             for(var i = 0; i < eventTitle.length; i++){
-            //let user = page.findUser(userIDs[i]);
-            page.addEvent(eventID[i],eventTitle[i], usernames[i], eventLocation[i], eventMonths[i],eventDays[i], eventStart[i], eventEnd[i], descrip[i]);
+              //let user = page.findUser(userIDs[i]);
+              page.addEvent(eventID[i],eventTitle[i], usernames[i], eventLocation[i], eventMonths[i],eventDays[i], eventStart[i], eventEnd[i], descrip[i]);
             }
             console.log("finished the request");
+            //page.showMap();
             page.showMap();
           }
           else{
@@ -233,8 +259,13 @@ initilize(){
           // }
         }
       }
-    }
 
+
+    }
+    // setTimeout(this.showMap(), 3000)
+
+    console.log("init finihsed");
+    console.log(this.events);
   }
 
 
@@ -298,7 +329,7 @@ initilize(){
     }
   }
 }
- 
+
 // handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //   infoWindow.setPosition(pos);
 //   infoWindow.setContent(browserHasGeolocation ?
@@ -307,36 +338,36 @@ initilize(){
 //   infoWindow.open(map);
 //  }
 // }
- //  loadMap() {
- //    let mapOptions: GoogleMapOptions = {
- //      camera: {
- //        target: {
- //          lat: 43.0741904,
- //          lng: -89.3809802
- //        },
- //        zoom: 18,
- //        tilt: 30
- //      }
- //    };
- //    this.map = GoogleMaps.create('map', mapOptions);
- //    // Wait the MAP_READY before using any methods.
- //    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
- //        console.log('Map is ready!');
- //        // Now you can use all methods safely.
- //        this.map.addMarker({
- //            title: 'Ionic',
- //            icon: 'blue',
- //            animation: 'DROP',
- //            position: {
- //              lat: 43.0741904,
- //              lng: -89.3809802
- //            }
- //          })
- //          .then(marker => {
- //            marker.on(GoogleMapsEvent.MARKER_CLICK)
- //              .subscribe(() => {
- //                alert('clicked');
- //              });
- //          });
- //      });
- // }
+//  loadMap() {
+//    let mapOptions: GoogleMapOptions = {
+//      camera: {
+//        target: {
+//          lat: 43.0741904,
+//          lng: -89.3809802
+//        },
+//        zoom: 18,
+//        tilt: 30
+//      }
+//    };
+//    this.map = GoogleMaps.create('map', mapOptions);
+//    // Wait the MAP_READY before using any methods.
+//    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+//        console.log('Map is ready!');
+//        // Now you can use all methods safely.
+//        this.map.addMarker({
+//            title: 'Ionic',
+//            icon: 'blue',
+//            animation: 'DROP',
+//            position: {
+//              lat: 43.0741904,
+//              lng: -89.3809802
+//            }
+//          })
+//          .then(marker => {
+//            marker.on(GoogleMapsEvent.MARKER_CLICK)
+//              .subscribe(() => {
+//                alert('clicked');
+//              });
+//          });
+//      });
+// }

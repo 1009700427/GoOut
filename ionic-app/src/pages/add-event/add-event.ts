@@ -53,7 +53,10 @@ export class addEventPage {
   };
 
   sendMessage(value: any): void{
-    console.log("in send message");
+    if(this.addEventForm.valid){
+      console.log("valid");
+      this.navCtrl.pop();
+      console.log("in send message");
       var title = value.title;
       var date = value.date;
       var time = value.time;
@@ -64,22 +67,29 @@ export class addEventPage {
       var dateList = date.split("-");
       var timeList = time.split(":");
 
-      
+
 
       var message = dateList[2]+"/"+dateList[1]+"/2017"+timeList[0]+"/"+timeList[1]+"/00/1/"+title;
+
+
+      //dd/MM/yyyy/hh/mm/ss/minuteDif/eventName
+
+      message = "21/11/2017/3/16/00/3/Startup Thing";
+
 
       console.log("message: "+message);
       WebSocket2.sendMessage(message);
       //WebSocket.send(message);
       console.log("message sent!");
+    }
   }
    ionViewDidLoad() {
 
    }
-   validate(value:any):void{
-     if(this.addEventForm.valid){
-       console.log("valid");
-       this.navCtrl.pop();
-     }
-   }
+   // validate(value:any):void{
+   //   if(this.addEventForm.valid){
+   //     console.log("valid");
+   //     this.navCtrl.pop();
+   //   }
+   // }
 }
