@@ -20,7 +20,7 @@ export interface User{
   selector: 'page-find-people',
   templateUrl: 'find-people.html',
 })
-export class FindPeoplePage {
+export class FindPeoplePage{
   UserPage = UserPage;
 	term: string;
   users = [] as User[];
@@ -29,10 +29,9 @@ export class FindPeoplePage {
   	console.log("inside construtor of find people");
   	this.term = params.get('term');
     this.nav = navCtrl;
-    
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad(){
     console.log('reloaded');
     this.search();
   }

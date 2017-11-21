@@ -121,7 +121,7 @@ export class FindEventsPage {
     this.viewCtrl.dismiss();
   }
   arraytify(value:any){
-    return value.replace(/[\[\]']+/g,'').split(',')
+    return value.replace(/[\[\]']+/g,'').split(',');
   }
   // viewDetails(title:string, location:string, month:string, day:string, start:string, end:string){
   //   this.nav.push(eventPage, {title:title, location:location, month:month, day:day, start:start, end:end});

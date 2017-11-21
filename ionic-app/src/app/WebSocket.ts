@@ -8,7 +8,7 @@
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 
-const WebSocketClient = require('ws');
+// const WebSocketClient = require('ws');
 
 
 export class WebSocket2 {

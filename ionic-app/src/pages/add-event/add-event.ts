@@ -63,7 +63,7 @@ export class addEventPage {
       var location = value.location;
       var description = value.description;
       var isPrivate = "false";
-
+      var endTime = value.endTime;
       var dateList = date.split("-");
       var timeList = time.split(":");
 
@@ -77,15 +77,37 @@ export class addEventPage {
       //message = "21/11/2017/3/16/00/3/Startup Thing";
       console.log("date: "+date);
       console.log("start time: "+time);
+      //let newDate = date.split('/');
 
+      this.addEvent(title, dateList[1], dateList[2], time, endTime, location, description);
       console.log("message: "+message);
       WebSocket2.sendMessage(message);
       //WebSocket.send(message);
       console.log("message sent!");
+
     }
   }
    ionViewDidLoad() {
 
+   }
+   addEvent(title, month, day, time, endTime, location, description ){
+     let req=new XMLHttpRequest();
+     //console.log(date + " " + time + " " + endTime);
+     let url = "http://goout.us-west-1.elasticbeanstalk.com/AddNewEvent?eventName="+title +
+                 "&userID="+window.localStorage.getItem('id').replace(' ', '') + '&location='+location +
+                 "&month=" + month  + "&day="+ day + "&startTime="+time +":00" + "&endTime="+endTime;
+       console.log(month)
+       console.log(window.localStorage.getItem('id'));
+       console.log(day);
+       console.log(url);
+      req.open('get', url, true);
+      req.onreadystatechange= function(){
+        if (req.readyState === XMLHttpRequest.DONE && req.status === 200){
+          console.log(req.responseText);
+        }
+      }
+      req.send();
+     this.navCtrl.pop();
    }
    // validate(value:any):void{
    //   if(this.addEventForm.valid){
