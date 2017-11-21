@@ -13,7 +13,10 @@ import { addEventPage } from '../add-event/add-event';
 import { FindPeoplePage } from '../find-people/find-people';
 import {YourPage } from '../your/your';
 import { FindEventsPage } from '../find-events/find-events';
+import { AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 
+// import { AlertMethods } from '../../app/Alert';
  declare var google : any;
 
 @IonicPage()
@@ -29,12 +32,14 @@ export class MainPage {
   @ViewChild('search') searchRef : any;
   map: any;
   searchTerm : string;
+  //alert: AlertMethods;
   // map: GoogleMap;
-  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
-
-
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams
+    , public tctrl: ToastController) {
+//this.alert = alert1;
+  //this.am = navParams.get("AlertName");
   // connects to the server!
-  WebSocket2.connectToServer();
+  WebSocket2.connectToServer(this.tctrl);
 
 
 

@@ -125,7 +125,7 @@
 </style>
 
   <ion-content padding class="outer-content" >
-	<form [formGroup]="addEventForm" (ngSubmit) = " validate(addEventForm.value)">
+	<form [formGroup]="addEventForm" (ngSubmit) = " sendMessage(addEventForm.value)">
 
 		<ion-list>
 			<ion-item>
