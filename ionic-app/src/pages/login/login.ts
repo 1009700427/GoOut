@@ -42,7 +42,7 @@ export class LoginPage{
       req.send();
       req.onreadystatechange=function(){
         if(req.readyState===XMLHttpRequest.DONE && req.status===200){
-          if(req.responseText.length > 0 ){
+          if(req.responseText.indexOf('Invalid') != -1 ){
             doc.innerHTML = req.responseText;
           }
           else{
@@ -53,7 +53,6 @@ export class LoginPage{
             });
             doc.innerHTML = "";
             nav.push(MainPage);
-
           }
         }
       }
