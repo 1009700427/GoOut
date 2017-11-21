@@ -1,3 +1,4 @@
+
 /**
  * Created by siyuanxu on 11/19/17.
  */
@@ -12,19 +13,13 @@ const WebSocketClient = require('ws');
 
 export class WebSocket2 {
 
-  //static alert1 = AlertMethods;
   constructor() {
-    //this.alert1 = alert2;
   }
 
   public static socketClient = null;
 
   public static connectToServer(toastCtrl: ToastController) {
-    // this.socket = new WebSocket("ws://localhost:8080/GoOut-Backend/GoOutServer")
-    //let page = this;
-    //console.log("alert1: "+alert1);
     var SERVER_URL = 'ws://localhost:8080/GoOut-Backend/GoOutServer';
-    //const WebSocket = require('ws');
     this.socketClient = new WebSocket(SERVER_URL);
     console.log("initialized socket client");
     console.log(this.socketClient);
@@ -75,3 +70,4 @@ export class WebSocket2 {
     this.socketClient.send(message);
   }
 }
+
