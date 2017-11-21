@@ -125,7 +125,7 @@
 </style>
 
   <ion-content padding class="outer-content" >
-	<form [formGroup]="addEventForm" (ngSubmit) = " validate(addEventForm.value)">
+	<form [formGroup]="addEventForm" (ngSubmit) = " sendMessage(addEventForm.value)">
 
 		<ion-list>
 			<ion-item>
@@ -138,13 +138,16 @@
 				<ion-input type="date" displayFormat="MMM DD YYYY" formControlName="date" [(ngModel)]="myDate"></ion-input>
 			</ion-item>
 			<ion-item>
-				<ion-label floating>Start Time</ion-label>
-				<ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time"[(ngModel)]="event.timeStarts"></ion-datetime>
+				<ion-label stacked>Start Time</ion-label>
+				<ion-input type="time" displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time"[(ngModel)]="event.timeStarts"></ion-input>
+				<!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time"[(ngModel)]="event.timeStarts"></ion-datetime> -->
 			</ion-item>
 			<ion-item>
-				<ion-label floating>End Time</ion-label>
-				<ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time"[(ngModel)]="event.timeStarts">
-				</ion-datetime>
+				<ion-label stacked>End Time</ion-label>
+
+				<ion-input type="time" displayFormat="h:mm A" pickerFormat="h mm A" formControlName="endTime" ></ion-input>
+				<!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time"[(ngModel)]="event.timeStarts">
+				</ion-datetime> -->
 			</ion-item>
 			<ion-item>
 				<ion-label floating>Location</ion-label>

@@ -1,19 +1,21 @@
-// /**
-//  * Created by siyuanxu on 11/20/17.
-//  */
-// import { AlertController } from 'ionic-angular';
+/**
+ * Created by siyuanxu on 11/20/17.
+ */
+import { AlertController } from 'ionic-angular';
+//import { Injectable } from '@angular/core';
 
-// export class Alert {
-//   constructor(private alertCtrl: AlertController){
+//@Injectable();
+export class AlertMethods {
+  constructor(public alertCtrl: AlertController){
 
-//   }
-//   public static EventAlert(message : string){
-//     let alert = this.alertCtrl.create({
-//       title: 'Event Notification!',
-//       subTitle: message,
-//       buttons: ['Ok']
-//     });
+  }
+  public doAlert(message : string){
+    let alert = this.alertCtrl.create({
+      title: 'Event Notification!',
+      subTitle: message,
+      buttons: ['Ok']
+    });
 
-//     alert.present();
-//   }
-// }
+    alert.present();
+  }
+}

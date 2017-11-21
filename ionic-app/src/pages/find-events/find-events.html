@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>  	
+  <ion-navbar>
     <ion-title text-center>Found Events</ion-title>
   </ion-navbar>
 
@@ -16,6 +16,7 @@
 <ion-content padding>
  <ion-card *ngFor="let event of events">
   <ion-card-content>
+
     <ion-card-title id="EVENTS_ID" class="title"> {{event.title}}</ion-card-title>
     <p>Location : {{event.location}}</p>
     <p>Hosted by : {{event.user}} </p>
@@ -48,9 +49,9 @@
         <span style="font-size: 14px;" id="EVENTS_ID" class="Hostname">hosted by Jeffrey Miller, PHD.</span>
       </ion-card-title>
       <p id="EVENTS_ID" class="description">
-        Event's description goes here.... 
-        Event's description goes here.... 
-        Event's description goes here.... 
+        Event's description goes here....
+        Event's description goes here....
+        Event's description goes here....
       </p>
     </ion-card-content>
 
@@ -64,9 +65,9 @@
       <span style="font-size: 14px;" id="EVENTS_ID" class="Hostname">Hosted by X</span>
     </ion-card-title>
     <p id="EVENTS_ID" class="description">
-      Event's description goes here.... 
-      Event's description goes here.... 
-      Event's description goes here.... 
+      Event's description goes here....
+      Event's description goes here....
+      Event's description goes here....
     </p>
   </ion-card-content>
 
@@ -86,7 +87,7 @@
   </ion-row>
 </ion-card> -->
 
-<ion-footer>
+<ion-footer style="position: fixed;">
   <ion-buttons text-center>
     <button ion-button block color="light" (click)="dismiss()">Close</button>
   </ion-buttons>

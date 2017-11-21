@@ -8,16 +8,15 @@
 
   <ion-navbar>
     <ion-title text-center>Found Users</ion-title>
-    <ion-buttons text-center>
-      <button ion-button  block color="light" (click)="dismiss()">Close</button>
-    </ion-buttons>
+
+
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-content padding>
+<ion-content padding >
+  <div>
  <ion-card *ngFor="let user of users">
   <ion-card-content>
     <ion-card-title id="EVENTS_ID" class="title"> {{user.username}}</ion-card-title>
@@ -48,10 +47,13 @@
         </ion-item> -->
  </ion-card-content>
 </ion-card>
+</div>
+    <ion-footer style="position: fixed;"><ion-buttons text-center><button ion-button  block color="light" (click)="dismiss()">Close</button>
+      </ion-buttons></ion-footer>
 	<!-- <ion-card>
     <ion-card-content>
       <ion-card-title id="USER_ID" class="title">
-        Username   
+        Username
       </ion-card-title>
        <p  id="USER_ID" class="fullname">fname + lname </p>
     </ion-card-content>
