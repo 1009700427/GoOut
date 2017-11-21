@@ -53,17 +53,11 @@ export class MainPage {
 
   ionViewDidLoad() {
     console.log(this.mapRef);
-    this.showMap();
- 
-
-
+    this.showMap()
     // this.loadMap();
     // console.log('ionViewDidLoad MainPage');
-
-  // connects to the server!
-  WebSocket2.connectToServer();
-
-
+    // connects to the server!
+    WebSocket2.connectToServer();
   }
 
   searchEvents() {
@@ -106,9 +100,6 @@ swipeEvent(e){
   }
 
 showMap(){
-  //get the events from the database
-  // this.initilize();
-
   //location-- lat long
   const location = new google.maps.LatLng(34.022356, -118.285096);
   var infoWindow;
@@ -157,8 +148,9 @@ showMap(){
           // Browser doesn't support Geolocation
          // this.handleLocationError(false, infoWindow, map.getCenter());
         }
-
-        this.showMarkers();
+       console.log('made it here');
+       console.log(this.events.length);
+       this.showMarkers();
 }
 
 
@@ -176,19 +168,20 @@ showMarkers(){
             '</p>'+         
             '</div>'+
             '</div>';
-       markers.push(new google.maps.Marker({
+
+      markers.push(new google.maps.Marker({
           position: this.getCoords(this.events[i].location),
           map: this.map,
           title: this.events[i].title;
         }));
 
-        eventInfos.push(new google.maps.InfoWindow({
+       eventInfos.push(new google.maps.InfoWindow({
           content: contentString
-        }));  
-  }
-
+        })); 
+   } 
+    
   //showing them
-  for (var i = 0; i <eventInfos.length; i++){
+  for (var i = 0; i < eventInfos.length; i++){
           let eventInfo =  eventInfos[i] ;
           let marker = markers[i];
            markers[i].addListener('click', function() {
@@ -229,6 +222,8 @@ initilize(){
             //let user = page.findUser(userIDs[i]);
             page.addEvent(eventID[i],eventTitle[i], usernames[i], eventLocation[i], eventMonths[i],eventDays[i], eventStart[i], eventEnd[i], descrip[i]);
             }
+            console.log("finished the request");
+            page.showMap();
           }
           else{
             console.log('notfound');
@@ -239,6 +234,7 @@ initilize(){
         }
       }
     }
+
   }
 
 
