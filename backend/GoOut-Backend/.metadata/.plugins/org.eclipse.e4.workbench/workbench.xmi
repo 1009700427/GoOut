@@ -297,7 +297,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_wZpD0Mv4EeehR7CbjOg-1Q" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_EQn5YM16EeeymJe2K9qfmA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_v81zI8v4EeehR7CbjOg-1Q"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_rvCvEM17EeeF5uNWCIk5LQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_v81zI8v4EeehR7CbjOg-1Q"/>
+>>>>>>> master
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_wZpD0cv4EeehR7CbjOg-1Q" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -324,7 +328,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_wZpq4Mv4EeehR7CbjOg-1Q" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_EQq8sM16EeeymJe2K9qfmA" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_v81MD8v4EeehR7CbjOg-1Q"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_rvFyYc17EeeF5uNWCIk5LQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_v81MD8v4EeehR7CbjOg-1Q"/>
+>>>>>>> master
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_wZpq4cv4EeehR7CbjOg-1Q" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -1031,7 +1039,11 @@
       <tags>platform:cocoa</tags>
       <parameters xmi:id="_v9pEZcv4EeehR7CbjOg-1Q" elementId="org.eclipse.ui.views.showView.viewId" name="org.eclipse.ui.views.showView.viewId" value="org.eclipse.jdt.ui.JavadocView"/>
     </bindings>
+<<<<<<< HEAD
     <bindings xmi:id="_D4ma8c16EeeymJe2K9qfmA" keySequence="COMMAND+CTRL+F" command="_v-Izk8v4EeehR7CbjOg-1Q"/>
+=======
+    <bindings xmi:id="_rQubYc17EeeF5uNWCIk5LQ" keySequence="COMMAND+CTRL+F" command="_v-Izk8v4EeehR7CbjOg-1Q"/>
+>>>>>>> master
   </bindingTables>
   <bindingTables xmi:id="_v9bo_8v4EeehR7CbjOg-1Q" elementId="org.eclipse.datatools.sqltools.SQLEditorScope" bindingContext="_v85decv4EeehR7CbjOg-1Q">
     <bindings xmi:id="_v9bpAMv4EeehR7CbjOg-1Q" keySequence="ALT+COMMAND+D" command="_v8w6xcv4EeehR7CbjOg-1Q"/>
@@ -1259,7 +1271,11 @@
     <bindings xmi:id="_v9nPJ8v4EeehR7CbjOg-1Q" keySequence="F1" command="_v8t3Rcv4EeehR7CbjOg-1Q"/>
   </bindingTables>
   <bindingTables xmi:id="_v-Japcv4EeehR7CbjOg-1Q" contributorURI="platform:/fragment/org.eclipse.e4.ui.workbench.renderers.swt.cocoa" bindingContext="_v8UOp8v4EeehR7CbjOg-1Q">
+<<<<<<< HEAD
     <bindings xmi:id="_D4nCAM16EeeymJe2K9qfmA" keySequence="M1+W" command="_v-Jao8v4EeehR7CbjOg-1Q"/>
+=======
+    <bindings xmi:id="_rQvCcM17EeeF5uNWCIk5LQ" keySequence="M1+W" command="_v-Jao8v4EeehR7CbjOg-1Q"/>
+>>>>>>> master
   </bindingTables>
   <bindingTables xmi:id="_wh9SUcv4EeehR7CbjOg-1Q" bindingContext="_wh9SUMv4EeehR7CbjOg-1Q"/>
   <bindingTables xmi:id="_wh9SU8v4EeehR7CbjOg-1Q" bindingContext="_wh9SUsv4EeehR7CbjOg-1Q"/>

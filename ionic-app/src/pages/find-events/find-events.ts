@@ -21,9 +21,16 @@ export class FindEventsPage {
   ionViewDidLoad() {
     // console.log(term);
   }
-
+  search(){
+    let sTerm = this.term;
+    var req = new XMLHttpRequest();
+    req.open("get", "http://goout.us-west-1.elasticbeanstalk.com/FindEventBySearchTerm?searchTerm="+sTerm,true);
+    req.send();
+  }
   dismiss() {
     this.viewCtrl.dismiss();
   }
-
+  arraytify(array){
+    return array.replace(/[\[\]']+/g,'').split(',')
+  }
 }

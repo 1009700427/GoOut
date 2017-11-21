@@ -85,6 +85,7 @@
     <engine name="ios" spec="~4.5.3" />
 =======
     <engine name="ios" spec="^4.5.3" />
+    <engine name="browser" spec="~5.0.1" />
     <plugin name="cordova-plugin-googlemaps" spec="^2.1.1">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBA_JgBJIHMi-sZrx9oXKo-0E0K6ezolqw" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyB3muXmbwOKOeZDVYoe8V6t2jIB7oIO32s" />
@@ -99,5 +100,9 @@
     <plugin name="cordova-plugin-geolocation" spec="^3.0.0">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
+<<<<<<< HEAD
 >>>>>>> 319c38db26faaa5e3648445b9455f5f04950c373:ionic-app/config.xml
+=======
+    <plugin name="cordova-plugin-advanced-http" spec="^1.8.1" />
+>>>>>>> master
 </widget>
