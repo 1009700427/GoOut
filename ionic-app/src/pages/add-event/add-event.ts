@@ -69,7 +69,7 @@ export class addEventPage {
 
       //dd/MM/yyyy/hh/mm/ss/minuteDif/eventName
 
-      message = "21/11/2017/2/58/00/3/Startup Thing";
+      message = "21/11/2017/3/16/00/3/Startup Thing";
 
 
       console.log("message: "+message);
