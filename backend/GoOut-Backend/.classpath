@@ -11,6 +11,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/jeff/GoOut--CSCI201/backend/GoOut-Backend/javaee-api-7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/jeff/GoOut--CSCI201/backend/GoOut-Backend/javaee-api-7.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

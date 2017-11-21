@@ -4,7 +4,7 @@ import {
  GoogleMapsEvent,
  GoogleMapOptions,
 } from '@ionic-native/google-maps';
-import { WebSocket } from '../../app/WebSocket';
+import { WebSocket2 } from '../../app/WebSocket';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
@@ -34,7 +34,7 @@ export class MainPage {
 
 
   // connects to the server!
-  //WebSocket.connectToServer();
+  WebSocket2.connectToServer();
 
 
 

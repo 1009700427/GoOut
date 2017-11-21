@@ -30,7 +30,7 @@ export class WebSocket2 {
     this.socketClient.onmessage = function(event) {
       console.log("Date received: "+event.data);
       console.log("Self: "+page.alert1);
-      page.doAlert(event.data);
+      //page.doAlert(event.data);
       // console.log(this);
 
       //WebSocket2.doAlert(event.data);
