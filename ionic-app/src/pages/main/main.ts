@@ -34,7 +34,7 @@ export class MainPage {
 
 
   // connects to the server!
-  WebSocket.connectToServer();
+  //WebSocket.connectToServer();
 
 
 

@@ -25,7 +25,7 @@ export class eventPage {
 	//description:string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     console.log(navParams.get('title'));
-    this.username= navParams.get('username');
+    this.username= navParams.get('user');
   	this.title = navParams.get('title');
   	this.month = navParams.get('month');
   	this.day = navParams.get('day');

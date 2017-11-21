@@ -24,7 +24,8 @@ export class FindEventsPage {
   events = [] as Event[];
   nav : NavController;
   constructor (public viewCtrl: ViewController, params: NavParams, public navCtrl: NavController) {
-  	this.nav = navCtrl;
+  	
+    this.nav = navCtrl;
   	console.log("inside construtor of find events");
   	this.term = params.get('term');
     this.search();
@@ -45,6 +46,7 @@ export class FindEventsPage {
       if(req.readyState === XMLHttpRequest.DONE && req.status === 200){
         console.log(req.responseText);
         if(req.responseText.length > 0){
+          console.log(req.responseText);
           console.log("eventFound");
           var split = req.responseText.split("\n");
           var eventID = page.arraytify(split[0]);
