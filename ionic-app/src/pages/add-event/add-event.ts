@@ -69,13 +69,14 @@ export class addEventPage {
 
 
 
-      var message = dateList[2]+"/"+dateList[1]+"/2017"+timeList[0]+"/"+timeList[1]+"/00/1/"+title;
+      var message = dateList[2]+"/"+dateList[1]+"/2017/"+timeList[0]+"/"+timeList[1]+"/00/1/"+title;
 
 
       //dd/MM/yyyy/hh/mm/ss/minuteDif/eventName
 
-      message = "21/11/2017/3/16/00/3/Startup Thing";
-
+      //message = "21/11/2017/3/16/00/3/Startup Thing";
+      console.log("date: "+date);
+      console.log("start time: "+time);
 
       console.log("message: "+message);
       WebSocket2.sendMessage(message);

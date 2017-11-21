@@ -12,20 +12,23 @@
    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAufeCTbyF6DTdAG8Aqvw0DiY_EgaMj9cs&callback=initMap"
     async defer></script> -->
 
-    <ion-toolbar>   
+    <ion-toolbar color="danger">
+      <ion-title >
+        <h1><i>GoOut</i></h1>
+      </ion-title>
 	    <!-- <ion-buttons start>
 	      <button ion-button icon-only color="danger">
 	        <ion-icon name="notifications"></ion-icon>
 	      </button>
 	    </ion-buttons> -->
-	    <ion-segment color="danger">
-	      <ion-segment-button value="nearby">
-	        Nearby
-	      </ion-segment-button>
-	      <ion-segment-button value="following">
-	        Following
-	      </ion-segment-button>
-	    </ion-segment>
+	    <!--<ion-segment color="danger">-->
+	      <!--<ion-segment-button value="nearby">-->
+	        <!--Nearby-->
+	      <!--</ion-segment-button>-->
+	      <!--<ion-segment-button value="following">-->
+	        <!--Following-->
+	      <!--</ion-segment-button>-->
+	    <!--</ion-segment>-->
 	   <!--  <ion-buttons end> -->
 	      <!-- <button ion-button icon-only color="danger" [navPush]="addEventPage">
 	        <ion-icon name="create"></ion-icon>
@@ -34,23 +37,23 @@
   </ion-toolbar>
 
 
-  
- 	  
+
+
 
 </ion-header>
 
 
 <ion-content>
 	<div #map id="map" width = "50%">
-		
+
 	</div>
 	<ion-footer>
 		<ion-toolbar>
 		<!-- (ionInput)="onInput($event)" -->
 				<ion-searchbar #search name="search" id="search"
-					[showCancelButton] = "shouldShowCancel"				
+					[showCancelButton] = "shouldShowCancel"
 					(ionCancel)="onCancel($event)">
-				</ion-searchbar> 
+				</ion-searchbar>
 				<!-- <ion-input type="text" #search id="search" ></ion-input> -->
 				<div text-center class="center">
 					<button ion-button small icon-start end color = "danger" (click)="searchEvents()">
@@ -59,10 +62,10 @@
 <!-- (click)="searchPeople(this.document.getElementById('searchField'))" -->
 					<button ion-button small icon-end color = "danger" (click)="searchPeople()">
  					 Find People <ion-icon name="person"></ion-icon>
-					</button>		
+					</button>
 				</div>
 
-		
+
 		</ion-toolbar>
 	</ion-footer>
 
@@ -76,9 +79,9 @@
       <button ion-fab color="danger" ><ion-icon name="notifications"></ion-icon></button>
 
       <button ion-fab color="danger" [navPush]="YourPage"> <ion-icon name="person"></ion-icon></button>
-      
+
       <button ion-fab color="danger" (click) ='logout()'><ion-icon name="log-out"></ion-icon></button>
-      
+
     </ion-fab-list>
   </ion-fab>
 

@@ -133,26 +133,39 @@ export class MainPage {
 
     this.map = new google.maps.Map(this.mapRef.nativeElement, options);
     infoWindow = new google.maps.InfoWindow;
+    var pos = {
+      // lat: 34.021307, lng: -118.287950
+      lat: 34.021307,
+      lng: -118.287950
+      //
+      // lat: position.coords.latitude,
+      // lng: position.coords.longitude
+    };
 
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+    infoWindow.setPosition(pos);
+    infoWindow.setContent('Location found.');
+    infoWindow.open(this.map);
+    this.map.setCenter(pos);
 
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
-        infoWindow.open(this.map);
-        this.map.setCenter(pos);
-      }, function() {
-        //this.handleLocationError(true, infoWindow, map.getCenter());
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      // this.handleLocationError(false, infoWindow, map.getCenter());
-    }
+    // // Try HTML5 geolocation.
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(function(position) {
+    //     var pos = {
+    //       lat: position.coords.latitude,
+    //       lng: position.coords.longitude
+    //     };
+    //
+    //     infoWindow.setPosition(pos);
+    //     infoWindow.setContent('Location found.');
+    //     infoWindow.open(this.map);
+    //     this.map.setCenter(pos);
+    //   }, function() {
+    //     //this.handleLocationError(true, infoWindow, map.getCenter());
+    //   });
+    // } else {
+    //   // Browser doesn't support Geolocation
+    //   // this.handleLocationError(false, infoWindow, map.getCenter());
+    // }
     // console.log('made it here');
     // console.log(this.events.length);
     this.showMarkers();
