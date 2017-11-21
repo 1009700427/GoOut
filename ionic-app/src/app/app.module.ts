@@ -9,7 +9,7 @@ import { LoginPage } from "../pages/login/login";
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
-import { WebSocket } from './Websocket';
+// import { WebSocket } from './Websocket';
 //Pages
 import { HomePage } from '../pages/home/home';
 import { MainPage } from "../pages/main/main";
