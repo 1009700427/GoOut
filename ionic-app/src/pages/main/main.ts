@@ -13,6 +13,7 @@ import { addEventPage } from '../add-event/add-event';
 import { FindPeoplePage } from '../find-people/find-people';
 import {YourPage } from '../your/your';
 import { FindEventsPage } from '../find-events/find-events';
+import { UserPage } from '../user/user';
 
  declare var google : any;
 
@@ -82,8 +83,12 @@ swipeEvent(e){
     //remove any further data members
     window.localStorage.removeItem('username');
     window.localStorage.removeItem('fullname');
+    window.localStorage.removeItem('id');
     this.navCtrl.pop();
 
+  }
+  goToYourPage(){
+    this.navCtrl.push(UserPage, {id: window.localStorage.getItem('id'), username: window.localStorage.getItem('username'), fullname:'You', followed : false})
   }
 
 showMap(){

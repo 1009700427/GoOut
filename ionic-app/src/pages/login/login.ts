@@ -54,6 +54,7 @@ export class LoginPage{
             });
             console.log('signed in here is the user id: '  + req.responseText);
             window.localStorage.setItem('id', req.responseText);
+            window.localStorage.setItem('username', value.username);
             doc.innerHTML = "";
             nav.push(MainPage);
           }

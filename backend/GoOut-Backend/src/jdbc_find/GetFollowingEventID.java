@@ -1,4 +1,4 @@
-package jdbc_follow;
+package jdbc_find;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,16 +16,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class GetFollowingUserList
+ * Servlet implementation class GetFollowingEventID
  */
-@WebServlet("/GetFollowingUserList")
-public class GetFollowingUserList extends HttpServlet {
+@WebServlet("/GetFollowingEventID")
+public class GetFollowingEventID extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetFollowingUserList() {
+    public GetFollowingEventID() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,35 +43,39 @@ public class GetFollowingUserList extends HttpServlet {
 			st = conn.createStatement();
 			System.out.println("Connnected!");
 			ps = conn.prepareStatement("SELECT * FROM "
-					+ "FollowingUsers "
-					+ "WHERE followedByUserID = ? "
+					+ "FollowingEvents "
+					+ "WHERE userID = ? "
 					);
 			ps.setInt(1, userID);
 			rs = ps.executeQuery();
+			ArrayList<Integer> eventIDs = new ArrayList<Integer>();
 
-			ArrayList<Integer> userIDs = new ArrayList<Integer>();
-
+			
+//			if (!rs.next()) {
+//				System.out.println("Returning nothing");
+//			}
 			
 			while (rs.next()) {
 
+				
+				
+					int eventID_ = rs.getInt("eventID");
+				
 
-					int userID_ = rs.getInt("followedUserID");
+					eventIDs.add(eventID_);
 
-					
-					userIDs.add(userID_);
 
 					
 				
 			}
 			
-			response.getWriter().println(userIDs);
+			request.setAttribute("eventIDs", eventIDs);
+
+			response.getWriter().println(eventIDs);
 			response.getWriter().flush();
 			response.getWriter().close();
-			// request.setAttribute("userIDs", userIDs);
-
-			
-			// RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/FollowingEventListResult.jsp");
-			// dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/FollowingEventListResult.jsp");
+//			dispatcher.forward(request, response);
 		}catch(SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
 		}catch (ClassNotFoundException cnfe) {

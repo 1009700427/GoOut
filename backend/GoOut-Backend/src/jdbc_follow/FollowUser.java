@@ -142,8 +142,8 @@ public class FollowUser extends HttpServlet {
 //			
 //			
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/FollowUserResults.jsp");
-			dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/FollowUserResults.jsp");
+//			dispatcher.forward(request, response);
 		}catch(SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
 		}catch (ClassNotFoundException cnfe) {

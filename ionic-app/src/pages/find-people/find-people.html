@@ -30,13 +30,19 @@
         </button>
       </ion-col>
       <ion-col >
-        <button ion-button clear small color="danger" icon-start>
+        <button ion-button clear small color="danger" *ngIf="userFollowed(user)" icon-start (click)= "unfollow(user)">
           <ion-icon name='star'></ion-icon>
-          Interested
+          UnFollow
+        </button>
+      </ion-col>
+
+    <ion-col >
+        <button ion-button clear small color="danger" *ngIf="!userFollowed(user)" icon-start (click)= "follow(user)">
+          <ion-icon name='star'></ion-icon>
+          Follow
         </button>
       </ion-col>
     </ion-row>
-
         <!-- <ion-item>
           <ion-label> {{event.title}}</ion-label>
         </ion-item> -->

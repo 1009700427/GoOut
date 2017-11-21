@@ -7,15 +7,17 @@
 <ion-header>
 
 	<ion-navbar>
-		<ion-title></ion-title>
+		<ion-title>{{fullname}}</ion-title>
+		<!-- <button ion-button *ngIf="isFollowing()">Unfollow</button>
+		<button ion-button *ngIf="!isFollowing()">Follow</button> -->
 	</ion-navbar>
 </ion-header>
 
 
-<ion-content padding class="outer-content">
+<ion-content padding class="outer-content" *ngIf="isYours()">
 	<!-- events created by the user -->
 	<ion-title>
-		{{fullname}}'s Events
+	are Hosting Events
 	</ion-title>
 	<ion-list style="overflow-y: scroll; height: 100%;">
 		<ion-card *ngFor="let event of createdEvents">
@@ -23,7 +25,7 @@
 				<ion-card-title id="EVENTS_ID" class="title"> {{event.title}}</ion-card-title>
 				<p>Location : {{event.location}}</p>
 				<p>Hosted by : {{event.user}} </p>
-				<ion-row no-padding>
+				<!-- <ion-row no-padding>
 					<ion-col>
 						<button ion-button clear small color="danger" icon-start (click)="viewDetails(event)">
 							<ion-icon name='more'></ion-icon>
@@ -31,18 +33,23 @@
 						</button>
 					</ion-col>
 					<ion-col >
-						<button ion-button clear small color="danger" icon-start (clicked) = "follow(event)">
+						<button ion-button clear small color="danger" icon-start *ngIf="isFollowingEvent(event)" (click) = "unfollow(event)">
+							<ion-icon name='star'></ion-icon>
+							No Longer Interested
+						</button>
+						<button ion-button clear small color="danger" icon-start *ngIf="!isFollowingEvent(event)" (click) = "follow(event)">
 							<ion-icon name='star'></ion-icon>
 							Interested
 						</button>
+
 					</ion-col>
-				</ion-row>
+				</ion-row> -->
 		</ion-card-content>
 		</ion-card>
 	</ion-list>
 	<!-- events the user is following  -->
 	<ion-title>
-		Events {{fullname}} is Following
+	are Following Events
 	</ion-title> <br>
 
 	<ion-list style="overflow-y: scroll; height: 100%;">
@@ -58,12 +65,84 @@
 							See Details
 						</button>
 					</ion-col>
-					<ion-col >
-						<button ion-button clear small color="danger" icon-start >
-							<ion-icon name='star' ></ion-icon>
-							Follow
+					<!-- <ion-col >
+						<button ion-button clear small color="danger" icon-start *ngIf="isFollowingEvent(event)" (click) = "unfollow(event)">
+							<ion-icon name='star'></ion-icon>
+							No Longer Interested
+						</button>
+						<button ion-button clear small color="danger" icon-start *ngIf="!isFollowingEvent(event)" (click) = "follow(event)">
+							<ion-icon name='star'></ion-icon>
+							Interested
+						</button>
+					</ion-col> -->
+				</ion-row>
+		</ion-card-content>
+		</ion-card>
+	</ion-list>
+	
+</ion-content>
+
+<ion-content padding class="outer-content" *ngIf="!isYours()">
+	<!-- events created by the user -->
+	<ion-title>
+	is Hosting Events
+	</ion-title>
+	<ion-list style="overflow-y: scroll; height: 100%;">
+		<ion-card *ngFor="let event of createdEvents">
+			<ion-card-content>
+				<ion-card-title id="EVENTS_ID" class="title"> {{event.title}}</ion-card-title>
+				<p>Location : {{event.location}}</p>
+				<p>Hosted by : {{event.user}} </p>
+				<!-- <ion-row no-padding>
+					<ion-col>
+						<button ion-button clear small color="danger" icon-start (click)="viewDetails(event)">
+							<ion-icon name='more'></ion-icon>
+							See Details
 						</button>
 					</ion-col>
+					<ion-col >
+						<button ion-button clear small color="danger" icon-start *ngIf="isFollowingEvent(event)" (click) = "unfollow(event)">
+							<ion-icon name='star'></ion-icon>
+							No Longer Interested
+						</button>
+						<button ion-button clear small color="danger" icon-start *ngIf="!isFollowingEvent(event)" (click) = "follow(event)">
+							<ion-icon name='star'></ion-icon>
+							Interested
+						</button>
+
+					</ion-col>
+				</ion-row> -->
+		</ion-card-content>
+		</ion-card>
+	</ion-list>
+	<!-- events the user is following  -->
+	<ion-title>
+	is Following Events
+	</ion-title> <br>
+
+	<ion-list style="overflow-y: scroll; height: 100%;">
+		<ion-card *ngFor="let event of events">
+			<ion-card-content>
+				<ion-card-title id="EVENTS_ID" class="title"> {{event.title}}</ion-card-title>
+				<p>Location : {{event.location}}</p>
+				<p>Hosted by : {{event.user}} </p>
+				<ion-row no-padding>
+					<ion-col>
+						<button ion-button clear small color="danger" icon-start (click)="viewDetails(event)">
+							<ion-icon name='more'></ion-icon>
+							See Details
+						</button>
+					</ion-col>
+					<!-- <ion-col >
+						<button ion-button clear small color="danger" icon-start *ngIf="isFollowingEvent(event)" (click) = "unfollow(event)">
+							<ion-icon name='star'></ion-icon>
+							No Longer Interested
+						</button>
+						<button ion-button clear small color="danger" icon-start *ngIf="!isFollowingEvent(event)" (click) = "follow(event)">
+							<ion-icon name='star'></ion-icon>
+							Interested
+						</button>
+					</ion-col> -->
 				</ion-row>
 		</ion-card-content>
 		</ion-card>

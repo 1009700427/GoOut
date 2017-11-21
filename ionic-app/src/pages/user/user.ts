@@ -24,8 +24,8 @@ export class UserPage {
 	username:string;
 	fullname:string;
 	id:string;
-	events = [] as Event[]
-  createdEvents = [] as Event[]
+	events = [] as Event[];
+  createdEvents = [] as Event[];
 	nav: NavController;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	this.fullname = navParams.get('fullname');
@@ -78,7 +78,13 @@ export class UserPage {
   				page.addEvent(id, title, user, location, month, day, start, end, descrip);
   			}
   		}
+      
   	}
+  }
+  isYours(){
+    if(this.fullname == 'You')
+      return true;
+    return false;
   }
   getCreatedEvents(){
     let req = new XMLHttpRequest();
@@ -98,8 +104,8 @@ export class UserPage {
         for(var i = 0; i < split.length; i++){
           //username(creator), eventID, title, description, month, day, start, end, location
           let event = page.arraytify(split[i]);
-          for(var j = 0; j < event.length; j++){
-            console.log(event[j]);
+          for(var j = 0; j < event.length; j++);
+            console.log("EVENT" + event[j]);
             if(event[j] === "null"){
               event[j] ='';
             }
@@ -121,14 +127,14 @@ export class UserPage {
         }
       }
     }
-  }
+  
   viewDetails(event){
     this.nav.push(eventPage, {id: event.id, title:event.title, user:event.user, location:event.location,
       month: event.month, day:event.day, start:event.startTime, end:event.endTime,
       description:event.description});
   }
   arraytify(value:any){
-    return value.replace(/[\[\]']+/g,'').split(',')
+    return value.replace(/[\[\]']+/g,'').split(',');
   }
   addEvent(id: string, title:string, user:string, location:string, month:string, day:string, start:string, end:string, descrip:string){
     this.events.push({id: id, title:title, user:user, location: location, month:month, day: day, startTime:start, endTime:end, description:descrip});
@@ -136,6 +142,47 @@ export class UserPage {
   addCreatedEvent(id: string, title:string, user:string, location:string, month:string, day:string, start:string, end:string, descrip:string){
     this.createdEvents.push({id: id, title:title, user:user, location: location, month:month, day: day, startTime:start, endTime:end, description:descrip});
   }
-  
+  isFollowingEvent(event){
+    // let req = new XMLHttpRequest();
+    // let url = "http://goout.us-west-1.elasticbeanstalk.com/CheckFollowingUser?followedByUserID=" + window.localStorage.getItem('id') + "&followedEventID="+ event.id;
+    // req.open('get', url, true);
+    // req.send();
+    // req.onreadystatechange = function(){
+    //  if(req.readyState === XMLHttpRequest.DONE && req.status === 200){
+    //    if(req.responseText.indexOf('yes') != -1){
+    //      return true;
+    //    }
+    //    return false;
+    //  }
+    // }
+    return false;
+  }
+  isFollowing(){
+    let req = new XMLHttpRequest();
+    let url = "http://goout.us-west-1.elasticbeanstalk.com/CheckFollowingUser?followedByUserID=" + window.localStorage.getItem('id') + "&followedUserID="+ this.id;
+    req.open('get', url, true);
+    req.send();
+    req.onreadystatechange = function(){
+     if(req.readyState === XMLHttpRequest.DONE && req.status === 200){
+       if(req.responseText.indexOf('yes') != -1){
+         return true;
+       }
+       return false;
+     }
+    }
+  }
+
+  follow(event){
+    let req = new XMLHttpRequest();
+    let url = "http://goout.us-west-1.elasticbeanstalk.com/FollowEvent?userID=" + window.localStorage.getItem('id') + "&eventID="+ event.id;
+    req.open('get', url, true);
+    req.send();
+  }
+  unfollow(event){
+    let req = new XMLHttpRequest();
+    let url = "http://goout.us-west-1.elasticbeanstalk.com/UnfollowEvent?userID=" + window.localStorage.getItem('id') + "&eventID="+ event.id;
+    req.open('get', url, true);
+    req.send();
+  }
 }
 

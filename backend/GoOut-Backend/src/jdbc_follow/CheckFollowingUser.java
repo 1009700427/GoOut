@@ -1,6 +1,7 @@
 package jdbc_follow;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,12 +17,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class UnfollowUser
+ * Servlet implementation class CheckFollowingUser
  */
-@WebServlet("/UnfollowUser")
-public class UnfollowUser extends HttpServlet {
+@WebServlet("/CheckFollowingUser")
+public class CheckFollowingUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public CheckFollowingUser() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String followedUserID = request.getParameter("followedUserID");
 		String followedByUserID = request.getParameter("followedByUserID");
@@ -38,7 +47,7 @@ public class UnfollowUser extends HttpServlet {
 			conn = DriverManager.getConnection("jdbc:mysql://cs201.cll9sbto0nla.us-west-1.rds.amazonaws.com/GoOutDB?user=master&password=masterpassword&useSSL=false"); //add port number if not on default
 			st = conn.createStatement();
 			System.out.println("connected");
-				
+			PrintWriter pw = response.getWriter();
 			
 			//check whether ID is actually an int
 			int parsedFollowedUserID = -1;
@@ -65,75 +74,29 @@ public class UnfollowUser extends HttpServlet {
 			if (followedUserID != null && followedUserID.length() != 0 && followedByUserID != null && followedByUserID.length() != 0) {
 				
 				
-				ps = conn.prepareStatement("DELETE FROM FollowingUsers WHERE followedUserID=? AND followedByUserID=?");
+				ps = conn.prepareStatement("SELECT * "
+						+ "FROM FollowingUsers "
+						+ "WHERE followedUserID=? " 
+						+ "AND followedByUserID =?");
 				ps.setInt(1, parsedFollowedUserID );
 				ps.setInt(2, parsedFollowedByUserID );
 				System.out.println(parsedFollowedUserID + ", " + parsedFollowedByUserID);
+				rs = ps.executeQuery();
 				
 				
-				if (ps.executeUpdate() == 0) {
-					System.out.println("Didn't delete");
+				
+				if (!rs.next()) {
+					System.out.println("No connection exists");
+					pw.println("no");
 				}
-//				
-//				psReturnData = conn.prepareStatement("SELECT * "
-//						+ "FROM Users u, Events e"
-//						+ " WHERE u.userID = e.userID "
-////						+ "AND e.eventID = e.eventID "
-//						+ "AND e.eventID=?");
-//				psReturnData.setInt(1, parsedEventID );
-//				rs = psReturnData.executeQuery();
-//				while(rs.next()) {
-//					
-//					int eventID_ = rs.getInt("e.eventID");
-//					String eventName = rs.getString("e.eventName");
-//					int eventUserID = rs.getInt("u.userID");
-//					String eventFullName = rs.getString("u.fullName");
-//					String eventUsername = rs.getString("u.username");
-//					
-//					String eventLocation = rs.getString("e.location");
-////					if (eventLocation == null) {
-////						eventLocation = ("N/A");
-////					}
-//					
-//					int eventMonth = rs.getInt("e.month");
-////					if (eventMonth == 0) {
-////						eventMonth = ("N/A");
-////					}
-//					int eventDay = rs.getInt("e.day");
-//					
-//					
-//					String eventStartTime = rs.getTime("e.startTime").toString();
-//
-//					String eventEndTime = rs.getTime("e.endTime").toString();
-//					if (eventEndTime == null) {
-//						eventEndTime = "N/A";
-//					}
-//
-//					
-//					request.setAttribute("eventID", eventID_);
-//					request.setAttribute("eventName", eventName);
-//					request.setAttribute("eventUserID", eventUserID);
-//					request.setAttribute("eventLocation", eventLocation);
-//					request.setAttribute("eventMonth", eventMonth);
-//					request.setAttribute("eventDay", eventDay);
-//					request.setAttribute("eventStartTime", eventStartTime);
-//					request.setAttribute("eventEndTime", eventEndTime);
-//					
-//					request.setAttribute("eventUsername", eventUsername);
-//					request.setAttribute("eventFullName", eventFullName);
-//					
-//				}
-				
+				else {
+					pw.println("yes");
+				}
+	
 			}
-				
+			pw.flush();
+			pw.close();
 
-
-
-			
-			
-			
-//			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/FollowUserResults.jsp");
-//			dispatcher.forward(request, response);
 		}catch(SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
 		}catch (ClassNotFoundException cnfe) {
@@ -157,5 +120,4 @@ public class UnfollowUser extends HttpServlet {
 		
 		
 	}
-
 }

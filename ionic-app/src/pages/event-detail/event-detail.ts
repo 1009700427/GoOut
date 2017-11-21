@@ -51,4 +51,7 @@ export class eventPage {
     req.send();
     this.nav.pop();
   }
+  isFollowed(event){
+    return false;
+  }
 }

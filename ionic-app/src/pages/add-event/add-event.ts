@@ -64,7 +64,7 @@ export class addEventPage {
       var message = dateList[2]+"/"+dateList[1]+"/2017"+timeList[0]+"/"+timeList[1]+"/00/1/"+title;
 
       console.log("message: "+message);
-      WebSocket2.sendMessage(message);
+     // WebSocket2.sendMessage(message);
       //WebSocket.send(message);
       console.log("message sent!");
   }
