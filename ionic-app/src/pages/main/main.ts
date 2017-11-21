@@ -47,11 +47,13 @@ export class MainPage {
   // map: GoogleMap;
   constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
     // this.mapFilter = "nearby";
+    this.initilize();
   }
 
   ionViewDidLoad() {
     console.log(this.mapRef);
-    this.showMap();
+    //this.initilize();
+    //this.showMap();
     // this.initilize();
 
     // this.loadMap();
@@ -99,8 +101,8 @@ swipeEvent(e){
 
 showMap(){
   //get the events from the database
-  this.initilize();
-
+  //this.initilize();
+  console.log("made it out of initialize");
   //location-- lat long
   const location = new google.maps.LatLng(34.022356, -118.285096);
   var infoWindow;
@@ -149,14 +151,17 @@ showMap(){
           // Browser doesn't support Geolocation
          // this.handleLocationError(false, infoWindow, map.getCenter());
         }
+       console.log('made it here');
+       console.log(this.events.length);
 
      for (var i = 0; i < this.events.length ; i++){
        // var eventMarker = 
+
        var contentString = this.events[i].title;
        var eventInfo = new google.maps.InfoWindow({
           content: contentString
         });
-
+       console.log("LOCATION: " + this.events[i].location);
        var marker = new google.maps.Marker({
           position: this.getCoords(this.events[i].location),
           map: map,
@@ -205,6 +210,8 @@ initilize(){
             //let user = page.findUser(userIDs[i]);
             page.addEvent(eventID[i],eventTitle[i], usernames[i], eventLocation[i], eventMonths[i],eventDays[i], eventStart[i], eventEnd[i], descrip[i]);
             }
+            console.log("finished the request");
+            page.showMap();
           }
           else{
             console.log('notfound');
@@ -215,6 +222,7 @@ initilize(){
         }
       }
     }
+
   }
 
 
