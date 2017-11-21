@@ -3,25 +3,16 @@ import {
  GoogleMap,
  GoogleMapsEvent,
  GoogleMapOptions,
- // CameraPosition,
- // MarkerOptions,
- // Marker
 } from '@ionic-native/google-maps';
-
-
-
+import { WebSocket2 } from '../../app/WebSocket';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { SignUpPage } from '../sign-up/sign-up';
 import { addEventPage } from '../add-event/add-event';
-
-/**
- * Generated class for the MainPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FindPeoplePage } from '../find-people/find-people';
+import {YourPage } from '../your/your';
+import { FindEventsPage } from '../find-events/find-events';
 
  declare var google : any;
 
@@ -31,11 +22,38 @@ import { addEventPage } from '../add-event/add-event';
   templateUrl: 'main.html',
 })
 export class MainPage {
-   addEventPage = addEventPage;
+  LoginPage = LoginPage;
+  addEventPage = addEventPage;
+  YourPage = YourPage;
   @ViewChild('map') mapRef : ElementRef;
+  @ViewChild('search') searchRef : any;
   map: any;
+  searchTerm : string;
   // map: GoogleMap;
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
+
+
+  // connects to the server!
+  WebSocket2.connectToServer();
+
+
+
+
+  }
+
+  searchEvents() {
+    this.searchTerm = this.searchRef.value;
+    console.log(this.searchTerm);
+    let myModal = this.modalCtrl.create(FindEventsPage, {term : this.searchTerm});
+    myModal.present();
+  }
+
+  searchPeople() {
+    this.searchTerm = this.searchRef.value;
+    console.log(this.searchTerm);
+    let myModal = this.modalCtrl.create(FindPeoplePage, {term : this.searchTerm});
+    myModal.present();
+  }
 
   onInput(e){
     console.log(e);
@@ -48,16 +66,24 @@ export class MainPage {
     // console.log('ionViewDidLoad MainPage');
   }
 swipeEvent(e){
-    //go to the login page if 
+    //go to the login page if
     //the user swipes to the left
     if(e.direction == 2){
       this.navCtrl.push(LoginPage);
     }
-    // //go to the signup page if 
+    // //go to the signup page if
     // //the user swipes to the right
     if(e.direction == 4){
       this.navCtrl.push(SignUpPage);
     }
+  }
+  //will removed all the stored data from the local storage;
+  logout(){
+    //remove any further data members
+    window.localStorage.removeItem('username');
+    window.localStorage.removeItem('fullname');
+    this.navCtrl.pop();
+
   }
 
 showMap(){
@@ -77,11 +103,11 @@ showMap(){
           },
     zoomControl: true,
     zoomControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_TOP
-    },
+      position: google.maps.ControlPosition.TOP_RIGHT
+     },
     streetViewControl: true,
           streetViewControlOptions: {
-              position: google.maps.ControlPosition.LEFT_TOP
+              position: google.maps.ControlPosition. RIGHT_TOP
     }
 
   }
@@ -110,7 +136,7 @@ showMap(){
         }
 
 }
- 
+
 // handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //   infoWindow.setPosition(pos);
 //   infoWindow.setContent(browserHasGeolocation ?

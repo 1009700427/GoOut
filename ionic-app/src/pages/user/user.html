@@ -1,5 +1,5 @@
 <!--
-  Generated template for the UserPage page.
+  Generated template for the YourPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,12 +7,89 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>UserPage</ion-title>
+    <ion-title></ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="outer-content">
+	<!-- events created by the user -->
+	<ion-title>
+		{{fullname}}'s Events
+	</ion-title> <br>
+
+	<ion-list style="overflow-y: scroll; height: 100%;">
+
+	  <ion-card>
+	    <ion-card-content>
+	      <ion-card-title id="USER_ID" class="title">
+	        Event1
+	      </ion-card-title>
+	    </ion-card-content>
+
+	    <ion-row no-padding>
+	      <ion-col>
+	        <button ion-button clear small color="danger" icon-start [navPush]="eventPage">
+	          <ion-icon name='more'></ion-icon>
+	          See Details
+	        </button>
+	      </ion-col>
+	      <ion-col >
+	        <button ion-button clear small color="danger" icon-start>
+	          <ion-icon name='star'></ion-icon>
+	          Interested
+	        </button>
+	      </ion-col>
+    	</ion-row>
+ 	 </ion-card>
+
+ 	 <ion-card>
+	    <ion-card-content>
+	      <ion-card-title id="EVENTS_ID" class="title">
+	        Event 2 Title
+	      </ion-card-title>
+	    </ion-card-content>
+
+	    <ion-row no-padding>
+	      <ion-col>
+	        <button ion-button clear small color="danger" icon-start [navPush]="eventPage">
+	          <ion-icon name='more'></ion-icon>
+	          See Details
+	        </button>
+	      </ion-col>
+	      <ion-col >
+	        <button ion-button clear small color="danger" icon-start>
+	          <ion-icon name='star'></ion-icon>
+	          Interested
+	        </button>
+	      </ion-col>
+    	</ion-row>
+ 	 </ion-card>
+
+ 	  <ion-card>
+	    <ion-card-content>
+	      <ion-card-title id="EVENTS_ID" class="title">
+	        Event 2 Title
+	      </ion-card-title>
+	    </ion-card-content>
+
+	    <ion-row no-padding>
+	      <ion-col>
+	        <button ion-button clear small color="danger" icon-start [navPush]="eventPage">
+	          <ion-icon name='more'></ion-icon>
+	          See Details
+	        </button>
+	      </ion-col>
+	      <ion-col >
+	        <button ion-button clear small color="danger" icon-start>
+	          <ion-icon name='star'></ion-icon>
+	          Interested
+	        </button>
+	      </ion-col>
+    	</ion-row>
+ 	 </ion-card>
+	
+	</ion-list>
+
 
 </ion-content>

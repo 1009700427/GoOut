@@ -1,5 +1,7 @@
 import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { WebSocket2 } from '../../app/WebSocket';
+
 // import {Geolocation} frnom '@ionic-native/geolocation';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
 /**
@@ -14,16 +16,16 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/fo
 @IonicPage()
 @Component({
   selector: 'page-add-event',
-  templateUrl: 'add-event.html',
+  templateUrl: 'add-event.html'
 })
 export class addEventPage {
   public event = {
-    month: '1990-02-19',
-    timeStarts: '07:43',
-    timeEnds: '1990-02-20'
+    month: '2017-11-21',
+    timeStarts: '07:00',
+    timeEnds: '2021-02-20'
   }
 
-  
+
 	// latitude : any;b
 	// longitude : any;
 	// radius: any;
@@ -31,55 +33,48 @@ export class addEventPage {
 	// autocomplete: any;
 	// circle: any;
 	// geolocation : any;
-  signUpForm:FormGroup;
+  addEventForm: FormGroup;
+  myDate : string = new Date().toISOString();
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
     this.navCtrl = navCtrl;
-    this.signUpForm = formBuilder.group({
+    this.addEventForm = formBuilder.group({
       title: ['', Validators.required],
-      date: ['', Validators.required],
-      time: ['', Validators.required],
+      date: [''],
+      time: [''],
       location: ['', Validators.required],
-      description: [''],
+      description: ['', Validators.required],
       isPrivate: ['', Validators.required]
     });
   };
 
+  sendMessage(value: any): void{
+    console.log("in send message");
+      var title = value.title;
+      var date = value.date;
+      var time = value.time;
+      var location = value.location;
+      var description = value.description;
+      var isPrivate = "false";
+
+      var dateList = date.split("-");
+      var timeList = time.split(":");
+
+      
+
+      var message = dateList[2]+"/"+dateList[1]+"/2017"+timeList[0]+"/"+timeList[1]+"/00/1/"+title;
+
+      console.log("message: "+message);
+      WebSocket2.sendMessage(message);
+      //WebSocket.send(message);
+      console.log("message sent!");
+  }
    ionViewDidLoad() {
 
    }
    validate(value:any):void{
-     if(this.signUpForm.valid){
+     if(this.addEventForm.valid){
        console.log("valid");
        this.navCtrl.pop();
      }
    }
-
-
-//    ionViewDidLoad() {
-//    	this.autocomplete = new google.maps.places.Autocomplete(
-//             (<HTMLInputElement>document.getElementById('autocomplete')),
-//             {types: ['geocode']}
-// 	);
-
-//     this.geo.getCurrentPosition().then( pos => {
-//     	this.latitude = pos.coords.latitude;
-//     	this.longitude = pos.coords.longitude;
-//     	this.radius = pos.coords.accuracy;
-//     }).catch( err => console.log( err ));
-//   }
-
-//   geolocate(){
-//   		this.geolocation = {
-//               lat: this.latitude,
-//               lng: this.longitude
-//          };
-//         this.circle = new google.maps.Circle({
-//               center: this.geolocation,
-//               radius: this.radius
-//          });
-// 			this.autocomplete.setBounds(this.circle.getBounds());
-// 	}
-
- 
-
 }
