@@ -3,31 +3,31 @@
  */
 // import { Platform } from 'ionic-angular';
 //var WebSocketClient = require('websocket').client;
-const WebSocketClient = require('ws');
+// const WebSocketClient = require('ws');
 
-export class WebSocket {
-  constructor() {
+// export class WebSocket {
+//   constructor() {
 
-  }
+//   }
 
-  public static socketClient = null;
+//   public static socketClient = null;
 
-  public static connectToServer() {
-    // this.socket = new WebSocket("ws://localhost:8080/GoOut-Backend/GoOutServer")
-    this.socketClient = new WebSocket('ws://localhost:8080', []);
-    console.log("initialized socket client");
-    this.socketClient.onopen = function(event) {
-      console.log("Connected!");
-    }
-    this.socketClient.onmessage = function(event) {
-      document.getElementById("mychat").innerHTML += event.data + "<br />";
-    }
-    this.socketClient.onclose = function(event) {
-      console.log("Disconnected!");
-    }
-    this.socketClient.onerror = function(err){
-      console.log("Error: ", err);
-    };
+//   public static connectToServer() {
+//     // this.socket = new WebSocket("ws://localhost:8080/GoOut-Backend/GoOutServer")
+//     this.socketClient = new WebSocket('ws://localhost:8080', []);
+//     console.log("initialized socket client");
+//     this.socketClient.onopen = function(event) {
+//       console.log("Connected!");
+//     }
+//     this.socketClient.onmessage = function(event) {
+//       document.getElementById("mychat").innerHTML += event.data + "<br />";
+//     }
+//     this.socketClient.onclose = function(event) {
+//       console.log("Disconnected!");
+//     }
+//     this.socketClient.onerror = function(err){
+//       console.log("Error: ", err);
+//     };
 
 
 
@@ -80,9 +80,9 @@ export class WebSocket {
     // this.socket.onclose = function(event) {
     //   console.log("Disconnected!");
     // }
-  }
-  public static sendMessage(message: string){
-    console.log("In websocket: "+message);
-    this.socketClient.send(message);
-}
-}
+//   }
+//   public static sendMessage(message: string){
+//     console.log("In websocket: "+message);
+//     this.socketClient.send(message);
+// }
+// }

@@ -4,7 +4,7 @@ import {
  GoogleMapsEvent,
  GoogleMapOptions,
 } from '@ionic-native/google-maps';
-import { WebSocket } from '../../app/WebSocket';
+// import { WebSocket } from '../../app/WebSocket';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
@@ -34,10 +34,7 @@ export class MainPage {
 
 
   // connects to the server!
-  WebSocket.connectToServer();
-
-
-
+  // WebSocket.connectToServer();
 
   }
 
@@ -135,16 +132,11 @@ showMap(){
           // Browser doesn't support Geolocation
          // this.handleLocationError(false, infoWindow, map.getCenter());
         }
-
-<<<<<<< HEAD
   }
 
-  validatePeople
- 
-=======
 }
 
->>>>>>> master
+
 // handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //   infoWindow.setPosition(pos);
 //   infoWindow.setContent(browserHasGeolocation ?
@@ -152,7 +144,7 @@ showMap(){
 //                               'Error: Your browser doesn\'t support geolocation.');
 //   infoWindow.open(map);
 //  }
-}
+
  //  loadMap() {
  //    let mapOptions: GoogleMapOptions = {
  //      camera: {
