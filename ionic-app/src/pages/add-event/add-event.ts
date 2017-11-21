@@ -107,7 +107,7 @@ export class addEventPage {
         }
       }
       req.send();
-     this.navCtrl.pop();
+     //this.navCtrl.pop();
    }
    // validate(value:any):void{
    //   if(this.addEventForm.valid){
