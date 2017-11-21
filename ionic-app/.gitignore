@@ -34,3 +34,6 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+../backend/GoOut-Backend/.classpath
+../backend/GoOut-Backend/.settings/org.eclipse.wst.common.project.facet.core.xml
+../backend/Servers/.settings/org.eclipse.wst.server.core.prefs
