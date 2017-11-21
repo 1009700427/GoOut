@@ -27,6 +27,7 @@ export class FindPeoplePage {
   	console.log("inside construtor of find people");
   	this.term = params.get('term');
     this.nav = navCtrl;
+    this.search();
   	console.log('passed parameter is'+ this.term);
   }
 

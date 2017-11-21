@@ -14,7 +14,32 @@
 
 
 <ion-content padding>
-	<ion-card>
+  <ion-content padding>
+ <ion-card *ngFor="let user of users">
+  <ion-card-content>
+    <ion-card-title id="EVENTS_ID" class="title"> {{user.username}}</ion-card-title>
+    <p>Full Name : {{user.fullname}}</p>
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-start (click)="viewDetails(user)">
+          <ion-icon name='more'></ion-icon>
+          See Details
+        </button>
+      </ion-col>
+      <ion-col >
+        <button ion-button clear small color="danger" icon-start>
+          <ion-icon name='star'></ion-icon>
+          Interested
+        </button>
+      </ion-col>
+    </ion-row>
+
+        <!-- <ion-item>
+          <ion-label> {{event.title}}</ion-label>
+        </ion-item> -->
+ </ion-card-content>
+</ion-card>
+	<!-- <ion-card>
     <ion-card-content>
       <ion-card-title id="USER_ID" class="title">
         Username   
@@ -60,7 +85,7 @@
         </button>
       </ion-col>
     </ion-row>
-  </ion-card>
+  </ion-card> -->
 
 
   <ion-footer>

@@ -46,15 +46,25 @@ public class ValidateLogin extends HttpServlet {
  			st = conn.createStatement();
  			
  			
-			ps = conn.prepareStatement("SELECT * FROM Users WHERE username=? AND BINARY password=?");
+ 			ps = conn.prepareStatement("SELECT * FROM Users WHERE username=? AND BINARY password=?");
 			ps.setString(1, username);
 			ps.setString(2, password);
  			rs = ps.executeQuery();
+ 			int userID = -1;
+ 			String username_ = "";
+ 			String fullName = "";
  			
 			if(!rs.next()) {
 				pw.println("Invalid username or password");
 			}
- 			
+			else {
+				userID = rs.getInt("userID");
+				username_ = rs.getString("username");
+				fullName = rs.getString("fullName");
+				pw.println(userID);
+				pw.println(username_);
+				pw.println(fullName);
+			}
  			
 
  			pw.flush();

@@ -36,4 +36,5 @@ public class Event {
 	public void setEndTime(java.sql.Time newTime){
 		this.endTime = newTime; 
 	}
+	
 }

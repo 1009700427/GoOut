@@ -73,10 +73,12 @@ public class GetFollowingEventList extends HttpServlet {
 			}
 			
 //			System.out.println("size: "+eventIDList.size());
-			
-			request.setAttribute("eventList", eventList);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/GetFollowingEventListResult.jsp");
-			dispatcher.forward(request, response);
+			response.getWriter().println(eventList);
+			response.getWriter().flush();
+			response.getWriter().close();
+			//request.setAttribute("eventList", eventList);
+			//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/GetFollowingEventListResult.jsp");
+			//dispatcher.forward(request, response);
 		}catch(SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
 		}catch (ClassNotFoundException cnfe) {
