@@ -48,6 +48,6 @@ When you haev successfully logged into the account, you will see a map serving a
 
 ![2](https://user-images.githubusercontent.com/22974252/35259242-899e337a-ffb9-11e7-819f-4dc7f107864f.png)
 
-At the bottom of the main interface, there are two options of ```Find Events``` and ```Find People```. You can find either events or people by just typing into the text box. 
+At the bottom of the main interface, there are two options of ```Find Events``` and ```Find People```. You can find either events or people by just typing into the text box. <br/>
 ![3](https://user-images.githubusercontent.com/22974252/35259358-3ee6b856-ffba-11e7-8a26-b63a8545a166.png)
 ![5](https://user-images.githubusercontent.com/22974252/35259599-9c7632d4-ffbb-11e7-8db4-71bab1468882.png)
